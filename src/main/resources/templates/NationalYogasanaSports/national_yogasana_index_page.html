@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+    <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,shrink-to-fit=no">
+		<meta charset="utf-8" />
+        
+        <title>Login - National Yogasana Sports Federation</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    </head>
+    <body>
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-3 rounded-lg mt-5">
+                                    <div class="card-header text-center">
+                                    	<!-- <h3 class="text-center font-weight-light my-4">Login</h3>  -->
+                                    	<img th:src="@{/images/Yogasana-Logo.png}" width="23%" alt="">
+                                    	<img th:src="@{/images/Nysf_logo_lion.jpg}" width="23%" alt="">
+                                    	<img th:src="@{/images/75_yrs_amruth.png}" width="23%" alt="">
+                                    	<img th:src="@{/images/Logo_sports_Authority_India.jpg}" width="23%" alt="">
+                                    </div>
+                                    <div class="card-body dark-card-header">
+                                        <form>
+                                        	<div class="text-center">
+                                        		<div th:if="${param.error}">
+												<p class="text-danger"></p>
+												</div>
+												
+                                        	</div>
+		
+                                            <div class="form-group">
+                                                <label class=" mb-1" for="inputEmailAddress">Click below to view team scores</label>
+                                            </div>
+                                            &nbsp;
+                                         &nbsp;
+                                         &nbsp;
+                                         &nbsp;
+                                            <div class="text-center">
+                                           		<div class="col-sm-12 col-md-12 col-lg-12 align-self-center">
+                                           		
+													<a class="btn btn-primary btnActionSmall"
+														th:href="@{/national-sports/yogasana/championship/getTeamsForCategories}">Click Here</a>
+												</div>
+											</div>
+
+                                         
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <!-- Footer fragment -->
+				<div th:replace="fragments/layout :: page_footer_outside_application"></div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">Assign Judge panel to Asana
+								Categories</h3>
+						</div>
+					</div>
+
+					<hr>
+					<br />
+					<div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message1 != null}" class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${message1}]]
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="judgePanels" th:action="@{/admin/manage-team/referees/assignToCategory}"
+								method="POST" onsubmit="return validateForm(this);">
+								<div class="form-team row">
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="championship">Championship
+											<span class="form-star">*</span>
+										</label> <select class="form-control" name="championship" id="championship"
+											onchange="getChampionshipCategory(this);">
+											<option value="">-- Select --</option>
+											<th:block th:each="championship : ${listChampionships}">
+												<option th:value="${championship.id}">[[${championship.name}]]</option>
+											</th:block>
+										</select> <span id="span-error-championship" class="span-error">
+										</span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="championshipCategory">Championship
+											Categories <span class="form-star">*</span>
+										</label> <select th:if="${listChampionships == null}" class="form-control"
+											id="championship-category" onchange="getRoundsPanelsAndTeams(this);">
+											<option value="">-- Select --</option>
+										</select> <select th:if="${listChampionships!= null}" class="form-control"
+											id="championshipcategory" name="championship-category"
+											onchange="getRoundsPanelsAndTeams(this);">
+											<option value="">-- Select --</option>
+											<th:block th:each="championshipCat : ${listChampionshipCategory}">
+												<option th:value="${championshipCat.id}">
+													[[${championshipCat.getCategoryDetail}]]</option>
+											</th:block>
+										</select> <span id="span-error-championshipcategory" class="span-error"></span>
+
+									</div>
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="round">Round <span class="form-star">*</span>
+										</label> <select class="form-control" id="round" name="round"
+											onchange="getRoundsPanels(this);">
+											<option value="">-- Select --</option>
+										</select> <span id="span-error-round" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="panel">Panel <span class="form-star">*</span>
+										</label> <select class="form-control" name="panel" id="panel">
+											<option value="">-- Select --</option>
+											<th:block
+												th:each="championshipRefereePanels : ${listChampionshipRefereePanels}">
+												<option th:value="${championshipRefereePanels.id}">
+													[[${championshipRefereePanels.name}]]</option>
+											</th:block>
+										</select> <span id="span-error-panel" class="span-error">
+										</span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="team">Team <span
+												class="form-star">*</span></label> <br /> <select
+											class="form-control select" id="teamList" name="teamList"
+											multiple="multiple">
+											<th:block th:each="participantTeam : ${listParticipantTeam}">
+												<option th:value="${participantTeam.id}">
+													[[${participantTeam.name}]]</option>
+											</th:block>
+
+										</select>
+										<div><span id="span-error-teamList" class="span-error"> </span></div>
+
+									</div>
+
+
+
+									<div class="form-team text-center mt-5 mb-5">
+										<input type="submit" value="Save" class="btn btn-primary" />
+
+									</div>
+							</form>
+						</div>
+					</div>
+
+
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script id="runScript" th:src="@{/js/bootstrap-multiselect.js}"></script>
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		var teamList = $('#teamList');
+		$(document).ready(function () {
+			$('#teamList').multiselect({
+				includeSelectAllOption: true,
+				maxHeight: true
+
+			});
+
+		});
+		function validateForm(form) {
+
+			let championship = document.getElementById('championship').value;
+			let championshipcategory = document.getElementById('championshipcategory').value;
+			let round = document.getElementById('round').value;
+			let panel = document.getElementById('panel').value;
+			let teamList = document.getElementById('teamList').value;
+
+			if (championship == "") {
+				var flagChampionship = false;
+				$("#span-error-championship").text("Select the championship");
+
+			} else {
+				flagChampionship = true;
+				$("#span-error-championship").text("");
+			}
+
+			if (championshipcategory == "") {
+				var flagCategory = false;
+				$("#span-error-championshipcategory").text("Select the championship Category");
+
+			} else {
+				flagCategory = true;
+				$("#span-error-championshipcategory").text("");
+			}
+
+			if (round == "") {
+				var flagRound = false;
+				$("#span-error-round").text("Select the round");
+
+			} else {
+				flagRound = true;
+				$("#span-error-round").text("");
+			}
+
+			if (panel == "") {
+				var flagPanel = false;
+				$("#span-error-panel").text(
+					"Select the Panel");
+
+			} else {
+				flagPanel = true;
+				$("#span-error-panel").text("");
+			}
+
+			if (teamList == "") {
+				var flagTeamList = false;
+				$("#span-error-teamList").text("Select the Teams");
+
+			} else {
+				flagTeamList = true;
+				$("#span-error-teamList").text("");
+			}
+
+			return (flagChampionship && flagCategory && flagRound
+				&& flagPanel && flagTeamList)
+
+		}
+
+
+		function getChampionshipCategory(input) {
+			var championshipId = input.value;
+			if (championshipId == '') {
+				$('#championshipcategory').empty();
+				$('#championshipcategory').append(
+					'<option value="">-- Select --</option>');
+
+				$('#round').empty();
+				$('#round').append(
+					'<option value="">-- Select --</option>');
+
+				$('#panel').empty();
+				$('#panel').append(
+					'<option value="">-- Select --</option>');
+					
+				$('#teamList').empty();
+				teamList.multiselect('rebuild');
+
+			} else {
+
+				url = base_url + "championship/" + championshipId
+					+ "/getCategories";
+
+				$
+					.get(
+						url,
+						function (responseJson) {
+							console.log(responseJson);
+							$('#championshipcategory').empty();
+							$('#championshipcategory')
+								.append(
+									'<option value="">-- Select --</option>');
+							$
+								.each(
+									responseJson,
+									function (index,
+										championshipCategoryDto) {
+										$('#championshipcategory')
+											.append(
+												'<option value="' + championshipCategoryDto.id + '">'
+												+ championshipCategoryDto.asanaCategory
+												+ ' - '
+												+ championshipCategoryDto.ageCategory
+												+ ' - '
+												+ championshipCategoryDto.gender
+												+ '</option>');
+									});
+						}).fail(function () {
+							showErrorModal("Error loading Asana Category.");
+						});
+			}
+		}
+
+		function getRoundsPanelsAndTeams(input) {
+			var championshipId = $('#championship option:selected').val();
+			var championshipcategory = $(
+				'#championshipcategory option:selected').val();
+
+			if (championshipcategory == '' || championshipId == '') {
+				$('#round').empty();
+				$('#round').append(
+					'<option value="">-- Select --</option>');
+
+				$('#panel').empty();
+				$('#panel').append(
+					'<option value="">-- Select --</option>');
+					
+								$('#teamList').empty();
+				teamList.multiselect('rebuild');
+	
+			} else {
+				if (championshipcategory != null && championshipId != null) {
+					url = base_url + "championship/" + championshipId
+						+ "/championshipCategories/" + championshipcategory
+						+ "/getRoundPanelTeams";
+					$
+						.get(
+							url,
+
+							function (responseJson) {
+
+								console.log(responseJson);
+								var listRounds = responseJson.listRoundNumber;
+								var listParticipantTeam = responseJson.listParticipantTeam;
+								//	var listPanels = responseJson.listChampionshipRefereePanels;
+
+								$('#teamList').empty();
+								$.each(listParticipantTeam, function (index,
+									team) {
+
+									$('#teamList').append(
+										'<option class="team" value="' + team.id + '">'
+										+ team.name
+										+ '</option>');
+
+								});
+
+								teamList.multiselect('rebuild');
+
+								/*	$('#panel').empty();
+									$('#panel')
+										.append(
+											'<option value="">-- Select --</option>');
+		
+									$.each(listPanels, function (index, panel) {
+		
+										$('#panel').append(
+											'<option value="' + panel.id + '">'
+											+ panel.name
+											+ '</option>');
+		
+									});*/
+
+								$('#round').empty();
+								$('#round')
+									.append(
+										'<option value="">-- Select --</option>');
+
+								$.each(listRounds, function (index, round) {
+
+									$('#round').append(
+										'<option value="' + round + '">'
+										+ round + '</option>');
+
+								});
+
+							}).fail(function () {
+								showErrorModal("Error loading Round");
+							})
+				}
+
+			}
+		}
+
+
+		function getRoundsPanels(input) {
+			var championshipId = $('#championship option:selected').val();
+			var championshipcategory = $(
+				'#championshipcategory option:selected').val();
+			var round = $(
+				'#round option:selected').val();
+			if (championshipcategory == '' || championshipId == '' || round == '') {
+
+				$('#panel').empty();
+				$('#panel').append(
+					'<option value="">-- Select --</option>');
+			} else {
+
+
+				if (championshipcategory != null && championshipId != null && round != null) {
+					url = base_url + "championship/" + championshipId
+						+ "/championshipCategories/" + championshipcategory + "/round/" + round
+						+ "/getRoundPanel";
+					$
+						.get(
+							url,
+
+							function (responseJson) {
+
+								console.log(responseJson);
+								var listPanels = responseJson.listChampionshipRefereePanels;
+
+								$('#panel').empty();
+								$('#panel')
+									.append(
+										'<option value="">-- Select --</option>');
+
+								$.each(listPanels, function (index, panel) {
+
+									$('#panel').append(
+										'<option value="' + panel.id + '">'
+										+ panel.name
+										+ '</option>');
+
+								});
+
+
+							}).fail(function () {
+								showErrorModal("Error loading panel");
+							})
+				}
+
+			}
+		}
+	</script>
+</body>
+
+</html>

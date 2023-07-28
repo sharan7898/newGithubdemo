@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall" th:href="@{/admin/manage-users}">Back</a>
+						</div>
+					</div>
+
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-9">
+							<form id="userAddForm" th:action="@{/admin/manage-users/save}" method="post"
+								th:object="${user}" onsubmit="return (validateForm(this) && checkEmailUnique(this));">
+								<input type="hidden" th:field="*{id}" />
+								<div class="form-group row">
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="firstName">First name <span
+												class="form-star">*</span></label> <input type="text"
+											class="form-control" th:field="*{firstName}" minlength="2" maxlength="45">
+										<span id="span-error-firstName" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="lastName">Last name <span
+												class="form-star">*</span></label> <input type="text"
+											class="form-control" th:field="*{lastName}" minlength="2" maxlength="45">
+										<span id="span-error-lastName" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="phoneNumber">Phone
+											number</label> <input type="text" class="form-control"
+											th:field="*{phoneNumber}" id="phoneNumber" min="10" maxlength="12"> <span
+											id="span-error-phoneNumber" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="role">Role <span
+												class="form-star">*</span></label> <select class="form-control"
+											th:field="*{roles}" id="roles">
+											<option value="">-- Select --</option>
+											<th:block th:each="role : ${listRoles}">
+												<option th:value="${role.id}">[[${role.name}]]</option>
+											</th:block>
+										</select> <span id="span-error-roles" class="span-error"> </span>
+									</div>
+
+
+									<div class="col-md-12 mb-3">
+										<label class="form-label" for="email">Email <span
+												class="form-star">*</span></label> <input th:if="${user.id == null}"
+											type="text" class="form-control" th:field="*{email}" maxlength="45" />
+										<input th:if="${user.id != null}" type="email" class="form-control"
+											th:field="*{email}" readonly /> <span id="span-error-email"
+											class="span-error">
+										</span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="password">Password </label>
+										<div class="input-group">
+
+											<input th:if="${user.id == null}" type="password" class="form-control"
+												th:field="*{password}" name="password" id="password" minlength="8"
+												maxlength="20" /> <input th:if="${user.id != null}" type="password"
+												class="form-control" th:field="*{password}" name="password"
+												minlength="8" maxlength="20" />
+
+											<div class="input-group-append">
+												<span class="input-group-text"><i class="far fa-eye"
+														id="togglePassword"></i></span>
+											</div>
+										</div>
+										<span id="span-error-password" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="confirmPassword">Confirm
+											Password</label>
+										<div class="input-group">
+											<input type="password" class="form-control" onChange="checkPasswordMatch();"
+												name="confirmPassword" id="confirmPassword" minlength="8"
+												maxlength="20" />
+											<div class="input-group-append">
+												<span class="input-group-text"><i class="far fa-eye"
+														id="toggleConfirmPassword"></i></span>
+											</div>
+										</div>
+										<span id="span-error-confirmPassword" class="span-error">
+										</span>
+										<div class="formAlert" id="divCheckPasswordMatch"></div>
+
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="state">State <span
+												class="form-star">*</span></label> <select class="form-control"
+											id="state" th:field="*{state}">
+											<option value="">Select</option>
+											<th:block th:each="state : ${listStates}">
+												<option th:value="${state.id}">[[${state.name}]]</option>
+											</th:block>
+										</select> <span id="span-error-state" class="span-error"></span>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<div class="checkbox">
+											<th:block th:if="${user.id == null}">
+												<input type="checkbox" th:field="*{enabled}" hidden>
+												<label class="label" hidden> &nbsp; Enabled</label>
+
+											</th:block>
+											<th:block th:if="${user.id != null}">
+												<input type="checkbox" th:field="*{enabled}">
+												<label class="label"> &nbsp; Enabled</label>
+											</th:block>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group text-center mt-4 mb-5">
+									<input type="submit" value="Save" class="btn btn-primary" /> <a
+										th:href="@{/admin/manage-users}" type="button" class="btn btn-primary-outline"
+										id="buttonCancel">Cancel</a>
+								</div>
+
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+	<!-- Modal fragment to display email warnings -->
+	<div th:replace="fragments/modal_fragments :: email_warning_modal"></div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/user_profile_common.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		var checkEmailUrl = "[[@{/users/check_email}]]";
+		var listStateUrl = "[[@{/states/list_by_country/}]]";
+		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+		$(document).ready(
+			function () {
+				var pathname = window.location.pathname;
+				var parentpath = pathname.substring(0, 24);
+				var activeLink = document.querySelector('a.nav-link[href="'
+					+ parentpath + '"]');
+				activeLink.classList.add("active");
+
+			});
+
+		function checkEmailUnique(form) {
+			userEmail = $("#email").val();
+			userId = $("#id").val();
+			csrfValue = $("input[name='_csrf']").val();
+			params = {
+				id: userId,
+				email: userEmail,
+				_csrf: csrfValue
+			};
+			$
+				.post(
+					checkEmailUrl,
+					params,
+					function (response) {
+						if (response == "OK") {
+							form.submit();
+							return true;
+						} else if (response == "Duplicated") {
+							showEmailWarningModal(userEmail);
+							return false;
+						} else {
+							showErrorModal("Unknown error from the server");
+							return false;
+						}
+					}).fail(function () {
+						showErrorModal("Could not connect to the server");
+						return false;
+					});
+			return false;
+		}
+		var reg = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+		function validateForm(form) {
+
+			let roles = document.getElementById('roles').value;
+			var refereeType = $('input:radio[name="refereeType"]:checked');
+			var phoneNum = document.getElementById('phoneNumber').value;
+			var emailPattern = mailformat
+				.exec(document.getElementById('email').value);
+			var password = document.getElementById('password').value;
+			var state = document.getElementById('state').value;
+			var confirmPassword = document.getElementById('confirmPassword').value;
+
+			if ((document.getElementById('firstName').value) == "") {
+				$("#span-error-firstName").text("Enter the first name");
+				return false;
+
+			} else {
+				$("#span-error-firstName").text("");
+
+			}
+
+			if ((document.getElementById('lastName').value) == "") {
+				$("#span-error-lastName").text("Enter the last name");
+				return false;
+
+			} else {
+
+				$("#span-error-lastName").text("");
+			}
+
+			if (phoneNum) {
+				if (!reg.exec(phoneNum)) {
+
+					$("#span-error-phoneNumber").text(
+						"Enter the 10 digits Pattern");
+					return false;
+				} else {
+
+					$("#span-error-phoneNumber").text("");
+				}
+
+			} else {
+				$("#span-error-phoneNumber").text("");
+			}
+
+			if (roles == "") {
+
+				$("#span-error-roles").text("Select the roles");
+				return false;
+
+			} else {
+
+				$("#span-error-roles").text("");
+			}
+			if (state == "") {
+				$("#span-error-state").text("Select the state");
+				return false;
+			} else {
+				$("#span-error-state").text("");
+			}
+
+			if (!emailPattern) {
+
+				$("#span-error-email").text("Enter the valid email address");
+				return false;
+
+			} else {
+
+				$("#span-error-email").text("");
+			}
+
+			if ((document.getElementById('id').value) != "") {
+				if (password != "" && confirmPassword == "") {
+					$("#span-error-confirmPassword").text(
+						"Enter the Password to confirm");
+					return false;
+				} else if (confirmPassword != "" && password == "") {
+					$("#label-error-password").text("Enter the Password");
+					return false;
+				} else {
+					$("#label-error-password").text("");
+				}
+
+			}
+
+			return true;
+
+		}
+	</script>
+
+
+
+
+</body>
+
+</html>

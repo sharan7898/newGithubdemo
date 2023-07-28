@@ -1,0 +1,4255 @@
+{
+	"championship_name": "khelo india university games",
+	"championship_id": 1,
+	"description": "Winners",
+	"sport_id": 51,
+	"sport_name": "Yoga",
+	"categories": [
+		{
+			"category_name": "Under 26 Boys",
+			"category_detail_id": 9,
+			"event_id": 592,
+			"event_description": "Asana",
+			"gender": "Male",
+			"rounds": [
+				{
+					"name": "Round One",
+					"teams": [
+						{
+							"chest_id": "team 1",
+							"club_name": "Jain University",
+							"rank": 1,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								}
+							]
+						},
+						{
+							"chest_id": "team 2",
+							"club_name": "Anna University",
+							"rank": 2,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								}
+							]
+						},
+						{
+							"chest_id": "team 3",
+							"club_name": "Punjab University",
+							"rank": 3,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								}
+							]
+						},
+						{
+							"chest_id": "team 4",
+							"club_name": "Ranchi University",
+							"rank": 3,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								}
+							]
+						},
+						{
+							"chest_id": "team 5",
+							"club_name": "Mysore University",
+							"rank": 5,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Round Two",
+					"teams": [
+						{
+							"chest_id": "team 1",
+							"club_name": "Jain University",
+							"rank": 1,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								}
+							]
+						},
+						{
+							"chest_id": "team 2",
+							"club_name": "Anna University",
+							"rank": 2,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								}
+							]
+						},
+						{
+							"chest_id": "team 3",
+							"club_name": "Punjab University",
+							"rank": 3,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+									"player_total_score": "300",
+									"asanas": [
+										{
+											"asana_id": "As1",
+											"asana_name": "PaschimUttanasana",
+											"display_name": "C1",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As2",
+											"asana_name": "Sarvangasana",
+											"display_name": "C2",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As3",
+											"asana_name": "Ourna Dhanurasana",
+											"display_name": "C3",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As4",
+											"asana_name": "Karna Pidasana",
+											"display_name": "C4",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As5",
+											"asana_name": "Garudhasana",
+											"display_name": "C5",
+											"type": "compulsory",
+											"score": "9"
+										},
+										{
+											"asana_id": "As6",
+											"asana_name": "Titiabhasana",
+											"display_name": "O1",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As7",
+											"asana_name": "Hanumanasana",
+											"display_name": "O2",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As8",
+											"asana_name": "Padmabakasana",
+											"display_name": "O3",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As9",
+											"asana_name": "Mayuraasana",
+											"display_name": "O4",
+											"type": "optional",
+											"score": "9"
+										},
+										{
+											"asana_id": "As10",
+											"asana_name": "Surya Namaskar",
+											"display_name": "S1",
+											"type": "suryanamaskar",
+											"score": "9"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"category_name": "Under 26 Girls",
+			"category_detail_id": 10,
+			"event_id": 565,
+			"event_description": "Asana",
+			"gender": "Female",
+			"rounds": [
+				{
+					"name": "Round One",
+					"teams": [
+						{
+							"chest_id": "team 1",
+							"club_name": "Jain University",
+							"rank": 1,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								}
+							]
+						},
+						{
+							"chest_id": "team 2",
+							"club_name": "Anna University",
+							"rank": 2,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								}
+							]
+						},
+						{
+							"chest_id": "team 3",
+							"club_name": "Punjab University",
+							"rank": 3,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								}
+							]
+						},
+						{
+							"chest_id": "team 4",
+							"club_name": "Ranchi University",
+							"rank": 3,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								}
+							]
+						},
+						{
+							"chest_id": "team 5",
+							"club_name": "Mysore University",
+							"rank": 5,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Round Two",
+					"teams": [
+						{
+							"chest_id": "team 1",
+							"club_name": "Jain University",
+							"rank": 1,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								}
+							]
+						},
+						{
+							"chest_id": "team 2",
+							"club_name": "Anna University",
+							"rank": 2,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								}
+							]
+						},
+						{
+							"chest_id": "team 3",
+							"club_name": "Punjab University",
+							"rank": 3,
+							"total_score": "300",
+							"athletes": [
+								{
+									"prn_id": "A1",
+									"kitd_unique_id": "KITD1",
+									"name": "Athelet_One",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A2",
+									"kitd_unique_id": "KITD2",
+									"name": "Athelet_Two",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A3",
+									"kitd_unique_id": "KITD3",
+									"name": "Athelet_Three",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A4",
+									"kitd_unique_id": "KITD4",
+									"name": "Athelet_Four",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A5",
+									"kitd_unique_id": "KITD5",
+									"name": "Athelet_Five",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								},
+								{
+									"prn_id": "A6",
+									"kitd_unique_id": "KITD6",
+									"name": "Athelet_Six",
+									"PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

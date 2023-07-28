@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')">
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
+</head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/participant/championship/'+${championshipId}+'/getDetails'}">Back</a>
+
+						</div>
+					</div>
+
+					<hr>
+					<br />
+
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form th:object="${participantTeam}">
+								<input type="hidden" th:field="*{id}" /> 
+								<div class="form-team row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="name">Team name </label> <input
+											type="text" class="form-control"
+											th:value="${participantTeam.name}" id="teamName" disabled>
+									</div>
+
+									<div class="col-md-6 m b-3">
+										<label class="form-label" for="name">Chest number </label> <input
+											id="chestNumber" type="text" class="form-control"
+											th:value="${participantTeam.chestNumber}" disabled>
+									</div>
+									
+									<div class="col-md-6 m b-3">
+										<label class="form-label" for="name">Team Id </label> <input
+											id="chestNumber" type="text" class="form-control"
+											th:value="${participantTeam.autogenChestNumber}" disabled>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="championship">Championship
+										</label><input type="text" class="form-control"
+											th:value="${participantTeam.championship.name}"
+											id="championship" disabled>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="name">Category</label> <input
+											type="text" class="form-control"
+											th:value="${participantTeam.asanaCategory.name}"
+											id="asanaCategory" disabled>
+
+									</div>
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="gender">Gender </label> <input
+											type="text" class="form-control"
+											th:value="${participantTeam.gender}" id="asanaCategory"
+											disabled>
+									</div>
+
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="category">Age Category
+										</label> <input type="text" class="form-control"
+											th:value="${participantTeam.category.title}"
+											id="asanaCategory" disabled>
+									</div>
+
+
+								</div>
+
+								<th:block th:if="${participantTeam.id != null}">
+									
+										<!--  List of Participants -->
+										<div class="form-team row mt-5">
+											<div class="col-md-12">
+												<div class="row mb-4">
+													<div class="col-6">
+														<h5>List of Participants</h5>
+													</div>
+
+												</div>
+												<!--  If all participants have common asanas -->
+												<th:block
+													th:if="${participantTeam.differentAsanasForParticipants == false}">
+													<div class="card mb-4">
+														<div class="card-body">
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered"
+																	id="selectedParticipantsTable" width="100%"
+																	cellspacing="0">
+																	<thead>
+																		<tr>
+																			<th>Sl.No</th>
+																			<th>Name</th>
+																			<th>Sequence Number</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<th:block
+																			th:if="${#lists.isEmpty(participantTeam.participantTeamParticipants)}">
+																			<tr>
+																				<td colspan="4" class="text-center">No
+																					Participants assigned yet.</td>
+																			</tr>
+																		</th:block>
+																		<th:block
+																			th:if="${not #lists.isEmpty(participantTeam.participantTeamParticipants)}">
+																			<tr
+																				th:each="teamParticipant,iterationStatus : ${participantTeam.participantTeamParticipants}">
+																				<td th:text="${iterationStatus.count}"></td>
+																				<td>[[${teamParticipant.getParticipantFullName}]]</td>
+																				<td><input type="number" class="form-control"
+																					th:value="${teamParticipant.sequenceNumber}"
+																					style="width: 100px;" disabled></td>
+																			</tr>
+																		</th:block>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</th:block>
+
+												<!--  If all participants have different asanas -->
+												<th:block
+													th:if="${participantTeam.differentAsanasForParticipants == true}">
+													<div class="card mb-4">
+														<div class="card-body">
+															<div class="table-responsive">
+																<table class="table table-condensed table-striped">
+																	<thead>
+																		<tr>
+																			<th></th>
+																			<th>Sl no.</th>
+																			<th>Participant Name</th>
+																			<th>Sequence Number</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<th:block
+																			th:if="${mapParticipantsWithRoundAsanas.size == 0}">
+																			<tr>
+																				<td colspan="5" class="text-center">No
+																					Participants assigned yet.</td>
+																			</tr>
+																		</th:block>
+
+																		<th:block
+																			th:if="${mapParticipantsWithRoundAsanas.size != 0}"
+																			th:each="mapteamParticipantEntry,iterationStatus : ${mapParticipantsWithRoundAsanas}"
+																			th:with="teamParticipant=${mapteamParticipantEntry.key}">
+																			<tr data-toggle="collapse"
+																				th:data-target="'#collapseParticipant'+${iterationStatus.count}"
+																				class="accordion-toggle">
+																				<td><a class="btn btn-default btn-xs"> <i
+																						class="fa fa-angle-down toggle-arrow" id="donar">
+																					</i>
+																				</a></td>
+																				<td th:text="${iterationStatus.count}"></td>
+																				<td>[[${teamParticipant.getParticipantFullName}]]</td>
+																				<td><input type="number" class="form-control"
+																					id="sequenceNumber" name="sequenceNumber"
+																					th:id="'seqNum-'+${teamParticipant.participant.id}"
+																					th:entityId="${teamParticipant.id}"
+																					th:participantId="${teamParticipant.participant.id}"
+																					th:participantTeamId="${teamParticipant.participantTeam.id}"
+																					onchange="validate(this);"
+																					th:value="${teamParticipant.sequenceNumber}"
+																					min="1" style="width: 100px;" disabled /></td>
+
+																			</tr>
+
+																			<tr>
+																				<td colspan="5" class="hiddenRow">
+																					<div class="accordian-body collapse"
+																						th:id="'collapseParticipant'+${iterationStatus.count}">
+																						<th:block
+																							th:each="mapRoundEntry,iterationStatus1 :${mapteamParticipantEntry.value}"
+																							th:with="roundNumber=${mapRoundEntry.key}">
+																							<table class="table">
+																								<thead>
+																									<tr>
+																										<td colspan="3"><a data-toggle="collapse"
+																											class="accordion-toggle"
+																											th:data-target="'#participant'+${iterationStatus.count}+'Round'+${roundNumber}">
+																												<i class="fa fa-angle-down toggle-arrow"
+																												id="donar"> </i> &nbsp; Round
+																												[[${roundNumber}]]
+																										</a></td>
+																										<td class="text-right"></td>
+																									</tr>
+																								</thead>
+
+																								<tbody>
+																									<tr>
+																										<td colspan="12" class="hiddenRow">
+																											<div class="accordian-body collapse"
+																												th:id="'participant'+${iterationStatus.count}+'Round'+${roundNumber}">
+																												<table class="table">
+
+																													<tbody>
+																														<th:block
+																															th:if="${mapRoundEntry.value.size == 0}">
+																															<tr>
+																																<td colspan="3" class="text-center">No
+																																	Asanas assigned yet.</td>
+																															</tr>
+																														</th:block>
+																														<th:block
+																															th:if="${mapRoundEntry.value.size != 0}">
+																															<tr
+																																th:each="mapRoundAsanasEntry,iterationStatus2 :${mapRoundEntry.value}"
+																																th:with="participantTeamAsanas=${mapRoundAsanasEntry}">
+																																<td th:text="${iterationStatus2.count}"></td>
+																																<td>[[${participantTeamAsanas.asanaCode}]][[${participantTeamAsanas.subGroup}]]
+																																	-[[${participantTeamAsanas.asana.name}]]</td>
+
+
+																																<th:block
+																																	th:each="roundAsanaStatus:${listRoundAsanaStatus}">
+																																	<th:block
+																																		th:if="${roundAsanaStatus.roundNumber==roundNumber}">
+
+																																		<td><input type="number"
+																																			class="form-control"
+																																			th:value="${participantTeamAsanas.sequenceNumber}"
+																																			disabled style="width: 100px;"></td>
+
+																																	</th:block>
+
+																																</th:block>
+
+
+																															</tr>
+
+																															
+																													</tbody>
+																												</table>
+
+																											</div>
+																										</td>
+																									</tr>
+
+																								</tbody>
+																							</table>
+
+																						</th:block>
+
+																					</div>
+																				</td>
+																			</tr>
+
+																		</th:block>
+
+																	</tbody>
+																</table>
+
+															</div>
+														</div>
+													</div>
+												</th:block>
+
+											</div>
+										</div>
+								
+
+						
+
+
+									
+
+
+									
+										<th:block
+											th:if="${participantTeam.differentAsanasForParticipants != true}">
+											<!--  List of Asanas -->
+											<div class="form-group row mt-5">
+												<div class="col-md-12">
+													<div class="row mb-4">
+														<div class="col-6">
+															<h5>List of Asanas</h5>
+														</div>
+														<!-- <div class="col-6 text-right">
+													<a id="btnAddAsana" class="btn btn-primary btnAddNew">Add
+														Asanas</a>
+												</div>  -->
+													</div>
+
+													<div id="accordion">
+														<!--  Round 1 asanas list begin -->
+														<th:block
+															th:each="listRoundAsanas,iterationStatus : ${listRoundWiseParticipantTeamAsanas}">
+															<div class="card mb-4">
+																<div class="card-header"
+																	th:id="'heading-round'+${iterationStatus.count}">
+																	<h5 class="mb-0">
+																		<a class="btn btn-link float-left dropdown-link "
+																			data-toggle="collapse"
+																			th:data-target="'#collapse-round'+${iterationStatus.count}"
+																			aria-expanded="false"
+																			th:aria-controls="'#collapse-round'+${iterationStatus.count}"><i
+																			class="fa fa-angle-down toggle-arrow" id="donar">
+																		</i> &nbsp Round [[${iterationStatus.count}]] </a>
+																	</h5>
+																</div>
+																<div th:id="'collapse-round'+${iterationStatus.count}"
+																	class="collapse" aria-labelledby="heading-round1"
+																	th:aria-labelledby="'#collapse-round'+${iterationStatus.count}"
+																	data-parent="#accordion">
+																	<div class="card-body">
+																		<table class="table table-striped table-bordered"
+																			id="judgeScoringTable" width="100%" cellspacing="0">
+																			<thead>
+																				<tr>
+																					<th>Sl no.</th>
+																					<th>Name</th>
+																					<th>Sequence number</th>
+
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<th:block th:if="${#lists.isEmpty(listRoundAsanas)}">
+																					<tr>
+																						<td colspan="4" class="text-center">No Asanas
+																							assigned yet.</td>
+																					</tr>
+																				</th:block>
+																				<th:block
+																					th:if="${not #lists.isEmpty(listRoundAsanas)}">
+																					<tr
+																						th:each="participantTeamAsanas,iterationStatus : ${listRoundAsanas}">
+																						<td th:text="${iterationStatus.count}"></td>
+																						<td>[[${participantTeamAsanas.asanaCode}]][[${participantTeamAsanas.subGroup}]]-[[${participantTeamAsanas.asana.name}]]</td>
+																						<td><input type="number" class="form-control"
+																							id="asanaSequenceNumber"
+																							name="asanaSequenceNumber"
+																							th:id="'seqNum-'+${participantTeamAsanas.id}"
+																							th:entityId="${participantTeamAsanas.id}"
+																							th:asanaId="${participantTeamAsanas.asana.id}"
+																							th:participantTeamId="${participantTeamAsanas.participantTeam.id}"
+																							onchange="validateCommonAsana(this);"
+																							th:value="${participantTeamAsanas.sequenceNumber}"
+																							min="1" style="width: 100px;" disabled></td>
+
+																					</tr>
+																				</th:block>
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+															</div>
+														</th:block>
+
+														<!--  Round 1 asanas list end -->
+													</div>
+
+												</div>
+											</div>
+										</th:block>
+									
+						</div>
+					</div>
+
+					</th:block>
+					</form>
+				</div>
+		</div>
+	</div>
+	</main>
+	<!-- Footer fragment -->
+	<div th:replace="fragments/layout :: page_footer"></div>
+	</div>
+	</div>
+
+
+	<!--  View modal -->
+	<div class="modal fade" id="selectRoundAsanasModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+
+		function validate(input) {
+			var reg = /\b([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\b/;
+			var id = input.getAttribute('id');
+			var value = $('#' + id).val();
+			if (!reg.exec(value)) {
+				console.log("invalid");
+				input.style.backgroundColor = 'red';
+				input.focus();
+				alert("Enter valid number");
+			} else {
+				console.log("valid");
+				input.style.backgroundColor = 'white';
+				saveSequenceNumberForParticipant(input);
+			}
+		}
+
+		function validateAsana(input) {
+			//var reg = /\b([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\b/; - 0 not allowed
+			var reg = /\b([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\b/;
+			var id = input.getAttribute('id');
+			var value = $('#' + id).val();
+			if (!reg.exec(value)) {
+				console.log("invalid");
+				input.style.backgroundColor = 'red';
+				input.focus();
+				alert("Enter valid number");
+			} else {
+				console.log("valid");
+				input.style.backgroundColor = 'white';
+				saveSequenceNumberForAsana(input);
+			}
+		}
+
+		function validateCommonAsana(input) {
+			//var reg = /\b([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\b/; - 0 not allowed
+			var reg = /\b([0-9]|[0-9][0-9]|[0-9][0-9][0-9])\b/;
+			var id = input.getAttribute('id');
+			var value = $('#' + id).val();
+			if (!reg.exec(value)) {
+				console.log("invalid");
+				input.style.backgroundColor = 'red';
+				input.focus();
+				alert("Enter valid number");
+			} else {
+				console.log("valid");
+				input.style.backgroundColor = 'white';
+				saveSequenceNumberForAsanaForAllParticipants(input);
+			}
+		}
+
+		function saveSequenceNumberForParticipant(input) {
+
+			var participantTeamParticipantId = input.getAttribute('entityId');
+			var participantId = input.getAttribute('participantId');
+			var participantTeamId = input.getAttribute('participantTeamId');
+			var seqNum = input.value;
+
+			var postUrl = base_url + "teamParticipants/updateSequenceNumber/"
+					+ participantTeamParticipantId;
+			if (seqNum != "" && seqNum >= 0) {
+				params = {
+					seqNum : seqNum
+				};
+				$
+						.post(
+								postUrl,
+								params,
+								function(response) {
+									console.log(response);
+
+									if (response == "sequenceError") {
+										alert("Sequence Number cannot exceed the count of Participants assigned!");
+										input.style.backgroundColor = 'red';
+										input.focus();
+										var id = input.getAttribute('id');
+										var value = $('#' + id).val();
+									} else if (response == "duplicateFound") {
+										alert("Sequence Number is already assigned to another Participant!");
+										input.style.backgroundColor = 'red';
+										input.focus();
+										var id = input.getAttribute('id');
+										var value = $('#' + id).val();
+									}
+
+								}).fail(function() {
+							showErrorModal("Could not connect to the server");
+						});
+			} else {
+				alert("Please enter valid number");
+				input.focus();
+			}
+		}
+
+		function saveSequenceNumberForAsana(input) {
+
+			var participantTeamAsanaId = input.getAttribute('entityId');
+			var asanaId = input.getAttribute('asanaId');
+			var participantTeamId = input.getAttribute('participantTeamId');
+			var seqNum = input.value;
+
+			var postUrl = base_url + "teamAsanas/updateSequenceNumber/"
+					+ participantTeamAsanaId;
+			if (seqNum != "" && seqNum >= 0) {
+				params = {
+					seqNum : seqNum
+				};
+				$
+						.post(
+								postUrl,
+								params,
+								function(response) {
+									console.log(response);
+									if (response == "sequenceError") {
+										alert("Sequence Number cannot exceed the count of Asanas assigned!");
+										input.style.backgroundColor = 'red';
+										input.focus();
+										var id = input.getAttribute('id');
+										var value = $('#' + id).val();
+									} else if (response == "duplicateFound") {
+										alert("Sequence Number is already assigned to another Asana!");
+										input.style.backgroundColor = 'red';
+										input.focus();
+										var id = input.getAttribute('id');
+										var value = $('#' + id).val();
+									}
+
+								}).fail(function() {
+							showErrorModal("Could not connect to the server");
+						});
+			} else {
+				alert("Please enter valid number");
+				input.focus();
+			}
+		}
+
+		function saveSequenceNumberForAsanaForAllParticipants(input) {
+			var participantTeamAsanaId = input.getAttribute('entityId');
+			var asanaId = input.getAttribute('asanaId');
+			var participantTeamId = input.getAttribute('participantTeamId');
+			var seqNum = input.value;
+
+			var postUrl = base_url
+					+ "teamAsanas/updateSequenceNumber/allParticipants/"
+					+ participantTeamAsanaId;
+			if (seqNum != "" && seqNum >= 0) {
+				params = {
+					seqNum : seqNum
+				};
+				$
+						.post(
+								postUrl,
+								params,
+								function(response) {
+									console.log(response);
+									if (response == "sequenceError") {
+										alert("Sequence Number cannot exceed the count of Asanas assigned!");
+										input.style.backgroundColor = 'red';
+										input.focus();
+										var id = input.getAttribute('id');
+										var value = $('#' + id).val();
+									} else if (response == "duplicateFound") {
+										alert("Sequence Number is already assigned to another Asana!");
+										input.style.backgroundColor = 'red';
+										input.focus();
+										var id = input.getAttribute('id');
+										var value = $('#' + id).val();
+									}
+
+								}).fail(function() {
+							showErrorModal("Could not connect to the server");
+						});
+			} else {
+				alert("Please enter valid number");
+				input.focus();
+			}
+		}
+
+		$(document).ready(
+				function() {
+					var pathname = window.location.pathname;
+					var parentpath = pathname.substring(0, 24);
+					var activeLink = document.querySelector('a.nav-link[href="'
+							+ parentpath + '"]');
+					activeLink.classList.add("active");
+
+				});
+
+		$(document).ready(function() {
+			$("#btnAddAsana").on("click", function(e) {
+				$("#addAsanasModalDialog").modal();
+			});
+
+			$("#btnAddParticipant").on("click", function(e) {
+				$("#addParticipantsModalDialog").modal();
+			});
+
+			$('#participantsTable').DataTable({
+				"pageLength" : 20,
+				'columns' : [ {
+					data : 'checkbox'
+				}, // index - 0
+				{
+					data : 'name'
+				}, // index - 1
+				{
+					data : 'prn'
+				}, // index - 2
+				{
+					data : 'aadhar'
+				}, // index - 3
+				{
+					data : 'phone'
+				} // index - 4
+
+				]
+
+			});
+		});
+
+		// on click show notes detail modal
+		$(".link-select-asanas").on(
+				"click",
+				function(e) {
+					e.preventDefault();
+					linkSelectAsanasURL = $(this).attr("href");
+					$('#selectRoundAsanasModal').modal("show").find(
+							".modal-content").load(linkSelectAsanasURL);
+				});
+
+		$(".link-select-referees").on(
+				"click",
+				function(e) {
+					e.preventDefault();
+					linkSelectRefereesURL = $(this).attr("href");
+					console.log(linkSelectRefereesURL);
+					$('#selectRoundRefereesModal').modal("show").find(
+							".modal-content").load(linkSelectRefereesURL);
+				});
+
+		var asanaLimit = "[[${asanasLimit}]]";
+		$('input.asanaCheckbox').on('change', function(evt) {
+			if ($(this).siblings(':checked').length >= asanaLimit) {
+				this.checked = false;
+			}
+		});
+
+		var participantLimit = "[[${participantsLimit}]]";
+		console.log(participantLimit);
+		$('input.participantCheckbox').on('change', function(evt) {
+			if ($(this).siblings(':checked').length >= participantLimit) {
+				this.checked = false;
+			}
+		});
+
+		$('.dropdown-link').on("click", function(evt) {
+			var child = evt.target.children[0];
+			console.log(evt);
+			child.classList.toggle("fa-angle-up");
+
+		});
+		$('.fa-angle-down').on("click", function(evt) {
+			console.log(evt);
+
+			evt.target.classList.toggle("fa-angle-up");
+
+		});
+
+		function validateForm(form) {
+
+			let age = document.getElementById('category').value;
+			let gender = document.getElementById('gender').value;
+			let asanaCategory = document.getElementById('asana-category').value;
+
+			if ((document.getElementById('teamName').value) == "") {
+				var flagTeamName = false;
+				$("#span-error-teamName").text("Enter the team name");
+
+			} else {
+				flagTeamName = true;
+				$("#span-error-teamName").text("");
+			}
+
+			if ((document.getElementById('chestNumber').value) == "") {
+				var flagChestNumber = false;
+				$("#span-error-chestNumber").text("Enter the chestNumber");
+
+			} else {
+				flagChestNumber = true;
+				$("#span-error-chestNumber").text("");
+			}
+
+			if ((document.getElementById('championship').value) == "") {
+				var flagChampionship = false;
+				$("#span-error-championship").text("Select the championship");
+
+			} else {
+				flagChampionship = true;
+				$("#span-error-championship").text("");
+			}
+
+			if (document.getElementById('asana-category').value == "") {
+				var flagAsanaCategory = false;
+				$("#span-error-asana-category").text("Select asana team type");
+
+			} else {
+				flagAsanaCategory = true;
+				$("#span-error-asana-category").text("");
+			}
+
+			if (document.getElementById('gender').value == "") {
+				var flagGender = false;
+				$("#span-error-gender").text("Select the gender");
+
+			} else {
+				flagGender = true;
+				$("#span-error-gender").text("");
+			}
+
+			if (document.getElementById('category').value == "") {
+				var flagAge = false;
+				$("#span-error-category").text("Select age category");
+
+			} else {
+				flagAge = true;
+				$("#span-error-category").text("");
+			}
+
+			return (flagTeamName && flagChestNumber && flagChampionship
+					&& flagAsanaCategory && flagGender && flagAge);
+
+		}
+
+		function getAsanaCategory(input) {
+			var championshipId = input.value;
+			url = base_url + "championship/" + championshipId
+					+ "/getAsanaCategory";
+
+			$.get(
+					url,
+					function(responseJson) {
+						console.log(responseJson);
+						$('#asana-category').empty();
+						$('#asana-category').append(
+								'<option value="">-- Select --</option>');
+
+						$.each(responseJson,
+								function(index, asanaCategory) {
+
+									$('#asana-category').append(
+											'<option value="' + asanaCategory.id + '">'
+													+ asanaCategory.name
+													+ '</option>');
+
+								});
+					}).fail(function() {
+				showErrorModal("Error loading Asana Category.");
+			})
+		}
+
+		function getGender(input) {
+			var asanaCategoryId = input.value;
+			var championshipId = $('#championship option:selected').val();
+			url = base_url + "championship/" + championshipId
+					+ "/AsanaCategory/" + asanaCategoryId + "/getGender";
+
+			$.get(
+					url,
+					function(responseJson) {
+						console.log(responseJson);
+						$('#gender').empty();
+						$('#gender').append(
+								'<option value="">-- Select --</option>');
+
+						$.each(responseJson, function(index, gender) {
+
+							$('#gender').append(
+									'<option value="' + gender + '">' + gender
+											+ '</option>');
+
+						});
+					}).fail(function() {
+				showErrorModal("Error loading Gender");
+			})
+		}
+
+		function getAgeCategory(input) {
+			var gender = input.value;
+			var championshipId = $('#championship option:selected').val();
+			var asanaCategoryId = $('#asana-category option:selected').val();
+			url = base_url + "championship/" + championshipId
+					+ "/AsanaCategory/" + asanaCategoryId + "/Gender/" + gender
+					+ "/getAgeCategory";
+
+			$.get(
+					url,
+					function(responseJson) {
+						console.log(responseJson);
+						$('#category').empty();
+						$('#category').append(
+								'<option value="">-- Select --</option>');
+
+						$.each(responseJson, function(index, category) {
+
+							$('#category').append(
+									'<option value="' + category.id + '">'
+											+ category.title + '</option>');
+
+						});
+					}).fail(function() {
+				showErrorModal("Error loading Category");
+			})
+		}
+
+		function freeze(input) {
+
+			let roundNumber = input.getAttribute('entityId');
+			let participantTeamId = input.getAttribute('entityName');
+			let status = "FREEZE";
+			saveStatusOfAsanasForRound(roundNumber, participantTeamId, status);
+		}
+
+		function saveToDrafts(input) {
+
+			let roundNumber = input.getAttribute('entityId');
+			let participantTeamId = input.getAttribute('entityName');
+			let status = "DRAFTS";
+			saveStatusOfAsanasForRound(roundNumber, participantTeamId, status);
+
+		}
+		function saveStatusOfAsanasForRound(roundNumber, participantTeamId,
+				status) {
+			var url = base_url + "participant/saveAsanasStatus";
+			var teamLead = $('#teamLeadId').val();
+			params = {
+				teamLead : teamLead,
+				participantTeam : participantTeamId,
+				round : roundNumber,
+				status : status
+			}
+
+			$.post(
+					url,
+					params,
+					function(response) {
+						console.log(response);
+						if (response == "OK") {
+							//Success
+							if (status == "DRAFTS") {
+								$("#saveToDrafts" + roundNumber).val(
+										'Saved to Drafts');
+								$('#saveToDrafts' + roundNumber).attr(
+										'disabled', true);
+							} else {
+								$('#saveToDrafts').attr('disabled', true);
+								$('#freeze' + roundNumber).attr('disabled',
+										true);
+								$("#freeze" + roundNumber).val('Frozen');
+							}
+						} else if (response == "FAIL") {
+							//Fail
+						}
+
+					}).fail(function() {
+				showErrorModal("Could not connect to the server");
+			});
+
+		}
+	</script>
+
+
+</body>
+</html>

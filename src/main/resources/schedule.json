@@ -1,0 +1,197 @@
+{
+	"championship_name": "khelo india university games",
+	"championship_id": 1,
+	"sport_id": 51,
+	"sport_name": "Yoga",
+	"description": "Schedule List",
+	"schedule_days": [
+		{
+			"day": "Day 1",
+			"date": "29/04/2022",
+			"time_slots": [
+				{
+					"time_slot": 1,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "common",
+							"description": "Opening Ceremony"
+						}
+					]
+				},
+				{
+					"time_slot": 2,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "Fop 1",
+							"category_name": "Under 26 Boys",
+							"category_detail_id": 9,
+							"event_id": 592,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Boys)-1st Round"
+						},
+						{
+							"FOP": "Fop 2",
+							"category_name": "Under 26 Girls",
+							"category_detail_id": 10,
+							"event_id": 565,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Girls)-1st Round"
+						}
+					]
+				},
+				{
+					"time_slot": 3,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "common",
+							"description": "Lunch Break"
+						}
+					]
+				},
+				{
+					"time_slot": 4,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "Fop 1",
+							"category_name": "Under 26 Boys",
+							"category_detail_id": 9,
+							"event_id": 592,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Boys) Cont..."
+						},
+						{
+							"FOP": "Fop 2",
+							"category_name": "Under 26 Girls",
+							"category_detail_id": 10,
+							"event_id": 565,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Girls)"
+						}
+					]
+				}
+			]
+		},
+		{
+			"day": "Day 2",
+			"date": "30/04/2022",
+			"time_slots": [
+				{
+					"time_slot": 1,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "Fop 1",
+							"category_name": "Under 26 Boys",
+							"category_detail_id": 9,
+							"event_id": 592,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Boys) 2nd Round"
+						},
+						{
+							"FOP": "Fop 2",
+							"category_name": "Under 26 Girls",
+							"category_detail_id": 10,
+							"event_id": 565,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Girls) 2nd Round"
+						}
+					]
+				},
+				{
+					"time_slot": 2,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "common",
+							"description": "Lunch Break"
+						}
+					]
+				},
+				{
+					"time_slot": 3,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "Fop 1",
+							"category_name": "Under 26 Boys",
+							"category_detail_id": 9,
+							"event_id": 592,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Boys) 2nd Round"
+						},
+						{
+							"FOP": "Fop 2",
+							"category_name": "Under 26 Girls",
+							"category_detail_id": 10,
+							"event_id": 565,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Girls) 2nd Round"
+						}
+					]
+				}
+			]
+		},
+		{
+			"day": "Day 3",
+			"date": "01/05/2022",
+			"time_slots": [
+				{
+					"time_slot": 1,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "Fop 1",
+							"category_name": "Under 26 Boys",
+							"category_detail_id": 9,
+							"event_id": 592,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Boys) 2nd Round"
+						},
+						{
+							"FOP": "Fop 2",
+							"category_name": "Under 26 Girls",
+							"category_detail_id": 10,
+							"event_id": 565,
+							"event_description": "Asana",
+							"description": "Team Event Yogasana (Girls) 2nd Round"
+						}
+					]
+				},
+				{
+					"time_slot": 2,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "common",
+							"description": "Lunch Break"
+						}
+					]
+				},
+				{
+					"time_slot": 3,
+					"start_time": "1651208400",
+					"end_time": "1651213800",
+					"values": [
+						{
+							"FOP": "common",
+							"description": "Closing / Prize Distribution ceremony"
+						}
+					]
+				}
+			]
+		}
+	]
+}

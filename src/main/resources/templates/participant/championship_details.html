@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')">
+
+<meta charset="UTF-8">
+</head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{/participant/championships}">Back</a>
+
+						</div>
+					</div>
+
+
+					<div class="row mt-4 mb-4 ">
+						<div class="col-sm-12 " style="text-align: center;font-size:20px">
+							<a class="btn btn-dark btn-lg"
+							
+								th:href="@{'/participant/championship-register/'+${championship.id}}">Click
+								here to register</a>
+
+						</div>
+					</div>
+
+
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="addchampionshipForm" name="addchampionshipForm"
+								th:object="${championship}" method="post"
+								onsubmit="return validate(this);">
+								<input type="hidden" th:field="*{id}" />
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="name">championship Name
+											<span class="form-star">*</span>
+
+										</label> <input type="text" class="form-control"
+											id="championship-name" th:field="*{name}" readonly="readonly">
+										<span id="span-error-name" class="span-error"></span>
+
+									</div>
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="championship-level">Championship
+											Level <span class="form-star">*</span>
+
+										</label> <input type="text" class="form-control"
+											id="championship-name" th:field="*{level.title}"
+											readonly="readonly"> <span id="span-error-name"
+											class="span-error"></span>
+
+									</div>
+
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="date">championship
+											Start date <span class="form-star">*</span>
+										</label>
+										<!--  <input type="date" class="form-control date" th:field="*{startDate}" min="1997-01-01"> -->
+
+										<input type="date" class="form-control" id="startDate"
+											th:field="*{startDate}" readonly="readonly"> <span
+											id="span-error-startDate" class="span-error"> </span>
+
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="date">championship End
+											date <span class="form-star">*</span>
+										</label>
+										<!--  <input type="date" class="form-control date" th:field="*{endDate}" min="1997-01-01"> -->
+
+										<input type="date" class="form-control" id="endDate"
+											th:field="*{endDate}" readonly="readonly"> <span
+											id="span-error-endDate" class="span-error"></span>
+
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="name">Location <span
+											class="form-star">*</span></label> <input type="text"
+											class="form-control" id="location" th:field="*{location}"
+											readonly="readonly"> <span id="span-error-location"
+											class="span-error"></span>
+									</div>
+								</div>
+
+
+								<!--  	Add categories for championship -->
+								<th:block th:if="${championship.id != null}">
+
+
+									<div class="form-group row mt-5">
+										<div class="col-md-12">
+											<div class="row mb-4">
+												<div class="col-6">
+
+													<h5>Categories are:-</h5>
+												</div>
+											</div>
+
+
+											<div class="card mb-4">
+												<div class="card-body">
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered"
+															id="selectedCategoriesTable" width="100%" cellspacing="0">
+															<thead>
+																<tr>
+																	<th>Sl.No</th>
+
+																	<th>Asana Category</th>
+																	<th>Cateogory</th>
+																	<th>Gender</th>
+																	<th>No. of Rounds</th>
+
+
+
+																</tr>
+															</thead>
+															<tbody>
+																<th:block
+																	th:if="${#lists.isEmpty(championship.championshipCategory)}">
+																	<tr>
+																		<td colspan="6" class="text-center">No categories
+																			choosen yet.</td>
+
+																	</tr>
+																</th:block>
+
+																<th:block
+																	th:if="${not #lists.isEmpty(championship.championshipCategory)}">
+																	<tr
+																		th:each="chamCategory,iterationStatus : ${championship.championshipCategory}">
+																		<td th:text="${iterationStatus.count}"></td>
+																		<td>[[${chamCategory.asanaCategory.name}]]</td>
+																		<td>[[${chamCategory.category.title}]]</td>
+																		<td>[[${chamCategory.gender}]]</td>
+																		<td>[[${chamCategory.noOfRounds}]]</td>
+
+
+
+																	</tr>
+																</th:block>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</th:block>
+							</form>
+						</div>
+					</div>
+
+
+
+				</div>
+
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<!-- Add Categories Modal -->
+
+	<div class="modal fade" id="addCategoriesModalDialog">
+
+		<div class="modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content">
+				<form id="assignCategoriesForm"
+					th:action="@{/admin/manage-championship/championship-category/assign/}+${championship.id}"
+					method="post" th:object="${championshipCategory}"
+					onsubmit="return validateCategoryForm(this);">
+					<!--  	<div class="modal-header modal-bg-header ">
+						<h5 class="modal-title">Add Categories</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
+					</div> -->
+
+					<div class="modal-body">
+						<div class="form-group row">
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="asanaCategory">Asana
+									Category <span class="form-star">*</span>
+								</label> <select class="form-control" id="asanaCategory"
+									th:field="*{asanaCategory}">
+
+									<option value="">-- Select --</option>
+									<th:block th:each="asanaCategory : ${listAsanaCategory}">
+										<option th:value="${asanaCategory.id}">[[${asanaCategory.name}]]</option>
+									</th:block>
+								</select> <span id="span-error-asanacategory" class="span-error">
+								</span>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="category">Category <span
+									class="form-star">*</span></label> <select class="form-control"
+									id="category" th:field="*{category}">
+
+									<option value="">-- Select --</option>
+									<th:block th:each="category : ${listAgeCategory}">
+										<option th:value="${category.id}">[[${category.title}]]</option>
+									</th:block>
+								</select> <span id="span-error-category" class="span-error"> </span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="gender">Gender <span
+									class="form-star">*</span></label> <select class="form-control"
+									id="gender" th:field="*{gender}">
+									<option value="">-- Select --</option>
+									<option
+										th:each="gender : ${T(com.swayaan.nysf.entity.GenderEnum).values()}"
+										th:value="${gender}" th:text="${gender}"></option>
+								</select><span id="span-error-gender" class="span-error"> </span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+
+								<label class="form-label" for="round">Number of Rounds <span
+									class="form-star">*</span>
+								</label> <input type="number" class="form-control" id="noOfRounds"
+									th:field="*{noOfRounds}" min="1"> <span
+									id="span-error-noOfRounds" class="span-error"> </span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="participants">Number of
+									Participants <span class="form-star">*</span>
+								</label> <input type="number" class="form-control" id="noOfParticipants"
+									th:field="*{noOfParticipants}" min="1"> <span
+									id="span-error-noOfParticipants" class="span-error"> </span>
+							</div>
+
+						</div>
+
+						<!--   	<div class="modal-footer">
+							 <button type="button" class="btn btn-primary">Save</button>  
+							<button type="submit" class="btn btn-secondary">Save</button>
+							<button type="button" class="btn btn-secondary btn-modal-cancel"
+								data-dismiss="modal">Cancel</button>
+						</div>   -->
+					</div>
+
+					<!-- modal body ends -->
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+
+	<th:block th:if="${championship.id == null}">
+		<script type="text/javascript" th:src="@{../../js/scripts.js}"></script>
+	</th:block>
+
+	<th:block th:if="${championship.id != null}">
+		<script type="text/javascript" th:src="@{../../../js/scripts.js}"></script>
+	</th:block>
+
+	<script type="text/javascript">
+		
+	</script>
+
+</body>
+
+</html>

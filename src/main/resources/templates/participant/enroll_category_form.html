@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+
+			<main>
+				<div class="container-fluid">
+
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]] -
+								[[${championship.name}]]</h3>
+						</div>
+					</div>
+
+					<hr>
+					<br />
+					<div id="message" hidden class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						<span class="msg"></span>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div id="message1" hidden class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="teamAddForm"
+								th:action="@{'/participant/register/'+${championship.id}+'/new/team/save'}"
+								method="post" onsubmit="return validateForm(this);">
+								<input type="hidden" th:value="${championship.id}" name="championship"
+									id="championship" /> <input type="hidden" th:value="${currentUser.id}"
+									name="currentUser" id="currentUser" />
+								<div class="form-group row">
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="chamCategory">Select
+											Category <span class="form-star">*</span>
+										</label> <select class="form-control" id="championshipCategory"
+											name="championshipCategory" onchange="validate(this)">
+											<option value="">-- Select --</option>
+											<th:block th:each="championshipCategory:${listChampionshipCategories}">
+												<option th:value="${championshipCategory.id}"
+													th:entityId="${championshipCategory.asanaCategory.id}">
+													[[${championshipCategory.asanaCategory.name}]] -
+													[[${championshipCategory.category.title}]] -
+													[[${championshipCategory.gender}]]</option>
+
+											</th:block>
+
+										</select> <span id="span-error-championship-category" class="span-error"></span>
+
+
+									</div>
+								</div>
+								<div id="searchTeamMemberDiv" hidden>
+									<span>Search co-participants</span>
+									<form>
+										<div id="searchBoxDiv" class="form-group row">
+											<div class="col-md-6 mb-3">
+												<input type="number" placeholder="Enter PRN Number" class="form-control"
+													id="participantSearchBox" min="6" max="15"> <span
+													id="span-error-search-participant" class="span-error"></span>
+
+											</div>
+											<div class="col-md-6 mb-3">
+												<input type="button" value="Search" id="search-btn"
+													class="btn btn-primary"> <input type="button" value="x"
+													id="clearSerachBox" class="btn btn-secondary" />
+											</div>
+										</div>
+									</form>
+
+
+									<div id="showSelectedDiv"></div>
+									<table id="showSelectedTable" class="table table-striped table-bordered"
+										width="100%" cellspacing="0">
+										<tbody id='showSelectedTableBody'>
+										</tbody>
+									</table>
+								</div>
+
+
+								<div class="form-team text-center mt-5 mb-5">
+									<input type="button" value="Enroll" id="enroll" class="btn btn-primary"
+										onclick="validateCategory(this);" />
+									<input type='reset' value='Clear' id="clearAll" class="btn btn-secondary" />
+								</div>
+
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+	<div class="modal" id="waitModal" tabindex="-1" data-backdrop="static" data-bs-keyboard="false"
+		aria-labelledby="exampleModalLabel1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header text-white" style="height: 70px">
+					<h5 class="modal-title" id="exampleModalLabel">Registration
+						under progress. Please Wait...</h5>
+				</div>
+				<div class="modal-body d-flex flex-column align-items-center">
+					<div class="text-center mt-4">
+						<img th:src="@{/images/importProgress.gif}" style="height: 120px" class="importLoadIcon" />
+					</div>
+				</div>
+			</div>
+			<div class="modal-body d-flex flex-column align-items-center">
+				<div class="mt-4 text-css">
+					<span></span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+
+		function validateCategory(input) {
+			var championshipId = $('#championship').val();
+			var currentUserId = $('#currentUser').val();
+			var championshipCategory = $('#championshipCategory').val();
+
+			if (championshipCategory == "") {
+				$("#span-error-championship-category").text(
+					"Please select one category");
+			} else {
+				$("#span-error-championship-category").text("");
+				var url = base_url + "participant/enroll-to-category/"
+					+ championshipId;
+
+				$("#span-error-championship-category").text("");
+				var asanaCategoryId = $('#championshipCategory option:selected')
+					.attr("entityId");
+				if (asanaCategoryId == 1 || asanaCategoryId == 2) {
+					console.log("Single");
+					//		$('#searchTeamMemberDiv').attr('hidden', true);
+					var listParticipants = [currentUserId];
+					params = {
+						championshipCategory: championshipCategory,
+						listParticipants: listParticipants
+					}
+					registerTeam(url, params);
+
+				} else if (asanaCategoryId == 3 || asanaCategoryId == 4
+					|| asanaCategoryId == 5) {
+					console.log("Pair/Group");
+					var listParticipants = $('.selectedParticipants');
+					var listParticipantIds = [];
+					listParticipantIds.push(currentUserId);
+					$.each(listParticipants, function (idx, participant) {
+						participantId = participant.getAttribute('entityId');
+
+						listParticipantIds.push(participantId);
+					});
+					if (asanaCategoryId == 3 || asanaCategoryId == 4) {
+						var count = listParticipants.length;
+						if (count != 1) {
+							showErrorModal(" Please select one co-participant");
+						} else {
+							params = {
+								championshipCategory: championshipCategory,
+								listParticipants: listParticipantIds
+							}
+							registerTeam(url, params);
+						}
+					} else if (asanaCategoryId == 5) {
+						var count = listParticipants.length;
+						if (count != 4) {
+							showErrorModal(" Please select 4 co-participants");
+						} else {
+							params = {
+								championshipCategory: championshipCategory,
+								listParticipants: listParticipantIds
+							}
+							registerTeam(url, params);
+
+						}
+					}
+
+				}
+			}
+		}
+
+		function validate(input) {
+			var championshipCategory = $('#championshipCategory').val();
+			var asanaCategoryId = $('#championshipCategory option:selected')
+				.attr("entityId");
+			if (championshipCategory == "") {
+				$("#span-error-championship-category").text(
+					"Please select one category");
+			} else {
+				$("#span-error-championship-category").text("");
+			}
+
+			if (asanaCategoryId == 1 || asanaCategoryId == 2) {
+				console.log("Single");
+				$('#searchTeamMemberDiv').attr('hidden', true);
+
+			} else if (asanaCategoryId == 3 || asanaCategoryId == 4
+				|| asanaCategoryId == 5) {
+				console.log("Pair/Group");
+				$('#searchTeamMemberDiv').removeAttr('hidden', false);
+			}
+		}
+
+		$('#clearSerachBox').click(function () {
+			$("#span-error-search-participant").text("");
+			$('#participantSearchBox').val('');
+		});
+
+		$('#clearAll').click(function () {
+			window.location.reload();
+		});
+
+		$('#search-btn').click(
+			function () {
+
+				var serachParticipantId = $('#participantSearchBox').val();
+
+				if (serachParticipantId == ""
+					|| serachParticipantId == null) {
+					$("#span-error-search-participant").text(
+						"Please enter participantId");
+				} else {
+					$("#span-error-search-participant").text("");
+					getParticipantById(serachParticipantId);
+
+				}
+			});
+
+		function getParticipantById(serachParticipantId) {
+
+			url = base_url + "getParticipantById/" + serachParticipantId;
+			var championshipCategoryId = $('#championshipCategory').val();
+			var championshipId = $('#championship').val();
+			var params = {
+				championshipCategoryId: championshipCategoryId,
+				championshipId: championshipId
+			}
+			$
+				.get(
+					url,
+					params,
+					function (responseJson) {
+						console.log(responseJson);
+						if (typeof (responseJson) != "string") {
+							var ischoosen = checkIfAlreadyrPrnNumberChoosen(responseJson);
+							if (!ischoosen) {
+								$("#showSelectedTableBody")
+									.append(
+										"<tr class='selectedParticipants' entityId='"
+										+ responseJson.id
+										+ "' id='selectedRow"
+										+ responseJson.id
+										+ "'>"
+										+ "<td>"
+										+ responseJson.firstName
+										+ " "
+										+ responseJson.lastName
+										+ "</td><td>"
+										+ responseJson.prnNumber
+										+ "</td><td><input type='button' class='btn btn-secondary' value='x' onclick='remove(this);' id='remove"
+										+ responseJson.id
+										+ "' entityId='"
+										+ responseJson.id
+										+ "'/></td></tr>");
+
+							} else {
+								$("#span-error-search-participant")
+									.text(
+										"Participant is already choosen for the team");
+
+							}
+						} else if (responseJson == "DUPLICATE") {
+							$("#span-error-search-participant")
+								.text(
+									"Participant is already there in the team");
+
+						} else if (responseJson == "CURRENTUSER") {
+							$("#span-error-search-participant")
+								.text(
+									"You cannot select yourself as your co-participant");
+						} else if (responseJson == "GENDERMISMATCH") {
+							$("#span-error-search-participant")
+								.text(
+									"Gender not matching the selected category");
+						} else {
+							showErrorModal("Participant not found with this Id");
+						}
+					})
+				.fail(
+					function () {
+						showErrorModal("Unable to load participant. Please try after sometime");
+					})
+		}
+
+		function registerTeam(url, params) {
+			$("#waitModal").modal('show');
+			$
+				.post(
+					url,
+					params,
+					function (response) {
+						console.log(response);
+						if (response == "OK") {
+							//Success
+							//window.location.reload();
+							$("#waitModal").modal('hide');
+							$('#message').removeAttr('hidden', true);
+
+							$('#message .msg')
+								.text(
+									" You have enrolled successfully. Please wait for Admin Approval");
+							document.getElementById("teamAddForm")
+								.reset();
+							$('#showSelectedTableBody').empty();
+							//$('#showSelectedTableBody').remove();
+							$('#searchTeamMemberDiv').attr('hidden',
+								true);
+
+
+						} else if (response == "DUPLICATE") {
+							//Fail
+							$("#waitModal").modal('hide');
+							showErrorModal(" You have already enrolled to this category. Please contact Administrator");
+							document.getElementById("teamAddForm")
+								.reset();
+							$('#showSelectedTableBody').empty();
+							//$('#showSelectedTableBody').remove();
+							$('#searchTeamMemberDiv').attr('hidden',
+								true);
+						} else if (response == "ENTRYDUPLICATE") {
+							$("#waitModal").modal('hide');
+							$("#span-error-search-participant")
+								.text(
+									"Participant cannot be choosen twice");
+						} else {
+							$("#waitModal").modal('hide');
+							$("#span-error-search-participant")
+								.text(
+									"Participant not found with this Id");
+							document.getElementById("teamAddForm")
+								.reset();
+							$('#showSelectedTableBody').empty();
+							//$('#showSelectedTableBody').remove();
+							$('#searchTeamMemberDiv').attr('hidden',
+								true);
+						}
+					})
+				.fail(
+					function () {
+						$("#waitModal").modal('hide');
+						showErrorModal("Unable to enroll. Please try after sometime");
+						document.getElementById("teamAddForm")
+							.reset();
+						$('#showSelectedTableBody').empty();
+						//$('#showSelectedTableBody').remove();
+						$('#searchTeamMemberDiv').attr('hidden',
+							true);
+					});
+		}
+
+		function remove(input) {
+			var entityId = input.getAttribute('entityId');
+			console.log(entityId);
+			var tablerow = $('#selectedRow' + entityId).remove();
+
+		}
+
+		function checkIfAlreadyrPrnNumberChoosen(data) {
+			var id = data.id;
+			var rowId = "selectedRow" + id;
+			if ($('table#showSelectedTable').find('#' + rowId).length > 0) {
+
+				return true;
+			} else {
+
+				return false;
+			}
+		}
+	</script>
+
+
+</body>
+
+</html>

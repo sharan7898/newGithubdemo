@@ -1,0 +1,79 @@
+package com.swayaan.nysf.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.swayaan.nysf.entity.AsanaEvaluationQuestions;
+import com.swayaan.nysf.entity.ChampionshipParticipantTeams;
+import com.swayaan.nysf.entity.ParticipantTeamAsanas;
+import com.swayaan.nysf.entity.ParticipantTeamParticipants;
+import com.swayaan.nysf.entity.ParticipantTeamReferees;
+import com.swayaan.nysf.entity.QuestionTypeEnum;
+import com.swayaan.nysf.entity.TimeKeeperJudgeScore;
+
+@Repository
+public interface TimeKeeperJudgeScoreRepository extends CrudRepository<TimeKeeperJudgeScore, Integer> {
+
+	List<TimeKeeperJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees);
+
+	boolean existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipantsAndParticipantTeamAsanas(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions, ParticipantTeamParticipants participantTeamParticipants,
+			ParticipantTeamAsanas participantTeamAsanas);
+
+	List<TimeKeeperJudgeScore> findAllByChampionshipParticipantTeamsAndRoundAndParticipantTeamReferees(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round,
+			ParticipantTeamReferees tJudgeTeamReferee);
+
+	TimeKeeperJudgeScore findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions);
+
+	List<TimeKeeperJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsAndParticipantTeamAsanasOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			ParticipantTeamParticipants participantTeamParticipants, ParticipantTeamAsanas participantTeamAsanas);
+
+	boolean existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndSequenceNumber(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion, Integer sequenceNumber);
+
+	boolean existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion);
+
+	List<TimeKeeperJudgeScore> findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndSequenceNumber(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions, Integer sequenceNumber);
+
+	List<TimeKeeperJudgeScore> findAllByChampionshipParticipantTeamsAndRound(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round);
+
+	List<TimeKeeperJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamReferees(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees);
+
+	@Query(value="Select SUM(total_score) FROM timekeeper_judge_scoring where "
+			+ "championship_participant_teams_id = :championshipParticipantTeamsId and "
+			+ "participantteam_referees_id = :participantTeamRefereeId and "
+			+ "round =:round",nativeQuery=true)
+	Float findSumByChampionshipParticipantTeamsAndParticipantTeamRefereesAndRound(
+			Integer championshipParticipantTeamsId, Integer participantTeamRefereeId, Integer round
+			);
+
+	TimeKeeperJudgeScore findBySequenceNumberAndChampionshipParticipantTeamsAndRound(Integer asanaSeqNum,
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round);
+
+
+	TimeKeeperJudgeScore findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipants(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions, ParticipantTeamParticipants participantTeamParticipant);
+
+	TimeKeeperJudgeScore findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndQuestionType(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees tJudgeTeamReferee,
+			QuestionTypeEnum commonteamquestion);
+
+
+}

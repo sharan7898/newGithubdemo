@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<div th:replace="fragments/layout :: eventmanager_championship_subheader"></div>
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]] - [[${championship.name}]]</h3>
+						</div>
+						<!--<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/eventmanager/championship/selected-championship/'+${championship.id}}">Back</a>
+						</div>-->
+					</div>
+
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="roundAsanaAddForm"
+								th:action="@{'/eventmanager/championship/'+${championship.id}+'/manage-round-asanas/save'}"
+								method="post" th:object="${compulsoryRoundAsana}" onsubmit="return validateForm(this);">
+								<input type="hidden" th:field="*{id}" />
+								<div class="form-group row">
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="championship">Championship
+											<span class="form-star">*</span>
+										</label> <br />
+										<th:block th:if="${compulsoryRoundAsana.getId() == null}">
+											<select class="form-control" th:field="*{championship}" id="championship"
+												onchange="getAsanaCategory(this);">
+												<option value="">-- Select --</option>
+
+												<option th:value="${championship.id}">[[${championship.name}]]</option>
+
+
+											</select> <span id="span-error-championship" class="span-error"></span>
+										</th:block>
+										<th:block th:if="${compulsoryRoundAsana.getId() != null}">
+											<select class="form-control" th:field="*{championship}" id="championship"
+												onchange="getAsanaCategory(this);">
+												<option th:value="${compulsoryRoundAsana.championship.id}">
+													[[${compulsoryRoundAsana.championship.name}]]</option>
+										</th:block>
+										</select>
+									</div>
+
+
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="asanaCategory">Asana
+											Category <span class="form-star">*</span>
+										</label>
+										<th:block th:if="${compulsoryRoundAsana.getId() == null}">
+
+											<select class="form-control" th:field="*{asanaCategory}" id="asanaCategory"
+												name="asanaCategory" onchange="getGender(this);">
+												<option value="">-- Select --</option>
+											</select> <span id="span-error-asana-category" class="span-error">
+											</span>
+										</th:block>
+										<th:block th:if="${compulsoryRoundAsana.getId() != null}">
+											<select class="form-control" th:field="*{asanaCategory}" id="asanaCategory"
+												onchange="getGender(this);">
+
+												<option th:value="${compulsoryRoundAsana.asanaCategory.id}">
+													[[${compulsoryRoundAsana.asanaCategory.name}]]</option>
+											</select>
+										</th:block>
+									</div>
+
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="gender">Gender <span
+												class="form-star">*</span></label> <br />
+										<th:block th:if="${compulsoryRoundAsana.getId() == null}">
+											<select class="form-control" th:field="*{gender}" id="gender"
+												onchange="getAgeCategory(this);">
+												<option value="">-- Select --</option>
+											</select> <span id="span-error-gender" class="span-error"> </span>
+										</th:block>
+										<th:block th:if="${compulsoryRoundAsana.getId() != null}"><select
+												class="form-control" th:field="*{gender}" id="gender"
+												onchange="getAgeCategory(this);">
+
+												<option th:value="${compulsoryRoundAsana.gender}">
+													[[${compulsoryRoundAsana.gender}]]</option>
+											</select>
+										</th:block>
+									</div>
+
+
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="category">Age Category
+											<span class="form-star">*</span>
+										</label>
+										<th:block th:if="${compulsoryRoundAsana.getId() == null}">
+											<select class="form-control" th:field="*{category}" id="category"
+												onchange="getRoundsForCategories(this);">
+
+												<option value="">-- Select --</option>
+											</select> <span id="span-error-category" class="span-error">
+											</span>
+										</th:block>
+										<th:block th:if="${compulsoryRoundAsana.getId() != null}">
+											<select class="form-control" th:field="*{category}" id="category"
+												onchange="getRoundsForCategories(this);">
+
+												<option th:value="${compulsoryRoundAsana.category.id}">
+													[[${compulsoryRoundAsana.category.title}]]</option>
+											</select>
+										</th:block>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="round">Round <span class="form-star">*</span>
+										</label>
+										<th:block th:if="${compulsoryRoundAsana.getId() == null}">
+											<select class="form-control" id="roundNumber" th:field="*{roundNumber}"
+												name="roundNumber">
+												<option value="">-- Select --</option>
+											</select> <span id="span-error-round" class="span-error"> </span>
+										</th:block>
+										<th:block th:if="${compulsoryRoundAsana.getId() != null}">
+											<select class="form-control" id="roundNumber" th:field="*{roundNumber}"
+												name="roundNumber">
+												<option th:value="${compulsoryRoundAsana.roundNumber}">
+													[[${compulsoryRoundAsana.roundNumber}]] </option>
+											</select> <span id="span-error-round" class="span-error"> </span>
+										</th:block>
+									</div>
+
+									<!--	<div class="col-md-6 mb-3">
+										<label class="form-label" for="asana">Asana <span
+											class="form-star">*</span></label> <br /> 
+											<a class="btn btn-secondary link-select-asanas" data-toggle="modal"
+											data-target="#selectCompulsoryAsanasModal"
+											th:href="@{/admin/manage-round-asanas/asanas/load}">select asanas </a>
+											 <span id="span-error-asana" class="span-error"> </span>
+									</div>   -->
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="asana">Asana <span
+												class="form-star">*</span></label> <br />
+										<th:block th:if="${compulsoryRoundAsana.getId() == null}">
+											<select class="form-control select" th:field="*{asanaList}" id="asanaList"
+												name="asanaList" multiple="multiple">
+
+												<th:block th:each="teamAsana : ${listAsanas}">
+													<th:block th:if="${teamAsana.subGroup!=null}">
+														<option th:value="${teamAsana.asana.id}"
+															th:text="${teamAsana.code}+${teamAsana.subGroup}+' - '+${teamAsana.asana.name}"
+															id="asanaName" name="asanaName">
+														</option>
+													</th:block>
+													<th:block th:if="${teamAsana.subGroup==null}">
+														<option th:value="${teamAsana.asana.id}"
+															th:text="'- '+${teamAsana.asana.name}" id="asanaName"
+															name="asanaName">
+														</option>
+													</th:block>
+												</th:block>
+											</select>
+											<div>
+												<span id="span-error-asana" class="span-error"> </span>
+											</div>
+										</th:block>
+										<th:block th:if="${compulsoryRoundAsana.getId() != null}">
+											<select class="form-control select" th:field="*{asana}" id="asana"
+												name="asana">
+												<option value="">--Select--</option>
+												<th:block th:each="teamAsana : ${listAsanas}">
+													<option th:value="${teamAsana.asana.id}"
+														th:text="${teamAsana.code}+${teamAsana.subGroup}+' - '+${teamAsana.asana.name}"
+														id="asanaName" name="asanaName">
+													</option>
+												</th:block>
+											</select>
+											<div>
+												<span id="span-error-asana" class="span-error"> </span>
+											</div>
+										</th:block>
+
+									</div>
+
+
+
+									<th:block th:if="${compulsoryRoundAsana.getId() != null}">
+										<div class="col-md-6 mb-3">
+											<label class="form-label" for="sequenceNumber">Sequence
+												Number <span class="form-star">*</span>
+											</label> <br /> <input type="number" class="form-control"
+												th:field="*{sequenceNumber}" id="sequenceNumber" min="1" required>
+											<span id="span-error-sequenceNumber" class="span-error">
+											</span>
+										</div>
+									</th:block>
+
+									<div class="col-md-6 mt-4 mb-3">
+										<div class="checkbox mt-3">
+											<input type="checkbox" th:field="*{compulsory}"> <label class="label">
+												&nbsp; Compulsory</label>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="form-group text-center mt-4 mb-5">
+									<input type="submit" value="Save" class="btn btn-primary" /> <a
+										th:href="@{'/eventmanager/championship/'+${championship.id}+'/manage-round-asanas'}"
+										type="button" class="btn btn-primary-outline" id="buttonCancel">Cancel</a>
+								</div>
+
+
+								<!--/* <div class="col-md-6 mb-3">
+										<label class="form-label" for="asanaExecutionScore">Select Asana <span class="form-star">*</span></label> 
+										<th:block th:if="${compulsoryRoundAsana.id == null}">
+											<select class="form-control" th:field="*{asanaExecutionScore}"
+												required>
+												<option value="">--Select--</option>
+											</select>
+										</th:block>
+										<th:block th:if="${compulsoryRoundAsana.id != null}">
+											<select class="form-control" th:field="*{asanaExecutionScore}"
+												required>
+												<option value="">--Select--</option>
+												<th:block th:each="asanaExec : ${listAsanaExecutionScores}">
+													<option th:value="${asanaExec.id}">[[${asanaExec.asana.name}]]</option>
+												</th:block>
+											</select>
+										</th:block>
+									</div> */-->
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/js/scripts.js}"></script>
+	<script th:src="@{/js/bootstrap-multiselect.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		//var listAsanasUrl = "[[@{/asanas/list_by_asana_category}]]";
+		var dropdownAsanas;
+
+		$(document).ready(
+			function () {
+				var pathname = window.location.pathname;
+				var parentpath = pathname.substring(0, 31);
+				var activeLink = document.querySelector('a.nav-link[href="'
+					+ parentpath + '"]');
+				activeLink.classList.add("active");
+
+			});
+
+		$(document).ready(function () {
+			dropdownAsanas = $("#asanaExecutionScore");
+			$('#asanaList').multiselect({
+
+				maxHeight: true
+
+			});
+		});
+
+		function getAsanasList() {
+			selectedAsanaCategory = $("#asanaCategory option:selected");
+			selectedGender = $("#gender option:selected");
+			selectedAgeCategory = $("#category option:selected");
+
+			asanaCategoryId = selectedAsanaCategory.val();
+			gender = selectedGender.val();
+			ageCategory = selectedAgeCategory.val();
+
+			if (asanaCategoryId !== "" && gender !== "" && ageCategory !== "") {
+				var url = base_url
+					+ "asanas/list_by_asana_category?asanaCategoryId="
+					+ asanaCategoryId + "&gender=" + gender + "&category="
+					+ ageCategory;
+				$
+					.get(
+						url,
+						function (responseJson) {
+							dropdownAsanas.empty();
+
+							$
+								.each(
+									responseJson,
+									function (index, asana) {
+										$("<option>")
+											.val(
+												asana.asanaExecutionScoreId)
+											.text(
+												asana.asanaName)
+											.appendTo(
+												dropdownAsanas);
+									});
+						})
+					.fail(
+						function () {
+							showErrorModal("Error loading Asanas for the selected category.");
+						})
+			}
+
+		}
+
+		function validateForm(form) {
+
+			if ((document.getElementById('asanaCategory').value) == "") {
+				var flagAsanaCategory = false;
+				$("#span-error-asana-category").text(
+					"Select the asana category");
+
+			} else {
+				flagAsanaCategory = true;
+				$("#span-error-asana-category").text("");
+			}
+
+			if ((document.getElementById('category').value) == "") {
+
+				var flagAge = false;
+				$("#span-error-category").text("Select the age category");
+
+			} else {
+				flagAge = true;
+				$("#span-error-category").text("");
+			}
+
+			if ((document.getElementById('gender').value) == "") {
+				var flagGender = false;
+				$("#span-error-gender").text("Select the gender");
+
+			} else {
+				flagGender = true;
+				$("#span-error-gender").text("");
+			}
+
+			if ((document.getElementById('roundNumber').value) == "") {
+				var flagRound = false;
+				$("#span-error-round").text("Select the round");
+
+			} else {
+				flagRound = true;
+				$("#span-error-round").text("");
+			}
+
+			if ((document.getElementById('asanaList').value) == "") {
+				var flagAsana = false;
+				$("#span-error-asana").text("Select the asana");
+
+			} else {
+				flagAsana = true;
+				$("#span-error-asana").text("");
+			}
+			if ((document.getElementById('championship').value) == "") {
+				var flagChampionship = false;
+				$("#span-error-championship").text("Select the championship");
+
+			} else {
+				flagChampionship = true;
+				$("#span-error-championship").text("");
+			}
+
+			/*	if ((document.getElementById('sequenceNumber').value) == "") {
+					var flagSequence = false;
+					$("#span-error-sequenceNumber").text(
+							"Enter the sequence number");
+	
+				} else {
+					flagSequence = true;
+					$("#span-error-sequenceNumber").text("");
+				}*/
+
+			return (flagAsanaCategory && flagAge && flagGender && flagRound
+				&& flagAsana && flagChampionship);
+
+		}
+		function getAsanaCategory(input) {
+			var championshipId = input.value;
+			
+			if(championshipId==''){
+				$('#asanaCategory').empty();
+					$('#asanaCategory').append(
+						'<option value="">-- Select --</option>');
+						
+					$('#gender').empty();
+					$('#gender').append(
+						'<option value="">-- Select --</option>');
+						
+						$('#category').empty();
+					$('#category').append(
+						'<option value="">-- Select --</option>');
+						
+						$('#roundNumber').empty();
+						$('#roundNumber').append(
+							'<option value="">-- Select --</option>');
+			}else{
+			url = base_url + "championship/" + championshipId
+				+ "/getTraditionalAsanaCategory";
+			$.get(
+				url,
+				function (responseJson) {
+					console.log(responseJson);
+					$('#asanaCategory').empty();
+					$('#asanaCategory').append(
+						'<option value="">-- Select --</option>');
+
+					$.each(responseJson,
+						function (index, asanaCategory) {
+
+							$('#asanaCategory').append(
+								'<option value="' + asanaCategory.id + '">'
+								+ asanaCategory.name
+								+ '</option>');
+
+						});
+				}).fail(function () {
+					showErrorModal("Error loading Asana Category.");
+				})
+				}
+		}
+
+		function getGender(input) {
+			var asanaCategoryId = input.value;
+		
+			var championshipId = $('#championship option:selected').val();
+			if(asanaCategoryId=='' || championshipId ==''){
+				$('#gender').empty();
+					$('#gender').append(
+						'<option value="">-- Select --</option>');
+						
+						$('#category').empty();
+					$('#category').append(
+						'<option value="">-- Select --</option>');
+						
+						$('#roundNumber').empty();
+						$('#roundNumber').append(
+							'<option value="">-- Select --</option>');
+			}else{
+			url = base_url + "championship/" + championshipId
+				+ "/AsanaCategory/" + asanaCategoryId + "/getGender";
+			$.get(
+				url,
+				function (responseJson) {
+					console.log(responseJson);
+					$('#gender').empty();
+					$('#gender').append(
+						'<option value="">-- Select --</option>');
+
+					$.each(responseJson, function (index, gender) {
+
+						$('#gender').append(
+							'<option value="' + gender + '">' + gender
+							+ '</option>');
+
+					});
+				}).fail(function () {
+					showErrorModal("Error loading Gender");
+				})
+				}
+		}
+
+		function getAgeCategory(input) {
+			var gender = input.value;
+			var championshipId = $('#championship option:selected').val();
+			var asanaCategoryId = $('#asanaCategory option:selected').val();
+			if(asanaCategoryId=='' || championshipId =='' || gender=='' ){ 
+					$('#category').empty();
+					$('#category').append(
+						'<option value="">-- Select --</option>');
+						
+						$('#roundNumber').empty();
+						$('#roundNumber').append(
+							'<option value="">-- Select --</option>');
+				}
+				else{
+			url = base_url + "championship/" + championshipId
+				+ "/AsanaCategory/" + asanaCategoryId + "/Gender/" + gender
+				+ "/getAgeCategory";
+			$.get(
+				url,
+				function (responseJson) {
+					console.log(responseJson);
+					$('#category').empty();
+					$('#category').append(
+						'<option value="">-- Select --</option>');
+
+					$.each(responseJson, function (index, category) {
+
+						$('#category').append(
+							'<option value="' + category.id + '">'
+							+ category.title + '</option>');
+
+					});
+				}).fail(function () {
+					showErrorModal("Error loading Category");
+				})
+		}}
+
+		function getRoundsForCategories(input) {
+			var ageCategoryId = input.value;
+			var championshipId = $('#championship option:selected').val();
+			var asanaCategoryId = $('#asanaCategory option:selected').val();
+			var gender = $('#gender option:selected').val();
+
+if(asanaCategoryId=='' || championshipId =='' || gender=='' || ageCategoryId==''){ 
+		$('#roundNumber').empty();
+						$('#roundNumber').append(
+							'<option value="">-- Select --</option>');
+	
+	}else{
+
+			if (ageCategoryId != null && championshipId != null
+				&& asanaCategoryId != null && gender != null) {
+				url = base_url + "championship/" + championshipId
+					+ "/AsanaCategory/" + asanaCategoryId + "/Gender/"
+					+ gender + "/AgeCategory/" + ageCategoryId
+					+ "/getRounds";
+				$.get(
+					url,
+					function (responseJson) {
+						console.log(responseJson);
+						$('#roundNumber').empty();
+						$('#roundNumber').append(
+							'<option value="">-- Select --</option>');
+
+						$.each(responseJson, function (index, round) {
+
+							$('#roundNumber').append(
+								'<option value="' + round + '">'
+								+ round + '</option>');
+
+						});
+					}).fail(function () {
+						showErrorModal("Error loading Round");
+					})
+			}
+		}
+		}
+
+	</script>
+
+
+</body>
+
+</html>

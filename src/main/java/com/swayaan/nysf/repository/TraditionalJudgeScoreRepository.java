@@ -1,0 +1,55 @@
+package com.swayaan.nysf.repository;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.swayaan.nysf.entity.AsanaEvaluationQuestions;
+import com.swayaan.nysf.entity.ChampionshipParticipantTeams;
+import com.swayaan.nysf.entity.ParticipantTeamAsanas;
+import com.swayaan.nysf.entity.ParticipantTeamParticipants;
+import com.swayaan.nysf.entity.ParticipantTeamReferees;
+import com.swayaan.nysf.entity.TraditionalJudgeScore;
+
+@Repository
+public interface TraditionalJudgeScoreRepository  extends CrudRepository<TraditionalJudgeScore, Integer> {
+
+	boolean existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipantsAndParticipantTeamAsanas(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions, ParticipantTeamParticipants participantTeamParticipants,
+			ParticipantTeamAsanas participantTeamAsanas);
+
+	List<TraditionalJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsAndParticipantTeamAsanasOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			ParticipantTeamParticipants participantTeamParticipants, ParticipantTeamAsanas participantTeamAsanas);
+
+	List<TraditionalJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion);
+
+	boolean existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion);
+
+	boolean existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamAsanas(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions, ParticipantTeamAsanas participantTeamAsanas);
+
+	List<TraditionalJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamAsanasOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			ParticipantTeamAsanas participantTeamAsanas);
+
+	List<TraditionalJudgeScore> findAllByChampionshipParticipantTeamsAndRound(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round);
+
+	List<TraditionalJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamParticipantsAndParticipantTeamAsanasOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams,
+			ParticipantTeamParticipants participantTeamParticipants, ParticipantTeamAsanas participantTeamAsanas);
+
+	TraditionalJudgeScore findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsAndParticipantTeamAsanasOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams,
+			ParticipantTeamReferees dJudgeParticipantTeamReferee,
+			ParticipantTeamParticipants participantTeamParticipants, ParticipantTeamAsanas participantTeamAsanas);
+
+}

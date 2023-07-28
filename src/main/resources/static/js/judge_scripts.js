@@ -1,0 +1,51 @@
+$(document).ready(function() {
+	//	$("#buttonCancel").on("click", function() {
+	//		window.location = moduleURL;
+
+
+
+	$(document).on("change", "#degreecertificate", function() {
+		
+		if (!checkFileSize(this)) {
+			
+			$('#span-error-judge-image').text(
+				"Please choose an image less than " + MAX_FILE_SIZE + "Bytes");
+			return;
+		}
+		console.log(this);
+		showJudgeImageThumbnail(this);
+	});
+
+
+});
+
+
+
+
+
+function checkFileSize(fileInput) {
+	
+	fileSize = fileInput.files[0].size;
+	if (fileSize > MAX_FILE_SIZE) {
+		
+		//	fileInput.setCustomValidity("You must choose an images less than " + MAX_FILE_SIZE + "Bytes");
+		//	fileInput.reportValidity();
+		return false;
+	} else {
+		
+		fileInput.setCustomValidity("");
+		return true;
+	}
+}
+
+
+
+function showJudgeImageThumbnail(fileInput) {
+	var file = fileInput.files[0];
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		$("#judgeImageThumbnail").attr("src", e.target.result);
+	};
+	reader.readAsDataURL(file);
+}
+

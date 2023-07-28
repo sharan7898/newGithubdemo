@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<style>
+.disabled-link {
+	pointer-events: none;
+	background-color: #9b9b9b;
+	border-color: #9b9b9b;
+}
+</style>
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/judge/championship/'+${championshipId}+'/category/'+${asanaCategoryId}+'/'+${ageCategoryId}+'/'+${gender}+'/'+${round}}">Back</a>
+						</div>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert" id="message" hidden>
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-12">
+							<section>
+								<form id="timekeeperScoreForm" method="post"
+									th:action="@{'/judge/timekeeper/'+ ${participantTeamReferees.id}+'/team/'+${championshipParticipantTeams.id}+ '/saveTeamScores'}">
+									<input type="hidden" id="participantTeamRefereesId"
+										th:value="*{participantTeamReferees.id}" /> <input
+										type="hidden" id="championshipParticipantTeamId"
+										th:value="*{championshipParticipantTeams.id}" /> <input
+										type="hidden" id="championshipParticipantTeamId"
+										th:value="*{championshipParticipantTeams.id}" /> <input
+										type="hidden" th:value="*{round}" id="round" />
+									<div class="card mb-4">
+										<div class="card-body">
+											<div class="table-responsive">
+
+												<table class="table table-striped table-bordered"
+													id="teamScoreTable" width="100%" cellspacing="0">
+													<thead>
+														<tr>
+															<th>SL No</th>
+															<th>Asana</th>
+															<th>Time in Seconds (TA)</th>
+															<th>Score</th>
+															<th>Whole Time in Minutes</th>
+															<th>Whole Time in Seconds (TW)</th>
+															<th>Save</th>
+														</tr>
+													</thead>
+													<tbody>
+														<th:block
+															th:if="${not #maps.isEmpty(participantAsanaScoreMap)}">
+
+															<th:block
+																th:each="participantTeamParticipantEntry,iterationStatus :${participantAsanaScoreMap}"
+																th:with="participantTeamParticipant=${participantTeamParticipantEntry.key},participantTeamParticipantAsanaMap=${participantTeamParticipantEntry.value}">
+																<th:block th:if="${iterationStatus.count==1}"
+																	th:each="participantTeamParticipantAsanaEntry,iterationStatus1:${participantTeamParticipantAsanaMap}"
+																	th:with="participantTeamParticipantAsana=${participantTeamParticipantAsanaEntry.key},listParticipantTeamParticipantAsanaScore=${participantTeamParticipantAsanaEntry.value}">
+																	<tr>
+																		<td>[[${iterationStatus1.count}]]</td>
+																		<td>[[${participantTeamParticipantAsana.asana.name}]]</td>
+
+																		<th:block
+																			th:each="participantTeamParticipantAsanaScore:${listParticipantTeamParticipantAsanaScore}">
+
+																			<td
+																				th:if="${participantTeamParticipantAsanaScore.attempt1 != null}"><input
+																				class="small-txtbox" type="number"
+																				th:entityId="${participantTeamParticipantAsanaScore.id}"
+																				th:id="'time'+${participantTeamParticipantAsanaScore.id}"
+																				th:value="*{participantTeamParticipantAsanaScore.attempt1}"
+																				readonly /></td>
+																			<td
+																				th:if="${participantTeamParticipantAsanaScore.attempt1 == null}"><input
+																				class="small-txtbox" type="number"
+																				th:entityId="${participantTeamParticipantAsanaScore.id}"
+																				th:id="'time'+${participantTeamParticipantAsanaScore.id}"
+																				th:value="*{participantTeamParticipantAsanaScore.attempt1}" />
+																			</td>
+
+																			<td
+																				th:if="${participantTeamParticipantAsanaScore.score!= null}"><input
+																				class="small-txtbox" type="number"
+																				th:entityId="${participantTeamParticipantAsanaScore.id}"
+																				th:id="'score'+${participantTeamParticipantAsanaScore.id}"
+																				th:value="*{participantTeamParticipantAsanaScore.score}"
+																				readonly /></td>
+																			<td
+																				th:if="${participantTeamParticipantAsanaScore.score == null}"><input
+																				class="small-txtbox" type="number"
+																				th:entityId="${participantTeamParticipantAsanaScore.id}"
+																				th:id="'score'+${participantTeamParticipantAsanaScore.id}"
+																				th:value="*{participantTeamParticipantAsanaScore.score}" />
+																			</td>
+
+
+
+																			<td th:if="${commonQuestion.attempt1!=null}"
+																				style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantTeamParticipantAsanaMap.size}">
+																				<input type="number" class="small-txtbox"
+																				th:id="'wholeTimeInMin'+${commonQuestion.id}"
+																				th:entityId="${commonQuestion.id}"
+																				th:value="*{commonQuestion.attempt1}" readonly />
+																			</td>
+
+
+																			<td th:if="${commonQuestion.attempt1==null}"
+																				style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantTeamParticipantAsanaMap.size}">
+																				<input type="number" class="small-txtbox"
+																				th:id="'wholeTimeInMin'+${commonQuestion.id}"
+																				th:entityId="${commonQuestion.id}"
+																				th:value="*{commonQuestion.attempt1}"
+																				onkeyup="saveScore(this);" />
+																			</td>
+
+
+
+
+
+																			<td
+																				style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantTeamParticipantAsanaMap.size}">
+																				<input type="number" class="small-txtbox"
+																				th:id="'wholeTimeInSec'+${commonQuestion.id}"
+																				th:entityId="${commonQuestion.id}" />
+																			</td>
+																			<td
+																				style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantTeamParticipantAsanaMap.size}"
+																				th:if="${participantTeamParticipantAsanaScoreEntry.status==true}">
+																				<input type="submit" value="Save"
+																				class="btn btn-primary" disabled
+																				th:entityId="${participantTeamParticipant.id}"
+																				th:id="'saveScore'+${participantTeamParticipant.id}" />
+																			</td>
+
+																			<td
+																				style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantTeamParticipantAsanaMap.size}"
+																				th:if="${participantTeamParticipantAsanaScoreEntry.status==null}">
+																				<input type="submit" value="Save"
+																				class="btn btn-primary"
+																				th:entityId="${participantTeamParticipant.id}"
+																				th:id="'saveScore'+${participantTeamParticipant.id}" />
+																			</td>
+
+																		</th:block>
+																	</tr>
+																</th:block>
+															</th:block>
+														</th:block>
+													</tbody>
+												</table>
+
+
+											</div>
+
+										</div>
+									</div>
+								</form>
+
+							</section>
+								<div th:replace="fragments/layout :: page_footer"></div>
+							
+						</div>
+					</div>
+
+					</form>
+				</div>
+				</main>
+		</div>
+	</div>
+
+	<!-- Footer fragment -->
+<!--  	<div th:replace="fragments/layout :: page_footer"></div> -->
+	
+
+	<div class="modal fade" id="editRefereeScoreModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/validate.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+
+		function saveAsPerSequence(input) {
+
+			var id = input.getAttribute('id');
+			let entityId = input.getAttribute('entityId');
+			var asPerSequence = null;
+
+			if ($('#' + id).is(":checked")) {
+				//performed in sequence
+				asPerSequence = "PERFORMEDINSEQUENCE";
+			} else {
+				//Not performed in sequence
+				asPerSequence = "DIDNOTPERFORMINSEQUENCE";
+			}
+
+			params = {
+				asPerSequence : asPerSequence
+			}
+
+			var postUrl = base_url + "judge/EvaluatorJudgeScore/" + entityId
+					+ "/saveAsPerSequence";
+
+			$.post(postUrl, params, function(response) {
+
+				console.log("Score saved successfully");
+				$('#message').removeAttr('hidden', true);
+				$('#message').text("Score Saved Successfully");
+
+			}).fail(function() {
+				showErrorModal("Could not connect to the server");
+			});
+
+		}
+
+		function saveIsPerformed(input) {
+			var id = input.getAttribute('id');
+			let entityId = input.getAttribute('entityId');
+			var isPerformed = null;
+
+			if ($('#' + id).is(":checked")) {
+				//performed 
+				isPerformed = "PERFORMED";
+			} else {
+				//Not performed 
+				isPerformed = "NOTPERFORMED";
+			}
+
+			params = {
+				isPerformed : isPerformed
+			}
+
+			var postUrl = base_url + "judge/EvaluatorJudgeScore/" + entityId
+					+ "/saveIsPerformed";
+
+			$.post(postUrl, params, function(response) {
+
+				console.log("Score saved successfully");
+				$('#message').removeAttr('hidden', true);
+				$('#message').text("Score Saved Successfully");
+
+			}).fail(function() {
+				showErrorModal("Could not connect to the server");
+			});
+
+		}
+
+		function saveScore(input) {
+			var id = input.getAttribute('id');
+			let entityId = input.getAttribute('entityId');
+			let score = $('#' + id).val();
+
+			params = {
+				score : score
+			}
+
+			var postUrl = base_url + "judge/EvaluatorJudgeScore/" + entityId
+					+ "/savePenaltyScore";
+
+			$.post(postUrl, params, function(response) {
+
+				console.log("Score saved successfully");
+				$('#message').removeAttr('hidden', true);
+				$('#message').text("Score Saved Successfully");
+
+			}).fail(function() {
+				showErrorModal("Could not connect to the server");
+			});
+
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+
+<body class="sb-nav-fixed">
+	<style>
+		.disabled-link {
+			pointer-events: none;
+			background-color: #9b9b9b;
+			border-color: #9b9b9b;
+		}
+	</style>
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/judge/championship/'+${championshipId}+'/category/'+${asanaCategoryId}+'/'+${ageCategoryId}+'/'+${gender}+'/'+${round}}">Back</a>
+						</div>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="alert alert-success alert-dismissible fade show text-center" role="alert" id="message"
+						hidden>
+
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+
+
+
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-12">
+							<section>
+								<form id="timekeeperScoreForm" method="post"
+									th:action="@{'/judge/timekeeper/'+ ${participantTeamReferees.id}+'/team/'+${championshipParticipantTeams.id}+ '/saveTeamScores'}">
+									<input type="hidden" id="participantTeamRefereesId"
+										th:value="*{participantTeamReferees.id}" /> <input type="hidden"
+										id="asanaCategory" th:value="*{asanaCategory.id}" /> <input type="hidden"
+										id="championshipParticipantTeamId"
+										th:value="*{championshipParticipantTeams.id}" /> <input type="hidden"
+										id="championshipParticipantTeamId"
+										th:value="*{championshipParticipantTeams.id}" /> <input type="hidden"
+										th:value="*{round}" id="round" />
+									<div class="card mb-4">
+										<div class="card-body">
+											<div class="table-responsive">
+
+												<table class="table table-striped table-bordered" id="teamScoreTable"
+													width="100%" cellspacing="0">
+													<thead>
+														<tr th:if="${asanaCategory.id==3}">
+															<th colspan="2">Chest Number -
+																[[${championshipParticipantTeams.participantTeam.chestNumber}]]
+															</th>
+															<th colspan="3">Participant Name:
+																[[${participantTeamParticipant.participant.getFullName()}]]
+															</th>
+															<th colspan="2">Participant Number:
+																[[${participantTeamParticipant.sequenceNumber}]]</th>
+														</tr>
+
+														<tr th:if="${asanaCategory.id!=3}">
+															<th colspan="7">Chest Number -
+																[[${championshipParticipantTeams.participantTeam.chestNumber}]]
+																:</th>
+
+														</tr>
+														<tr>
+															<th>SL No</th>
+															<th>Asana</th>
+															<th>Time in Seconds (TA)</th>
+															<th>Score</th>
+															<th>Whole Time in Minutes</th>
+															<th>Whole Time in Seconds (TW)</th>
+															<th>Save</th>
+														</tr>
+													</thead>
+													<tbody>
+														<th:block
+															th:if="${not #maps.isEmpty(participantAsanaScoreMap)}">
+
+															<th:block
+																th:each="participantTeamParticipantAsanaEntry,iterationStatus1:${participantAsanaScoreMap}"
+																th:with="participantTeamParticipantAsana=${participantTeamParticipantAsanaEntry.key},listParticipantTeamParticipantAsanaScore=${participantTeamParticipantAsanaEntry.value}">
+																<tr>
+																	<td>[[${iterationStatus1.count}]]</td>
+																	<td>[[${participantTeamParticipantAsana.asanaCode}]]-[[${participantTeamParticipantAsana.asana.name}]]
+																	</td>
+
+																	<th:block
+																		th:each="participantTeamParticipantAsanaScore,iterationStatus:${listParticipantTeamParticipantAsanaScore}">
+
+																		<td
+																			th:if="${participantTeamParticipantAsanaScore.status == true}">
+																			<input class="small-txtbox" type="number"
+																				max="7" min="0" step="1"
+																				th:entityId="${participantTeamParticipantAsanaScore.id}"
+																				th:id="'time'+${participantTeamParticipantAsanaScore.id}"
+																				th:value="*{participantTeamParticipantAsanaScore.timeInSeconds}"
+																				readonly />
+																		</td>
+																		<td
+																			th:if="${participantTeamParticipantAsanaScore.status ==null}">
+																			<input class="small-txtbox enableSaveButton"
+																				type="number" max="7" min="0" step="1"
+																				th:entityId="${participantTeamParticipantAsanaScore.id}"
+																				th:id="'time'+${participantTeamParticipantAsanaScore.id}"
+																				th:value="*{participantTeamParticipantAsanaScore.timeInSeconds}"
+																				onkeyup="validate(this);" />
+																		</td>
+
+																		<td
+																			th:if="${participantTeamParticipantAsanaScore.score!= null}">
+																			<input class="small-txtbox ta-score"
+																				type="number"
+																				th:entityId="${participantTeamParticipantAsanaScore.id}"
+																				th:id="'score'+${participantTeamParticipantAsanaScore.id}"
+																				th:value="*{participantTeamParticipantAsanaScore.score}"
+																				readonly />
+																		</td>
+																		<td
+																			th:if="${participantTeamParticipantAsanaScore.score == null}">
+																			<input class="small-txtbox ta-score"
+																				type="number"
+																				th:entityId="${participantTeamParticipantAsanaScore.id}"
+																				th:id="'score'+${participantTeamParticipantAsanaScore.id}"
+																				th:value="*{participantTeamParticipantAsanaScore.score}"
+																				readonly />
+																		</td>
+																		<th:block th:if="${iterationStatus1.count==1}"
+																			th:with="commonQuestion=${commonQuestionScore}">
+
+
+
+																			<td th:if="${commonQuestion.status==true}"
+																				style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantAsanaScoreMap.size}">
+																				<input type="number" class="xs-txtbox"
+																					max="60" min="0" step="1"
+																					th:id="'wholeTimeInMin'+${commonQuestion.id}"
+																					th:entityId="${commonQuestion.id}"
+																					th:value="*{commonQuestion.timeInMinutes}"
+																					readonly /><span>m
+																				</span> <input type="number"
+																					class="xs-txtbox" max="60" min="0"
+																					step="1"
+																					th:id="'wholeTimeInSec'+${commonQuestion.id}"
+																					th:entityId="${commonQuestion.id}"
+																					th:value="*{commonQuestion.timeInSeconds}"
+																					readonly /><span>s
+																				</span>
+																			</td>
+
+																			<td th:if="${commonQuestion.status==null}"
+																				style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantAsanaScoreMap.size}">
+																				<input type="number"
+																					class="xs-txtbox enableSaveButton"
+																					max="60" min="0" step="1"
+																					th:id="'wholeTimeInMin'+${commonQuestion.id}"
+																					th:entityId="${commonQuestion.id}"
+																					th:value="*{commonQuestion.timeInMinutes}"
+																					onchange="validateWholeScore(this);" /><span>m
+																				</span> <input type="number"
+																					class="xs-txtbox enableSaveButton"
+																					max="60" min="0" step="1"
+																					th:id="'wholeTimeInSec'+${commonQuestion.id}"
+																					th:entityId="${commonQuestion.id}"
+																					th:value="*{commonQuestion.timeInSeconds}"
+																					onchange="validateWholeScore(this);" />
+																				<span>s
+																				</span>
+																			</td>
+
+																			<td style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantAsanaScoreMap.size}">
+																				<input type="number"
+																					class="small-txtbox enableSaveButton"
+																					th:id="'wholeTimeTotal'+${commonQuestion.id}"
+																					th:entityId="${commonQuestion.id}"
+																					readonly /><span>s
+																				</span>
+																			</td>
+
+
+																			<td style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantAsanaScoreMap.size}"
+																				th:if="${participantTeamParticipantAsanaScore.status==true}">
+																				<input type="submit" value="Save"
+																					class="btn btn-primary" disabled
+																					th:id="'saveScore'" />
+																			</td>
+
+																			<td style="vertical-align: bottom; text-align: center;"
+																				th:rowspan="${participantAsanaScoreMap.size}"
+																				th:if="${participantTeamParticipantAsanaScore.status==null}">
+																				<input type="submit" value="Save"
+																					class="btn btn-primary link-save saveButton"
+																					 th:id="'saveScore'"
+																					disabled="disabled" />
+																			</td>
+																		</th:block>
+																	</th:block>
+
+
+																</tr>
+
+
+															</th:block>
+														</th:block>
+														<tr>
+															<td colspan="7" th:id="twTaTotalScore"></td>
+														</tr>
+													</tbody>
+												</table>
+
+
+											</div>
+
+										</div>
+									</div>
+								</form>
+
+							</section>
+							<div th:replace="fragments/layout :: page_footer"></div>
+
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<!-- Footer fragment -->
+	<!--  	<div th:replace="fragments/layout :: page_footer"></div> -->
+
+
+	<div class="modal fade" id="editRefereeScoreModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+	<div th:replace="fragments/modal_fragments :: save_confirm_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<!-- 	<script type="text/javascript" th:src="@{/js/validate.js}"></script> -->
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+
+		$(document).ready(function () {
+
+			// on click delete show modal
+			$(".link-save").on("click", function (e) {
+				e.preventDefault();
+				//alert("edit"+$(this));
+				showSaveConfirmModal($(this));
+			});
+		});
+
+		function validate(input) {
+
+			var id = input.id;
+			var entityId = input.getAttribute('entityId');
+			var asanaCategory = $('#asanaCategory').val();
+			var score = 0;
+			if (validateScoreForCategory(input)) {
+				$('#score' + entityId).val(score);
+
+			}
+
+		}
+
+		function validateScoreForCategory(input) {
+			var entityId = input.getAttribute('entityId');
+			var id = input.id;
+			var timeEntered = $('#' + id).val();
+			var score = 0;
+			flag = true;
+
+			if (Number(timeEntered) < 0 || Number(timeEntered) > 7 || timeEntered != Math.floor(timeEntered)) {
+				//invalid 
+				input.style.backgroundColor = 'red';
+				input.focus();
+				showErrorModal("Enter valid time");
+				//	alert("Enter valid time");
+				$('#score' + entityId).val(score);
+				flag = false;
+
+			} else if (Number(timeEntered) >= 5 && Number(timeEntered) <= 7) {
+				input.style.backgroundColor = '';
+				score = 0.5;
+			} else if (Number(timeEntered) == 4) {
+				input.style.backgroundColor = '';
+				score = 0.3;
+			} else if (Number(timeEntered) == 3) {
+				input.style.backgroundColor = '';
+				score = 0.2;
+			} else if (Number(timeEntered) == 2) {
+				input.style.backgroundColor = '';
+				score = 0.1;
+			} else if (Number(timeEntered) == 1) {
+				input.style.backgroundColor = '';
+				score = 0.0;
+			} else if (Number(timeEntered) == 0) {
+				input.style.backgroundColor = '';
+				score = 0.0;
+			}
+			if (flag) {
+				input.style.backgroundColor = '';
+				saveScore(input, timeEntered, score);
+
+			} else {
+				score = 0.0;
+				showErrorModal("Score not saved, Please enter valid time");
+				//	alert("Score not saved, Please enter valid time.");
+				input.style.backgroundColor = 'red';
+				input.focus();
+			}
+
+		}
+
+		function saveScore(input, timeEntered, score) {
+
+			var id = input.id;
+			var entityId = input.getAttribute('entityId');
+
+			if (timeEntered >= 0 && timeEntered <= 7) {
+
+				var postUrl = base_url
+					+ "judge/timekeeperJudgeScoreForOtherGroups/"
+					+ entityId + "/save";
+				params = {
+					score: score,
+					timeInSeconds: timeEntered,
+				}
+
+				$.post(postUrl, params, function (response) {
+					console.log("Total Score saved successfully");
+					//	$('#message').removeAttr('hidden', true);
+					//	$('#message').text("Score Saved Successfully");
+					$('#score' + entityId).val(score);
+					//	location.reload();
+
+				}).fail(function () {
+					showErrorModal("Could not connect to the server");
+				});
+
+			} else {
+				input.style.backgroundColor = 'red';
+				input.focus();
+
+			}
+		}
+
+		function validateWholeScore(input) {
+			//alert("entered");
+			var id = input.id;
+			var entityId = input.getAttribute('entityId');
+			var asanaCategory = $('#asanaCategory').val();
+			var wholeTimeInMin = $('#wholeTimeInMin' + entityId).val();
+			var wholeTimeInSec = $('#wholeTimeInSec' + entityId).val();
+			//alert(wholeTimeInMin + wholeTimeInSec);
+
+			if (wholeTimeInMin == "" || wholeTimeInMin == null) {
+				var ele = $('#wholeTimeInMin' + entityId);
+				ele.style.backgroundColor = 'red';
+				$('#wholeTimeInMin' + entityId).focus();
+				showErrorModal("Enter valid minutes");
+				//	alert("Enter valid minutes");
+
+			} else if (wholeTimeInSec == "" || wholeTimeInSec == null) {
+				var ele = $('#wholeTimeInSec' + entityId);
+				ele.style.backgroundColor = 'red';
+				$('#wholeTimeInSec' + entityId).focus();
+				showErrorModal("Enter valid seconds");
+				//	alert("Enter valid seconds");
+
+			} else {
+				totalTime = (Number(wholeTimeInMin) * 60)
+					+ Number(wholeTimeInSec);
+				$('#wholeTimeTotal' + entityId).val(totalTime);
+				saveWholeTime(wholeTimeInSec, wholeTimeInMin, input);
+			}
+
+		}
+
+		function saveWholeTime(wholeTimeInSec, wholeTimeInMin, input) {
+			var entityId = input.getAttribute('entityId');
+			var postUrl = base_url
+				+ "judge/timekeeperJudgeScoreForOtherGroups/" + entityId
+				+ "/saveWholeTime";
+			params = {
+				wholeTimeInSec: wholeTimeInSec,
+				wholeTimeInMin: wholeTimeInMin
+			}
+
+			$.post(postUrl, params, function (response) {
+				console.log("Total Score saved successfully");
+				//		$('#message').removeAttr('hidden', true);
+				//		$('#message').text("Score Saved Successfully");
+				$('#score' + entityId).val(score);
+				//	location.reload();
+
+			}).fail(function () {
+				showErrorModal("Could not connect to the server");
+			});
+
+		}
+
+		$(document)
+			.ready(
+				function () {
+					var asanaCategory = $('#asanaCategory').val();
+					if ($('#saveScore').is(':disabled')) {
+
+						var questionId = "[[${commonQuestionScore.id}]]";
+						console.log("questionId" + questionId);
+
+						var wholeTimeInMin = $(
+							'#wholeTimeInMin' + questionId).val();
+						var wholeTimeInSec = $(
+							'#wholeTimeInSec' + questionId).val();
+
+						totalTime = (Number(wholeTimeInMin) * 60)
+							+ Number(wholeTimeInSec);
+						$('#wholeTimeTotal' + questionId)
+							.val(totalTime);
+						//saveWholeTime(wholeTimeInSec, wholeTimeInMin, input);
+
+						//calculate total time 
+
+						// show TW+TA
+						var totalTaTwScore = 0;
+						var totalTwScore = 0;
+						var totalTaScore = 0;
+						var taScoreElements = $('.ta-score');
+						//	console.log(taScoreElements);
+						taScoreElements.each(function (i) {
+							totalTaScore = parseFloat(
+								Number(totalTaScore)
+								+ Number($(this).val()))
+								.toFixed(2);
+
+						});
+
+						totalTwScore = "[[${commonQuestionScore.totalScore}]]";
+
+						totalTaTwScore = (Number(totalTaScore) + Number(totalTwScore));
+
+						//check for conditions 		
+
+						if (asanaCategory == 2 || asanaCategory == 3
+							|| asanaCategory == 4) {
+
+							if (totalTime < 150) {
+								totalTaTwScore = 0.0;
+
+							} else if (totalTime > 190) {
+								totalTaTwScore = "disqualified";
+
+							} else if (totalTime >= 150
+								&& totalTime <= 180) {
+
+							} else if (totalTime > 180
+								&& totalTime <= 190) {
+								//	penalty = (totalTime - 180) * 0.5;
+								//	totalTwScore = parseFloat(totalTwScore - penalty).toFixed(2);
+								totalTaTwScore = (Number(totalTaScore) + Number(totalTwScore));
+
+							}
+
+						} else if (asanaCategory == 5) {
+
+							if (totalTime < 210) {
+								totalTaTwScore = 0.0;
+							} else if (totalTime > 250) {
+								totalTaTwScore = "disqualified";
+							} else if (totalTime >= 210
+								&& totalTime <= 240) {
+								totalTaTwScore = totalTaTwScore;
+							} else if (totalTime > 240
+								&& totalTime <= 250) {
+								//	penalty = (totalTime - 240) * 0.5;
+								//	totalTwScore = parseFloat(totalTwScore - penalty).toFixed(2);
+								totalTaTwScore = (Number(totalTaScore) + Number(totalTwScore));
+
+							}
+						}
+
+					}
+
+					$('#twTaTotalScore').html(
+						"Total : TW + TA =" + totalTaTwScore);
+
+				});
+
+		$(document)
+			.ready(
+				function () {
+					const interval = setInterval(function () {
+
+						enableSaveScoreButton();
+					}, 1000);
+				});
+
+		function enableSaveScoreButton() {
+
+			var score = $('.enableSaveButton');
+			var count=0;
+			score.each(function (i) {
+				var scoreValue =  $(this).val();
+				if (scoreValue != "") {
+					count++;
+				
+				}
+			});
+			if(count==score.length){
+				//alert(count);
+				$('.saveButton').removeAttr("disabled",false);
+			}else{
+				$('.saveButton').attr("disabled", true);
+			}
+
+		}
+
+
+		function showSaveConfirmModal(link) {
+
+			$("#confirmText").text("Are you sure you want to save it" + "?");
+			$("#saveConfirmModal").modal();
+		}
+
+		$('#saveYesButton').on('click', function (e) {
+			$('#timekeeperScoreForm').submit();
+		});
+	</script>
+
+</body>
+
+</html>

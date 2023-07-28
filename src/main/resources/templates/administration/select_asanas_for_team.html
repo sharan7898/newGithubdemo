@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						
+					</div>
+
+					<hr>
+					<br />
+
+			<div class="mx-auto mt-3">
+				<div class="stepper-wrapper">
+					<div class="stepper-item active">
+						<!-- class="completed" if completed -->
+						<div class="step-counter">1</div>
+						<div class="step-name">Select championship Team</div>
+					</div>
+					<div class="stepper-item">
+						<div class="step-counter">2</div>
+						<div class="step-name">Select Team Asanas</div>
+					</div>
+					<div class="stepper-item">
+						<div class="step-counter">3</div>
+						<div class="step-name">Select Participants</div>
+					</div>
+				</div>
+			</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/js/scripts.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		//var listAsanasUrl = "[[@{/asanas/list_by_asana_category}]]";
+		
+		$(document).ready(function() {
+		navData = getNavXmlDataForXmlSelection(ietp_id);	
+		//console.log(navData);
+		
+		var settings1 = {
+		        "dataArray": navData,
+		        "itemName": "title",
+		        "valueName": "url",
+		        "callable": function (items) {
+		            //console.dir(items)
+		           // console.log(items.length);
+		        }
+			 };
+		var transfer = $("#transfer1").transfer(settings1);
+
+		
+		$('#btnOutput').on('click', function () {
+			
+			//console.log("Pdf Xml Limit : " + pdf_xml_limit);
+			//console.log(selectedArray);
+			selectedArray = transfer.getSelectedItems();
+			
+			if(selectedArray.length != 0 && selectedArray.length <= pdf_xml_limit){
+            	onSaveAndProceed(ietp_id);
+            } else if(selectedArray.length > pdf_xml_limit) {
+            	$("#message1").css("display", "block");
+            	$("#errorMessage").text("You can select only "+ pdf_xml_limit + " XML files for PDF Generation.");
+            } else {
+            	$("#message1").css("display", "block");
+            	$("#errorMessage").text("No XML files selected");
+            }  
+			
+		});
+		
+	});
+	
+	
+	function getNavXmlDataForXmlSelection(ietp_id){
+		var result = [];
+		url = base_url + "ietp/project/" + ietp_id+"/nav/nodes";		//xmlRedirectUrl = base_url + "ietps/viewer/" + ietp_id + "/";
+		$.ajax({
+			"type": 'get',
+			"url": url,
+			"dataType": "json",
+			"async": false,
+			"success": function(data) {
+				var dataLen = data.length;
+				if(data.length != 0){
+					console.log(data);		
+					result = data;
+				}
+			}
+		}).fail(function() {
+			showErrorModal("Error loading the navigation menu for this IETP.");
+		});
+		return result;
+	}
+	
+
+	
+	function onSaveAndProceed(ietp_id){
+		
+		//console.log(selectedArray);
+		var postBookJsonObj = listToNav(selectedArray);
+		//console.log("postBookJsonObj : " + postBookJsonObj);
+		//Send post request to the server.
+        $.ajax({
+          url: base_url + 'ietp/project/' + ietp_id + '/nav',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(postBookJsonObj),
+          async: false,
+          cache: false,
+          processData: false,
+          success : function(data) {
+            if(data == "Successfully Created"){
+              setTimeout(function(){
+                window.location.href = base_url + 'admin/manage-ietp/' + ietp_id + '/generate-pdf/navxml'
+              },0);
+            } else {
+            	$("#message1").css('display','block');	
+            	$("#errorMessage").text("Navigation.xml for the Pdf could not be created.");
+              setTimeout(function(){
+            	  window.location.href = base_url + 'admin/manage-ietp/' + ietp_id + '/generate-pdf/selectxml'
+              },0);
+            }
+          },
+          error : function(e){
+        	  $("#message1").css('display','block');	
+          	  $("#errorMessage").text(e.responseText);
+          }
+        });
+
+	}
+	
+	
+	/**
+     * accepts menu.json format and converts into nav.json format
+     */
+     function listToNav(inputObject) {
+       var responseObject = {
+           // "siteMap": {
+               //"title": bookName,
+               "siteMapNode": listToNavSiteMapNodeFunction(inputObject)
+           //}
+       }
+      // console.log("responseObject siteMapNode length : " + responseObject.siteMapNode.length);
+       return responseObject;
+     }
+	
+     function listToNavSiteMapNodeFunction(inputObject) {
+         var siteMapobject = [];
+         if (inputObject instanceof Array) {
+             for (item of inputObject) {
+                 var item;
+                 if (item != null) {
+                   if(listToNavSiteMapNodeFunction(item.children) == null){
+                     siteMapobject.push({
+                       "title": item.title,
+                       "url": item.url,
+                       "selected" : item.selected
+                     })
+//					console.log("siteMapobject :" + siteMapobject);
+                   } else {
+                     siteMapobject.push({
+                       "title": item.title,
+                       "url": item.url,
+                       "selected" : item.selected,
+                       "siteMapNode": listToNavSiteMapNodeFunction(item.children)
+                     })
+                   }
+                     
+                 }
+             }
+         } else if (inputObject != null) {
+             //console.log("Single Object " + inputObject)
+
+             if(listToNavSiteMapNodeFunction(item.children) == null){
+               siteMapobject = {
+                 "title": item.title,
+                 "url": item.url,
+                 "selected" : item.selected
+               }
+             } else {
+                 siteMapobject = {
+                   "title": item.title,
+                   "url": item.url,
+                   "selected" : item.selected,
+                   "siteMapNode": listToNavSiteMapNodeFunction(item.children)
+                 }
+             }
+             
+         }
+         return siteMapobject;
+     }
+
+		
+		
+	</script>
+
+
+</body>
+</html>

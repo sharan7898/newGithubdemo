@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head('Your Profile', 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm text-center">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+					</div>
+
+					<hr>
+					<br />
+					
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-9">
+						
+							<div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center" role="alert">
+								[[${message}]]  <button type="button" class="close" data-dismiss="alert" aria-label="Close">     <span aria-hidden="true">&times;</span>   </button>
+							</div>
+							<br />
+					
+							<form th:action="@{/profile/update}" method="post" th:object="${user}">
+								<input type="hidden" th:field="*{id}" />
+								<div class="form-group row">
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="firstName">First name <span class="form-star">*</span></label> 
+										<input type="text" class="form-control" th:field="*{firstName}" required minlength="2" maxlength="40">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="lastName">Last name <span class="form-star">*</span></label> 
+										<input type="text" class="form-control" th:field="*{lastName}" required minlength="2" maxlength="40">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="role">Assigned Role <span class="form-star">*</span></label> 
+										<input type="text" class="form-control" th:value="${user.getRoleName}" readonly/>
+										
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="phoneNumber">Phone number</label> 
+										<input type="text" class="form-control" th:field="*{phoneNumber}" maxlength="12">
+									</div>
+
+									<div class="col-md-12 mb-3">
+										<label class="form-label" for="email">Email <span class="form-star">*</span></label> 
+										<input type="email" class="form-control" th:field="*{email}" readonly />
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="password">Password
+											</label>
+										<div class="input-group">
+											
+											<input th:if="${user.id == null}" type="password" class="form-control" th:field="*{password}" name="password" required minlength="8" maxlength="20"  />
+											<input th:if="${user.id != null}" type="password" class="form-control" th:field="*{password}" name="password"  minlength="8" maxlength="20"  />
+			
+											<div class="input-group-append">
+												<span class="input-group-text"><i class="far fa-eye"
+													id="togglePassword"></i></span>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="confirmPassword">Confirm Password</label>
+										<div class="input-group">
+											<input type="password" class="form-control" onChange="checkPasswordMatch();" name="confirmPassword" id="confirmPassword"  minlength="8" maxlength="20"  />
+											<div class="input-group-append">
+												<span class="input-group-text"><i class="far fa-eye"
+													id="toggleConfirmPassword"></i></span>
+											</div>
+										</div>
+										<div class="formAlert" id="divCheckPasswordMatch"></div>
+									</div>
+								</div>
+								
+
+								<div class="form-group row">
+									<div class="col-12">
+										<h5>Address</h5>
+									</div>
+								</div>
+								
+								<div class="form-group row">
+									<div class="col-md-12 mb-3">
+										<label class="form-label" for="addressLine1">Address line 1</label> 
+										<input type="text" class="form-control" th:field="*{addressLine1}" required minlength="9" maxlength="64">
+									</div>
+									
+									<div class="col-md-12 mb-3">
+										<label class="form-label" for="addressLine2">Address line 2</label> 
+										<input type="text" class="form-control" th:field="*{addressLine2}" maxlength="64">
+									</div>
+									
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="city">City</label> 
+										<input type="text" class="form-control" th:field="*{city}" required minlength="3" maxlength="64">
+									</div>
+									
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="country">Country</label> 
+										<select th:field="*{country}" class="form-control">
+										<th:block th:each="country : ${listCountries}">
+											<option th:value="${country.id}">[[${country.name}]]</option>
+										</th:block>
+									    </select>
+									</div>
+									
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="state">State</label> 
+										<input type="text" class="form-control" th:field="*{state}" minlength="3" maxlength="64" list="listStates"> 
+									      <datalist id="listStates">
+									      	
+									      </datalist>
+									</div>
+									
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="postalCode">Postal code</label> 
+										<input type="text" class="form-control" th:field="*{postalCode}" required minlength="3" maxlength="6">
+									</div>
+								</div>
+								
+								<div class="form-group text-center mt-4 mb-5">
+									<input type="submit" value="Save" class="btn btn-primary" />
+								</div>
+								
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+	
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{js/scripts.js}"></script>
+	<script type="text/javascript" th:src="@{js/user_profile_common.js}"></script>
+	
+	<script type="text/javascript">
+		var base_url =  "[[@{/}]]";
+		var listStateUrl = "[[@{/states/list_by_country/}]]";
+	</script>
+</body>
+</html>

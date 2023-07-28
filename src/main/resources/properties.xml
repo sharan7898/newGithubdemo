@@ -1,0 +1,6 @@
+<!DOCTYPE properties [
+  <!ENTITY props SYSTEM "application.properties">
+]>
+<properties>
+ &props;
+</properties>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{/admin/manage-eventmanager-registrations}">Back</a>
+						</div>
+					</div>
+
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-9">
+							<form id="eventmanagerRegistrationEditForm"
+								th:action="@{/admin/manage-eventmanager-registrations/save}" method="post"
+								th:object="${eventManagerRegistration}" onsubmit="return (validateForm(this));">
+								<input type="hidden" th:field="*{id}" id="id" />
+								<div class="form-group row">
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="firstName">First name <span
+												class="form-star">*</span></label> <input type="text"
+											class="form-control" th:field="*{firstName}" id="first-name" minlength="2"
+											maxlength="45"> <span class="form-field-error"
+											th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First
+											name error</span> <span id="span-error-first-name" class="span-error">
+										</span>
+									</div>
+
+									<div class="col-md-6 mb -3">
+										<label class="form-label" for="lastName">Last name <span
+												class="form-star">*</span></label> <input type="text"
+											class="form-control" th:field="*{lastName}" id="last-name" minlength="2"
+											maxlength="45"> <span class="form-field-error"
+											th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name
+											error</span> <span id="span-error-last-name" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="email">Email <span
+												class="form-star">*</span></label> <input
+											th:if="${eventManagerRegistration.id != null}" type="text"
+											class="form-control" th:field="*{email}" id="email" readonly />
+										<span id="span-error-email" class="span-error"> </span>
+									</div>
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="phoneNumber">Phone
+											number <span class="form-star">*</span>
+										</label> <input type="text" class="form-control" th:field="*{phoneNumber}"
+											id="phone-number" maxlength="12">
+										<span id="span-error-phone-number" class="span-error">
+										</span>
+									</div>
+
+
+									<!-- 	<div class="col-md-6 mb-3">
+										<label class="form-label" for="lastName">Designation <span
+											class="form-star">*</span></label> <input type="text"
+											id="designation" class="form-control"
+											th:field="*{designation}"> <span
+											id="span-error-designation" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="dob">Gender <span
+												class="form-star">*</span></label>
+										<select class="form-control" th:field="*{gender}" id="gender">
+											<option value="">-- Select --</option>
+											<option value="Male">Male</option>
+											<option value="Female">Female</option>
+										</Select> <span id="span-error-gender" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="dob">Address Line 1 <span
+												class="form-star">*</span></label>
+										<input type="text" class="form-control" th:field="*{addressLine1}"
+											id="address-line1" maxlength="45">
+										<span id="span-error-address-line1" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="dob">Address Line 2</label>
+										<input type="text" class="form-control" th:field="*{addressLine2}"
+											maxlength="45">
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="dob">Town <span
+												class="form-star">*</span></label>
+										<input type="text" class="form-control" th:field="*{town}" id="town"
+											maxlength="45">
+										<span id="span-error-town" class="span-error"> </span>
+									</div>-->
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="state">State <span
+												class="form-star">*</span></label> <select class="form-control"
+											id="state" th:field="*{state}" onchange="getDistrict(this);">
+											<option value="">Select</option>
+											<th:block th:each="state : ${listStates}">
+												<option th:value="${state.id}">[[${state.name}]]</option>
+											</th:block>
+										</select> <span id="span-error-state" class="span-error"></span>
+									</div>
+
+
+									<div class="col-md-6 mb-3">
+
+										<label class="form-label" for="district">District <span
+												class="form-star">*</span></label>
+										<th:block th:if="${eventManagerRegistration.getId() == null}">
+
+											<select class="form-control" id="district" th:field="*{district}">
+												<option value="">Select</option>
+											</select>
+
+											<span id="span-error-district" class="span-error"></span>
+										</th:block>
+										<th:block th:if="${eventManagerRegistration.getId() != null}">
+											<select class="form-control" id="district" th:field="*{district}">
+												<option th:value="${eventManagerRegistration.district.id}">
+													[[${eventManagerRegistration.district.name}]]</option>
+											</select>
+										</th:block>
+
+										<span id="span-error-district" class="span-error"></span>
+
+									</div>
+
+									<!-- 	<div class="col-md-6 mb-3">
+										<label class="form-label" for="dob">Postal Code <span
+												class="form-star">*</span></label>
+										<input type="text" class="form-control" th:field="*{postalCode}"
+											id="postal-code" maxlength="45">
+										<span id="span-error-postal-code" class="span-error"> </span>
+									</div>
+
+
+
+								</div>-->
+
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label " for="eventmanagerImage">
+											Image <span class="form-star">*</span>
+										</label> <input type="hidden" class="form-control" th:field="*{image}">
+										<div class="col-md-6 mb-3">
+											<img id="thumbnail" alt="Image Preview" class="img-fluid"
+												th:src="@{${eventManagerRegistration.getImagePath}}" />
+										</div>
+									</div>
+
+								</div>
+								<div class="form-group row">
+
+									<div class="d-flex align-items-center justify-content-between mt-2 mb-0">
+										<div class="col-md-0 mb-5">
+											<div class="checkbox">
+												<input type="checkbox" th:field="*{enabled}"> <label class="label">
+													&nbsp; Enabled</label>
+											</div>
+										</div>
+
+										<div class="col-md-0 mb-5">
+											<div class="checkbox" style="margin-left: 10pt">
+												<input type="checkbox" th:field="*{approvalStatus}">
+												<label class="label"> &nbsp; Approved</label>
+											</div>
+										</div>
+									</div>
+
+									<br />
+
+									<div class="form-group row mt-5  " style="padding-left: 130px">
+										<input type="submit" value="Save" class="btn btn-primary" />
+										<a th:href="@{/admin/manage-eventmanager-registrations}" type="button"
+											style="margin-left: 3pt" class="btn btn-primary-outline"
+											id="buttonCancel">Cancel</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+	<!-- Modal fragment to display email warnings -->
+	<div th:replace="fragments/modal_fragments :: email_warning_modal"></div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script th:src="@{/js/district_scripts.js}"></script>
+
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		var checkEmailUrl = "[[@{/user/check_email}]]";
+		var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		var reg = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+		$(document).ready(
+			function () {
+				var pathname = window.location.pathname;
+				var parentpath = pathname.substring(0, 44);
+				var activeLink = document.querySelector('a.nav-link[href="'
+					+ parentpath + '"]');
+				activeLink.classList.add("active");
+
+			});
+
+		function checkEmailUnique(form) {
+			userEmail = $("#email").val();
+			userId = $("#id").val();
+			csrfValue = $("input[name='_csrf']").val();
+			params = {
+				id: userId,
+				email: userEmail,
+				_csrf: csrfValue
+			};
+			$
+				.post(
+					checkEmailUrl,
+					params,
+					function (response) {
+						if (response == "OK") {
+							form.submit();
+							return true;
+						} else if (response == "Duplicated") {
+							showEmailWarningModal(userEmail);
+							return false;
+						} else {
+							showErrorModal("Unknown error from the server");
+							return false;
+						}
+					}).fail(function () {
+						showErrorModal("Could not connect to the server");
+						return false;
+					});
+			return false;
+		}
+
+		function validateForm(form) {
+			let id = document.getElementById('id').value;
+			//	let category = document.getElementById('category').value;
+			//let gender = document.getElementById('gender').value;
+			//let asanaCategory = document.getElementById('asana-category').value;
+			//	let district = document.getElementById('district').value;
+			var emailPattern = mailformat
+				.exec(document.getElementById('email').value);
+			var phonePattern = reg
+				.exec(document.getElementById('phone-number').value);
+			//let dateOfBirth = document.getElementById('date-of-birth').value;
+
+			if ((document.getElementById('first-name').value) == "") {
+				var flagFirstName = false;
+				$("#span-error-first-name").text("Enter the first name");
+
+			} else {
+				flagFirstName = true;
+				$("#span-error-first-name").text("");
+			}
+
+			if ((document.getElementById('last-name').value) == "") {
+				var flagLastName = false;
+				$("#span-error-last-name").text("Enter the last name");
+
+			} else {
+				flagLastName = true;
+				$("#span-error-last-name").text("");
+			}
+			if (id != null) {
+				if (!emailPattern) {
+					var flagEmail = false;
+					$("#span-error-email")
+						.text("Enter the valid email address");
+
+				} else {
+					flagEmail = true;
+					$("#span-error-email").text("");
+				}
+			} else {
+				flagEmail = true;
+				$("#span-error-email").text("");
+			}
+			/*
+						if (category == "") {
+							var flagCategory = false;
+							$("#span-error-category").text("Select the category");
+			
+						} else {
+							flagCategory = true;
+							$("#span-error-category").text("");
+						}
+			if ((document.getElementById('designation').value) == "") {
+				var flagFirstName = false;
+				$("#span-error-designation").text("Enter the designation");
+
+			} else {
+				flagDesignation = true;
+				$("#span-error-designation").text("");
+			}*/
+
+			/*	if (gender == "") {
+					var flagGender = false;
+					$("#span-error-gender").text("Select the gender");
+
+				} else {
+					flagGender = true;
+					$("#span-error-gender").text("");
+				} */
+
+			/*	if (asanaCategory == "") {
+					var flagAsanaCategory = false;
+					$("#span-error-asana-category").text(
+							"Select the asana category");
+			
+				} else {
+					flagAsanaCategory = true;
+					$("#span-error-asana-category").text("");
+				}
+			 */
+			if (!phonePattern) {
+				var flagPhoneNum = false;
+				$("#span-error-phone-number")
+					.text("Enter the 10 digit pattern");
+
+			} else {
+				flagPhoneNum = true;
+				$("#span-error-phone-number").text("");
+			}
+
+			/*	if ((document.getElementById('address-line1').value) == "") {
+					var flagAddressLine1 = false;
+					$("#span-error-address-line1").text("Enter Address");
+
+				} else {
+					flagAddressLine1 = true;
+					$("#span-error-address-line1").text("");
+				}
+
+				if ((document.getElementById('town').value) == "") {
+					var flagTown = false;
+					$("#span-error-town").text("Enter the Town");
+
+				} else {
+					flagTown = true;
+					$("#span-error-town").text("");
+				}*/
+
+			if ((document.getElementById('district').value) == "") {
+				var flagDistrict = false;
+				$("#span-error-district").text("Select the District");
+
+			} else {
+				flagDistrict = true;
+				$("#span-error-district").text("");
+			}
+
+			if ((document.getElementById('state').value) == "") {
+				var flagState = false;
+				$("#span-error-state").text("Select the state");
+
+			} else {
+				flagState = true;
+				$("#span-error-state").text("");
+			}
+
+			/*	if ((document.getElementById('postal-code').value) == "") {
+					var flagPostalCode = false;
+					$("#span-error-postal-code").text("Enter the Postal Code");
+
+				} else {
+					flagPostalCode = true;
+					$("#span-error-postal-code").text("");
+				} */
+
+			/*	return (flagFirstName && flagLastName && flagEmail && flagDate
+					&& flagPhoneNum && flagDesignation && flagAddressLine1 && flagTown
+					&& flagDistrict && flagState && flagPostalCode
+					&& flageventmanagerImage && flagAcceptRules && flagRecaptcha); */
+
+			return (flagFirstName && flagLastName && flagEmail && flagPhoneNum
+				&& flagDistrict && flagState);
+
+		}
+	</script>
+
+
+
+
+</body>
+
+</html>

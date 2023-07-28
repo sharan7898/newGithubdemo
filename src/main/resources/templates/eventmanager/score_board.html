@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<div
+				th:replace="fragments/layout :: eventmanager_championship_subheader"></div>
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]] -
+								[[${championship.name}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/eventmanager/championship/'+${championship.id}+'/manage-score-board-image'}">Back</a>
+						</div>
+					</div>
+					<hr>
+					<br />
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="scoreBoardImageForm"
+								th:action="@{'/eventmanager/championship/'+${championship.id}+'/score-board-image/save'}"
+								method="post" enctype="multipart/form-data"
+								name="scoreBoardImageForm" th:object="${championship}"
+								onsubmit="return validateForm(this);">
+
+								<input type="hidden" th:field="*{id}" />
+								<div class="col-md-6 mb-3">
+									<label class="form-label" for="championship">Championship
+										<span class="form-star">*</span>
+									</label>
+									<th:block th:if="${championship.getId() == null}">
+										<select class="form-control" id="championship"
+											name="championship">
+											<option value="">-- Select --</option>
+											<th:block th:each="championship : ${listChampionships}">
+												<option th:value="${championship.id}">[[${championship.name}]]
+												</option>
+											</th:block>
+
+										</select>
+										<span id="span-error-championship" class="span-error"></span>
+									</th:block>
+									<th:block th:if="${championship.getId() != null}">
+										<select class="form-control" id="championship"
+											name="championship" readonly>
+											<option th:value="${championship.id}">
+												[[${championship.name}]]</option>
+									</th:block>
+
+									</select>
+									</th:block>
+								</div>
+
+
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="image1">Image 1<span
+											class="form-star">*</span></label> <input type="hidden"
+											th:field="*{image1}" /> <input type="file"
+											id="scoreBoardImage1" accept="image/png,image/jpeg"
+											name="scoreBoardImage1" class="mb-2" /> <span
+											id="span-error-image1" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<img id="thumbnail1" alt="Image Preview" class="img-fluid"
+											th:src="@{${championship.ImagePath1}}" />
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="image1">Image 2</label> <input
+											type="hidden" th:field="*{image2}" /> <input type="file"
+											id="scoreBoardImage2" accept="image/png,image/jpeg"
+											name="scoreBoardImage2" class="mb-2" /> <span
+											id="span-error-image2" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<img id="thumbnail2" alt="Image Preview" class="img-fluid"
+											th:src="@{${championship.ImagePath2}}" />
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="image1">Image 3</label> <input
+											type="hidden" th:field="*{image3}" /> <input type="file"
+											id="scoreBoardImage3" accept="image/png,image/jpeg"
+											name="scoreBoardImage3" class="mb-2" /> <span
+											id="span-error-image3" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<img id="thumbnail3" alt="Image Preview" class="img-fluid"
+											th:src="@{${championship.ImagePath3}}" />
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="image1">Image 4</label> <input
+											type="hidden" th:field="*{image4}" /> <input type="file"
+											id="scoreBoardImage4" accept="image/png,image/jpeg"
+											name="scoreBoardImage4" class="mb-2" /> <span
+											id="span-error-image4" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<img id="thumbnail4" alt="Image Preview" class="img-fluid"
+											th:src="@{${championship.ImagePath4}}" />
+									</div>
+								</div>
+								<div class="form-group text-center mt-4 mb-5">
+									<input type="button" class="btn btn-secondary"
+										id="preview-score-board" value="Preview" /> <input
+										type="submit" value="Save" class="btn btn-primary" /> <a
+										th:href="@{'/eventmanager/championship/'+${championship.id}+'/manage-score-board-image'}"
+										type="button" class="btn btn-primary-outline"
+										id="buttonCancel">Cancel</a>
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+	<div th:replace="fragments/modal_fragments :: preview_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/scoreboardimage.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		var MAX_FILE_SIZE = 1024000; // 1000kb 
+
+		$(document).ready(
+				function() {
+					var pathname = window.location.pathname;
+					var parentpath = pathname.substring(0, 24);
+					var activeLink = document.querySelector('a.nav-link[href="'
+							+ parentpath + '"]');
+					activeLink.classList.add("active");
+
+				});
+
+		function validateForm(form) {
+
+			var flagChampionship = false;
+			var flagScoreBoardImage1 = false;
+			var flagScoreBoardImage2 = false;
+			var flagScoreBoardImage3 = false;
+			var flagScoreBoardImage4 = false;
+
+			//	var id = document.getElementById('id').value;
+			var image1 = document.getElementById('scoreBoardImage1').value;
+			var image2 = document.getElementById('scoreBoardImage2').value;
+			var image3 = document.getElementById('scoreBoardImage3').value;
+			var image4 = document.getElementById('scoreBoardImage4').value;
+
+			var validExit = [ "jpg", "png", "jpeg", 'PNG', 'JPEG', 'JPG' ];
+			var img_ext = scoreBoardImage1.value
+					.substring(scoreBoardImage1.value.lastIndexOf('.') + 1);
+			var img_ext2 = scoreBoardImage2.value
+					.substring(scoreBoardImage2.value.lastIndexOf('.') + 1);
+			var img_ext3 = scoreBoardImage3.value
+					.substring(scoreBoardImage3.value.lastIndexOf('.') + 1);
+			var img_ext4 = scoreBoardImage4.value
+					.substring(scoreBoardImage4.value.lastIndexOf('.') + 1);
+
+			var result = validExit.includes(img_ext);
+			var result2 = validExit.includes(img_ext2);
+			var result3 = validExit.includes(img_ext3);
+			var result4 = validExit.includes(img_ext4);
+
+			if ((document.getElementById('championship').value) == "") {
+				flagChampionship = false;
+				$("#span-error-championship").text("Select the championship");
+			} else {
+				flagChampionship = true;
+				$("#span-error-championship").text("");
+			}
+			if (image1 != "") {
+
+				if (result == false) {
+					flagScoreBoardImage1 = false;
+					$('#span-error-image1').text(
+							"Please upload the jpg ,jpeg ,png image");
+					//	return false;
+				} else {
+					flagScoreBoardImage1 = true;
+					$("#span-error-image1").text("");
+					//return true;
+				}
+			} else {
+				flagScoreBoardImage1 = true;
+			}
+			if (image2 != "") {
+				if (result2 == false) {
+					flagScoreBoardImage2 = false;
+					$('#span-error-image2').text(
+							"Please upload the jpg ,jpeg ,png image");
+					//	return false;
+				} else {
+					flagScoreBoardImage2 = true;
+					$("#span-error-image2").text("");
+					//return true;
+				}
+
+			} else {
+				flagScoreBoardImage2 = true;
+			}
+
+			if (image3 != "") {
+				if (result3 == false) {
+					flagScoreBoardImage3 = false;
+					$('#span-error-image3').text(
+							"Please upload the jpg ,jpeg ,png image");
+					//	return false;
+				} else {
+					flagScoreBoardImage3 = true;
+					$("#span-error-image3").text("");
+					//return true;
+				}
+			} else {
+				flagScoreBoardImage3 = true;
+			}
+
+			if (image4 != "") {
+				if (result4 == false) {
+					flagScoreBoardImage4 = false;
+					$('#span-error-image4').text(
+							"Please upload the jpg ,jpeg ,png image");
+					//	return false;
+				} else {
+					flagScoreBoardImage4 = true;
+					$("#span-error-image4").text("");
+					//return true;
+				}
+			} else {
+				flagScoreBoardImage4 = true;
+			}
+
+			/*		if (result2 == false) {
+						var flagScoreBoardImage2 = false;
+						$("#span-error-image2").text("please upload the jpg,jpeg,png image");
+						//	return false;
+					} else if (result2 == true) {
+			
+						flagScoreBoardImage2 = true;
+						$("#span-error-image2").text("");
+					} else {
+						$("#span-error-image2").text("");
+					}*/
+			return (flagChampionship && flagScoreBoardImage1
+					&& flagScoreBoardImage2 && flagScoreBoardImage3 && flagScoreBoardImage4);
+		}
+
+		$('#preview-score-board').on('click', function(e) {
+			showPreviewModal($(this));
+
+		});
+
+		function showPreviewModal(link) {
+			$("#previewModal").modal();
+		}
+	</script>
+
+
+</body>
+
+</html>

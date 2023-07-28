@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head
+	th:replace="fragments/layout :: page_head('Manage Schedule', 'tag')"></head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{/admin/manage-schedule}">Back</a>
+						</div>
+					</div>
+
+					<hr>
+					<br />
+					
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="roleAddForm" th:action="@{/admin/manage-schedule/save}"
+								method="post" th:object="${schedule}"
+								onsubmit="return validateForm(this);">
+								<input type="hidden" th:field="*{id}" />
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="championship">Championship
+											<span class="form-star">*</span>
+										</label> <select class="form-control" th:field="*{championship}"
+											id="championship">
+											<option value="">-- Select --</option>
+											<th:block th:each="championship : ${listChampionships}">
+												<option th:value="${championship.id}">[[${championship.name}]]</option>
+											</th:block>
+										</select> <span id="span-error-championship" class="span-error">
+										</span>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="sport_id">Sport Id <span
+											class="form-star">*</span></label> <input type="text"
+											class="form-control" th:field="*{sport_id}" id="sport_id">
+										<span id="span-error-sportid" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="sport_name">Sport name
+											<span class="form-star">*</span>
+										</label> <input type="text" class="form-control"
+											th:field="*{sport_name}" minlength="2" maxlength="40" id="sport_name"> <span
+											id="span-error-sportname" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-12 mb-3">
+										<label class="form-label" for="description">Description
+											<span class="form-star">*</span>
+										</label> <input type="text" class="form-control"
+											th:field="*{description}" id="description" minlength="2" maxlength="128"> <span
+											id="span-error-description" class="span-error"> </span>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<div class="col-md-12 mb-3">
+										<div class="checkbox">
+											<input type="checkbox" th:field="*{enabled}"> <label
+												class="label"> &nbsp; Enabled</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group text-center mt-4 mb-5">
+									<input type="submit" value="Save" class="btn btn-primary" /> <a
+										th:href="@{/admin/manage-schedule}" type="button"
+										class="btn btn-primary-outline" id="buttonCancel">Cancel</a>
+								</div>
+							</form>
+
+							<!-- // Schedule days -->
+							<th:block th:if="${schedule.id != null}">
+								<div class="form-group row mt-5" id="scheduleDaysSection">
+									<div class="col-md-12">
+										<div class="row mb-4">
+											<div class="col-6">
+												<h5>Add Schedule Days</h5>
+											</div>
+											<div class="col-6 text-right">
+												<a id="btnAddScheduleDays" class="btn btn-primary btnAddScheduleDay">Add
+													days</a>
+											</div>
+										</div>
+
+										<div class="card mb-4">
+											<div class="card-body">
+												<div class="table-responsive">
+													<table class="table table-striped table-bordered"
+														id="daysTable" width="100%" cellspacing="0">
+														<thead>
+															<tr>
+																<th>Sl.No</th>
+																<th>Day</th>
+																<th>Date</th>
+																<th></th>
+																<th></th>
+															</tr>
+														</thead>
+														<tbody>
+															<th:block
+																th:if="${#lists.isEmpty(schedule.scheduleDays)}">
+																<tr>
+																	<td colspan="5" class="text-center">No Days added
+																		yet.</td>
+																</tr>
+															</th:block>
+
+															<th:block
+																th:if="${not #lists.isEmpty(schedule.scheduleDays)}">
+																<tr
+																	th:each="rec,iterationStatus : ${schedule.scheduleDays}">
+																	<td th:text="${iterationStatus.count}"></td>
+																	<td>[[${rec.day}]]</td>
+																	<td th:text="${#dates.format(rec.date, 'dd-MMM-yyyy')}"></td>
+																	<td>
+																		<a th:href="@{'/scheduleDays/findById/'+${rec.id}}" type="edit"
+																			class=" btn btn-primary btnOperate editlink editbtn"><i class="fas fa-pen"></i><span
+																				class="ms-1"></span></a>
+																	</td>
+																	<td class="text-center"><a
+																		class="btn btn-primary btnOperate link-delete"
+																		th:href="@{'/admin/manage-schedule/'+${schedule.id}+'/schedule-days/delete/' +${rec.id}}"
+																		th:entityId="${rec.id}"
+																		th:title="'Remove day ' + ${rec.id}"> <i
+																			class="fas fa-trash"></i>
+																	</a></td>
+																</tr>
+															</th:block>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</th:block>
+
+
+							<!-- // Schedule time slots -->
+							<th:block th:if="${not #lists.isEmpty(listScheduleDays)}">
+								<div class="form-group row mt-5" id="scheduleTimeSlotSection">
+									<div class="col-md-12">
+										<div class="row mb-4">
+											<div class="col-6">
+												<h5>Add Schedule Time Slots</h5>
+											</div>
+											<div class="col-6 text-right">
+												<a id="btnAddScheduleTimeSlots"
+													class="btn btn-primary btnAddScheduleTimeSlots">Add Time Slots</a>
+											</div>
+										</div>
+
+										<div class="card mb-4">
+											<div class="card-body">
+												<div class="table-responsive">
+													<table class="table table-striped table-bordered"
+														id="timeSlotsTable" width="100%" cellspacing="0">
+														<thead>
+															<tr>
+																<th>Sl.No</th>
+																<th>Day</th>
+																<th>Time Slot</th>
+																<th>Start time</th>
+																<th>End time</th>
+																<th></th>
+																<th></th>
+															</tr>
+														</thead>
+														<tbody>
+															<th:block
+																th:if="${#lists.isEmpty(listScheduleTimeSlots)}">
+																<tr>
+																	<td colspan="7" class="text-center">No Time slots
+																		added yet.</td>
+																</tr>
+															</th:block>
+
+															<th:block
+																th:if="${not #lists.isEmpty(listScheduleTimeSlots)}">
+																<tr
+																	th:each="slot,iterationStatus : ${listScheduleTimeSlots}">
+																	<td th:text="${iterationStatus.count}"></td>
+																	<td>[[${slot.scheduleDays.day}]]</td>
+																	<td>[[${slot.time_slot}]]</td>
+																	<td>[[${slot.start_time}]]</td>
+																	<td>[[${slot.end_time}]]</td>
+																	<td>
+																		<a th:href="@{'/scheduleTimeSlots/findById/'+${slot.id}}" type="edit"
+																			class=" btn btn-primary btnOperate editSlotLink editbtn"><i class="fas fa-pen"></i><span
+																				class="ms-1"></span></a>
+																	</td>
+																	<td class="text-center"><a
+																		class="btn btn-primary btnOperate link-delete"
+																		th:href="@{'/admin/manage-schedule/'+${schedule.id}+'/schedule-time-slots/delete/' +${slot.id}}"
+																		th:entityId="${slot.id}"
+																		th:title="'Remove slot ' + ${slot.id}"> <i
+																			class="fas fa-trash"></i>
+																	</a></td>
+																</tr>
+															</th:block>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</th:block>
+
+
+							<!-- // Schedule fop -->
+							<th:block th:if="${not #lists.isEmpty(listScheduleTimeSlots)}">
+								<div class="form-group row mt-5" id="scheduleFopSection">
+									<div class="col-md-12">
+										<div class="row mb-4">
+											<div class="col-6">
+												<h5>Add Schedule FOP</h5>
+											</div>
+											<div class="col-6 text-right">
+												<a id="btnAddScheduleFop" class="btn btn-primary btnAddScheduleFop">Add
+													FOP</a>
+											</div>
+										</div>
+
+										<div class="card mb-4">
+											<div class="card-body">
+												<div class="table-responsive">
+													<table class="table table-striped table-bordered"
+														id="fopTable" width="100%" cellspacing="0">
+														<thead>
+															<tr>
+																<th>Sl.No</th>
+																<th>Day</th>
+																<th>Time Slot</th>
+																<th>FOP</th>
+																<th>Description</th>
+																<th></th>
+																<th></th>
+															</tr>
+														</thead>
+														<tbody>
+															<th:block th:if="${#lists.isEmpty(listScheduleFops)}">
+																<tr>
+																	<td colspan="7" class="text-center">No FOP added
+																		yet.</td>
+																</tr>
+															</th:block>
+
+															<th:block th:if="${not #lists.isEmpty(listScheduleFops)}">
+																<tr
+																	th:each="fopRec,iterationStatus : ${listScheduleFops}">
+																	<td th:text="${iterationStatus.count}"></td>
+																	<td>[[${fopRec.scheduleDays.day}]]</td>
+																	<td>[[${fopRec.scheduleTimeSlots.time_slot}]]</td>
+																	<td>[[${fopRec.fop}]]</td>
+																	<td>[[${fopRec.description}]]</td>
+																	<td>
+																		<a th:href="@{'/scheduleFop/findById/'+${fopRec.id}}" type="edit"
+																			class=" btn btn-primary btnOperate editFopLink editbtn"><i class="fas fa-pen"></i><span
+																				class="ms-1"></span></a>
+																	</td>
+																	<td class="text-center"><a
+																		class="btn btn-primary btnOperate link-delete"
+																		th:href="@{'/admin/manage-schedule/'+${schedule.id}+'/schedule-fop/delete/' +${fopRec.id}}"
+																		th:entityId="${fopRec.id}"
+																		th:title="'Remove slot ' + ${fopRec.id}"> <i
+																			class="fas fa-trash"></i>
+																	</a></td>
+																</tr>
+															</th:block>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</th:block>
+
+
+
+
+
+
+
+						</div>
+
+
+
+
+
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+
+	<!-- Add Schedule days Modal -->
+	<div class="modal fade" id="addScheduleDaysModalDialog">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content">
+				<form id="assignScheduleDaysForm"
+					th:action="@{/admin/manage-schedule/schedule-days/assign/}+${schedule.id}"
+					method="post" th:object="${scheduleDays}" onsubmit="return validateScheduleDaysForm(this);">
+					<div class="modal-header modal-bg-header ">
+						<h5 class="modal-title" id="scheduleDayModalLabel">Add Schedule Days</h5>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close">&times;</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="day">Day <span
+									class="form-star">*</span>
+								</label> <input type="text" class="form-control" minlength="2"
+									maxlength="45" th:field="*{day}" id="day"> <span
+									id="span-error-scheduleDay" class="span-error"> </span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="date">Date <span
+									class="form-star">*</span>
+								</label> <input type="date" class="form-control" id="date"
+									th:field="*{date}"> <span id="span-error-scheduleDate"
+									class="span-error"> </span>
+							</div>
+							<input type="hidden" name="scheduleDayId" id="scheduleDayId" value=""/>
+							
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="sequenceNumber">Sequence No. <span
+									class="form-star">*</span>
+								</label> <input type="number" class="form-control"  th:field="*{sequenceNumber}" min="1" id="sequenceNumber"> 
+								<span id="span-error-sequenceNumber" class="span-error"> </span>
+							</div>
+							
+						</div>
+
+						<div class="modal-footer">
+							<!--  <button type="button" class="btn btn-primary">Save</button>  -->
+							<button type="submit" class="btn btn-secondary">Save</button>
+							<button type="button" class="btn btn-secondary btn-modal-cancel"
+								data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+					<!-- modal body ends -->
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	<!-- Add Schedule time slots Modal -->
+	<div class="modal fade" id="addScheduleTimeSlotsModalDialog">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content">
+				<form id="assignTimeSlotsForm"
+					th:action="@{/admin/manage-schedule/schedule-time-slots/assign/}+${schedule.id}"
+					method="post" th:object="${scheduleTimeSlots}"  onsubmit="return validateScheduleTimeSlotsForm(this);">
+					<div class="modal-header modal-bg-header ">
+						<h5 class="modal-title" id="scheduleTimeSlotsModalLabel">Add Schedule Time Slots</h5>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close">&times;</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+
+							<div class="col-md-3 mb-3" >
+								<label class="form-label" for="scheduleDays">Day <span
+									class="form-star">*</span>
+								</label> <select class="form-control" name="scheduleDays"
+									id="scheduleDays" th:field="*{scheduleDays}">
+									<option value="">-- Select --</option>
+									<th:block th:each="scheduleDayRec : ${listScheduleDays}">
+										<option th:value="${scheduleDayRec.id}">[[${scheduleDayRec.day}]]</option>
+									</th:block>
+								</select> <span id="span-error-scheduleDays" class="span-error"></span>
+								<input type="hidden" name="scheduleDays" id="scheduleDaysHidden" value=""/>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="date">Time Slot No. <span
+									class="form-star">*</span>
+								</label> <input type="text" class="form-control" id="time_slot"
+									th:field="*{time_slot}"> <span
+									id="span-error-time-slot" class="span-error"> </span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="date">Start Time <span
+									class="form-star">*</span>
+								</label> <input type="text" class="form-control" id="start_time"
+									th:field="*{start_time}"> <span
+									id="span-error-start-time" class="span-error"> </span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="date">End Time <span
+									class="form-star">*</span>
+								</label> <input type="text" class="form-control" id="end_time"
+									th:field="*{end_time}"> <span
+									id="span-error-end-time" class="span-error"> </span>
+							</div>
+							
+							<input type="hidden" name="scheduleTimeSlotId" id="scheduleTimeSlotId" value=""/>
+
+						</div>
+
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-secondary">Save</button>
+							<button type="button" class="btn btn-secondary btn-modal-cancel"
+								data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+					<!-- modal body ends -->
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Add Schedule fop Modal -->
+	<div class="modal fade" id="addScheduleFopModalDialog">
+		<div class="modal-dialog modal-dialog-centered modal-xl">
+			<div class="modal-content">
+				<form id="assignTimeSlotsForm"
+					th:action="@{/admin/manage-schedule/schedule-fop/assign/}+${schedule.id}"
+					method="post" th:object="${scheduleFop}"  onsubmit="return validateScheduleFopForm(this);">
+					<div class="modal-header modal-bg-header">
+						<h5 class="modal-title" id="scheduleFopModalDialogLabel">Add Schedule FOP</h5>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close">&times;</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+
+				
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="scheduleTimeSlots">Time
+									slot <span class="form-star">*</span>
+								</label> <select class="form-control" name="scheduleTimeSlotsFop"
+									id="scheduleTimeSlotsFop" th:field="*{scheduleTimeSlots}">
+									<option value="">-- Select --</option>
+									<th:block th:each="slotRec : ${listScheduleTimeSlots}">
+										<option th:value="${slotRec.id}">
+										[[${slotRec.time_slot}]] - ([[${slotRec.start_time}]] to [[${slotRec.end_time}]]) - [[${slotRec.scheduleDays.day}]]
+										</option>
+									</th:block>
+								</select> <span id="span-error-scheduleTimeSlotsFop" class="span-error"></span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="fop">FOP <span
+									class="form-star">*</span></label> <select class="form-control"
+									th:field="*{fop}" id="fop">
+									<option value="">-- Select --</option>
+									<option
+										th:each="fop : ${T(com.swayaan.nysf.entity.FOPEnum).values()}"
+										th:value="${fop}" th:text="${fop}"></option>
+								</select> <span id="span-error-fop" class="span-error"> </span>
+							</div>
+
+							<div class="col-md-12 mb-3">
+								<label class="form-label" for="description">FOP Description <span
+									class="form-star">*</span>
+								</label> 
+								<input type="text" class="form-control" id="descriptionFop"
+									th:field="*{description}"> 
+									<span id="span-error-desc" class="span-error"> </span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="category_name">Category Name </label> <input
+									type="text" class="form-control" id="category_name"
+									th:field="*{category_name}"> <span
+									id="span-error-category-name" class="span-error"> </span>
+							</div>
+
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="category_detail_id">Category Detail ID
+								</label> <input type="text" class="form-control" id="category_detail_id"
+									th:field="*{category_detail_id}"> <span
+									id="span-error-category-detail-id" class="span-error"> </span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="event_id">Event ID </label> <input
+									type="text" class="form-control" id="event_id"
+									th:field="*{event_id}"> <span id="span-error-event-id"
+									class="span-error"> </span>
+							</div>
+
+							<div class="col-md-3 mb-3">
+								<label class="form-label" for="event_description">Event Description </label>
+								<input type="text" class="form-control" id="event_description"
+									th:field="*{event_description}"> <span
+									id="span-error-event-desc" class="span-error"> </span>
+							</div>
+							
+							<input type="hidden" name="scheduleFopId" id="scheduleFopId" value=""/>
+							
+
+						</div>
+
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-secondary">Save</button>
+							<button type="button" class="btn btn-secondary btn-modal-cancel"
+								data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+					<!-- modal body ends -->
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/schedule_scripts.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+	//	var regSportId = /^\(?([0-9]{3})\)?([0-9]{1,3})$/;
+	//	var sportId = document.getElementById('sport_id').value;
+
+
+		
+		$(document).ready(function () {
+			
+			$("#btnAddScheduleDays").on("click", function (e) {
+				$("#addScheduleDaysModalDialog").modal();
+			});
+			
+			$("#btnAddScheduleTimeSlots").on("click", function (e) {
+				$("#addScheduleTimeSlotsModalDialog").modal();
+			});
+			
+			$("#btnAddScheduleFop").on("click", function (e) {
+				$("#addScheduleFopModalDialog").modal();
+			});
+			
+			var pathname = window.location.pathname;
+			var parentpath = pathname.substring(0, 24);
+			var activeLink = document.querySelector('a.nav-link[href="' + parentpath + '"]');
+			activeLink.classList.add("active");
+			
+		});
+		
+	/*	if (sportId) {
+			if (!regSportId.exec(sportId)) {
+				$("#span-error-sportid").text("Enter the valid sport Id");
+				return false;
+			}
+			else {
+				$("#span-error-sportid").text("");
+			}
+			return(sportId);
+		}*/
+	</script>
+
+</body>
+
+</html>

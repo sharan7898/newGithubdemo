@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-4 text-sm-right align-self-center">
+							<a href="#" class="btn btn-primary btnActionSmall"
+								onClick="doExport('#teamScoreTable', {type: 'excel'});">
+								Export </a> <a class="btn btn-primary btnActionSmall"
+								th:href="@{'/admin/championship/'+${championshipId}+'/category/'+${asanaCategoryId}+'/'+${ageCategoryId}+'/'+${gender}+'/'+${round}}">Back</a>
+						</div>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert" id="message" hidden>
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-12">
+
+							<input type="hidden" id="championshipParticipantTeamId"
+								th:value="*{championshipParticipantTeams.id}" /> <input
+								type="hidden" th:value="*{round}" id="round" />
+							<!--  List of Participant -->
+							<div class="form-group row mt-5">
+								<div class="col-md-12">
+									<section>
+										<div class="card mb-4">
+											<div class="card-body">
+												<div class="table-responsive">
+													<table class="table table-striped table-bordered"
+														id="teamScoreTable" width="100%" cellspacing="0">
+														<thead>
+															<th class="sticky-col first-col">Sl No</th>
+															<th class="sticky-col second-col">Chest Number</th>
+															<th>Judge</th>
+															<th:block
+																th:each="participantTeamAsana:${listParticipantTeamAsanas}">
+																<th>[[${participantTeamAsana.asana.name}]]</th>
+															</th:block>
+															<th>Score</th>
+
+														</thead>
+
+
+
+														<tbody>
+															<th:block
+																th:each="mapParticipantEntry,iterationStatus: ${participantScoring}"
+																th:with="participantTeamParticipant=${mapParticipantEntry.key}, loopCount=${iterationStatus.count}">
+																<tr class="participant-score-rows"
+																	th:classappend="'participantScore'+${participantTeamParticipant.id}"
+																	th:entityId="${participantTeamParticipant.id}"
+																	th:each="mapJudgeEntry,iterationStatus1 :${mapParticipantEntry.value}"
+																	th:with="judge=${mapJudgeEntry.key},participantTeamAsanasScoring=${mapJudgeEntry.value}">
+																	<th:block th:if="${iterationStatus1.index} == 0">
+																		<td th:rowspan="${mapParticipantEntry.value.size}"
+																			class="sticky-col first-col align-middle"><span>
+																				[[${iterationStatus.count}]] </span></td>
+																		<td th:rowspan="${mapParticipantEntry.value.size}"
+																			class="sticky-col second-col align-middle">
+																			[[${participantTeamParticipant.participantTeam.chestNumber}]]-[[${participantTeamParticipant.sequenceNumber}]]
+																		- [[${participantTeamParticipant.participant.kheloIndiaId}]]
+																		</td>
+																	</th:block>
+																	<td><b>[[${judge.user.getFullName}]]</b></td>
+																	<td th:if="${participantTeamAsanasScoring.isEmpty()}"
+																		colspan="12" class="text-center"
+																		style="background-color: #f7cbd4">Scores not
+																		given</td>
+																	<th:block
+																		th:each="asanaScore : ${participantTeamAsanasScoring}">
+																		<td class="text-center judge"
+																			th:classappend="'judgeScore'+${judge.id}"
+																			th:entityId="${judge.id}">
+																			[[${asanaScore.score}]]</td>
+																	</th:block>
+																	<td class="text-center judgeTotalScore"
+																		th:if="${not #lists.isEmpty(participantTeamAsanasScoring)}"
+																		th:classappend="'judgeTotalScore'+${judge.id}"
+																		th:entityId="${judge.id}"><b
+																		th:text="${#numbers.formatDecimal(#aggregates.sum(participantTeamAsanasScoring.?[score != null].![score]), 0, 'COMMA', 2, 'POINT')}" />
+																	</td>
+																</tr>
+															</th:block>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="editRefereeScoreModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+	<!--  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/xlsx.core.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/FileSaver.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/tableExport.js}"></script>
+	<!-- <script
+		src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+
+	<!--  	<script
+		src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>-->
+
+
+	<script type="text/javascript">
+	
+		window.setInterval('refresh()', 15000); 	
+	    // (15 seconds).
+	    // Refresh or reload page.
+	    function refresh() {
+	        window.location.reload();
+	    }
+		
+		function doExport(selector, params) {
+			var options = {
+				//ignoreRow: [1,11,12,-2],
+				//ignoreColumn: [0,-1],
+				//pdfmake: {enabled: true},
+				//onBeforeSaveToFile: DoOnBeforeSaveToFile,
+				//onAfterSaveToFile: DoOnAfterSaveToFile,
+
+				tableName : 'Table name'
+			};
+
+			jQuery.extend(true, options, params);
+
+			$(selector).tableExport(options);
+		}
+	</script>
+
+</body>
+</html>

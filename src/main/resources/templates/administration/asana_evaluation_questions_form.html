@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall" th:href="@{/admin/manage-eval-questions}">Back</a>
+						</div>
+					</div>
+
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="evalQuestionAddForm" th:action="@{/admin/manage-eval-questions/save}" method="post" th:object="${asanaEvaluationQuestions}" onsubmit="return validateForm(this);">
+								<input type="hidden" th:field="*{id}" />
+								<div class ="form-group row">			
+									<div class="col-md-12 mb-3">
+										<label class="form-label" for="question">Question <span class="form-star">*</span></label> 
+										<textarea type="text" class="form-control" th:field="*{question}" id="question"></textarea>
+										<span id="span-error-question" class="span-error"> </span>
+									</div> 
+							
+								
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="asanaCategory">Asana
+											Category <span class="form-star">*</span>
+										</label> <select class="form-control" th:field="*{asanaCategory}"
+											id="asana-category">
+											<option value="">-- Select --</option>
+											<th:block th:each="category : ${listAsanaCategory}">
+												<option th:value="${category.id}">[[${category.name}]]</option>
+											</th:block>
+										</select> <span id="span-error-asana-category" class="span-error">
+										</span>
+									</div>
+									
+									
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="judge-type"> Judge Type
+											<span class="form-star">*</span>
+										</label> <select class="form-control" th:field="*{type}"
+											id="judge-type">
+											<option value="">-- Select --</option>
+											<th:block th:each="judgeType : ${listjudgeType}">
+												<option th:value="${judgeType.id}">[[${judgeType.type}]]</option>
+											</th:block>
+										</select> <span id="span-error-judge-type" class="span-error">
+										</span>
+									</div>
+									
+											
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="referenceMarks">Reference Marks <span class="form-star">*</span></label> 
+										<input type="number" class="form-control" th:field="*{referenceMarks}" min="0"  id="reference" >
+										<span id="span-error-reference" class="span-error"> </span>
+											<span id="span-error-referencemarks" class="span-error"> </span>
+									</div>
+									
+									<div class="col-md-6 mb-3" style="margin-top: 35px;">
+										<div class="checkbox">
+										  <input type="checkbox" th:field="*{forEachAsana}">
+										  <label class="label"> &nbsp; Question for Each Asana</label>
+										</div>
+									</div>
+										<div class="col-md-6 mb-3" style="margin-top: 35px;">
+										<div class="checkbox">
+										  <input type="checkbox" th:field="*{commonForEachParticipant}">
+										  <label class="label"> &nbsp; Common Question for Each Participant</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group text-center mt-4 mb-5">
+									<input type="submit" value="Save" class="btn btn-primary" />
+									<a th:href="@{/admin/manage-eval-questions}" type="button" class="btn btn-primary-outline" id="buttonCancel" >Cancel</a>
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	<script th:src="@{/js/scripts.js}"></script>
+	
+	<script type="text/javascript">
+		var base_url =  "[[@{/}]]";
+		
+		$(document).ready(function(){	
+			var pathname = window.location.pathname;
+			var parentpath = pathname.substring(0,33); 
+			var activeLink = document.querySelector('a.nav-link[href="'+parentpath+'"]');
+			activeLink.classList.add("active");
+
+				});	
+		
+		function validateForm(form) {
+			if ((document.getElementById('question').value) == "") {
+					var flagQuestion=false;
+					$("#span-error-question").text("Enter the question");
+					
+			} else {
+				flagQuestion=true;
+					$("#span-error-question").text("");
+			}
+			
+		/*	if ((document.getElementById('championship').value) == "") {
+				var flagChampionship=false;
+				$("#span-error-championship").text("Select the championship");
+			} else {
+				flagChampionship=true;
+				$("#span-error-championship").text("");
+			} */
+		
+			
+			if ((document.getElementById('asana-category').value) == "") {
+					var flagAsanaCategory=false;
+					$("#span-error-asana-category").text("Select the Asana category");
+					
+			} else {
+				flagAsanaCategory=true;
+					$("#span-error-asana-category").text("");
+			}
+			
+			if ((document.getElementById('judge-type').value) == "") {
+					var flagjudgetype=false;
+					$("#span-error-judge-type").text("Select the judge-type");
+					
+			} else {
+				flagjudgetype=true;
+					$("#span-error-judge-type").text("");
+			}
+			
+			if ((document.getElementById('reference').value) == "") {
+					var flagReference=false;
+					$("#span-error-reference").text("Enter the reference marks");
+					
+			} else {
+				
+				flagReference=true;
+					$("#span-error-reference").text("");
+					
+			}
+		
+			if ((document.getElementById('reference').value)>99) {
+				var flagReferencemarks=false;
+				$("#span-error-referencemarks").text("Enter the reference marks below 100");
+			} else {
+				 flagReferencemarks=true;
+					$("#span-error-referencemarks").text("");
+			}
+			
+			return (flagQuestion && flagAsanaCategory && flagjudgetype && flagReference && flagReferencemarks );
+		}		
+		
+		
+	/*	function getChampionshipCategory(input) {
+			var championshipId = input.value;
+			url = base_url + "championship/" + championshipId
+					+ "/getCategories";
+
+			$.get(url,
+					function(responseJson) {
+						console.log(responseJson);
+						$('#championship-category').empty();
+						$('#championship-category').append(
+								'<option value="">-- Select --</option>');
+						$.each(responseJson,
+							function(index, championshipCategoryDto) {
+								$('#championship-category').append(
+										'<option value="' + championshipCategoryDto.id + '">'
+												+ championshipCategoryDto.asanaCategory + ' - ' + championshipCategoryDto.ageCategory + ' - ' + championshipCategoryDto.gender
+												+ '</option>');
+							});
+					}).fail(function() {
+				showErrorModal("Error loading Asana Category.");
+			})
+		} */
+		
+	</script>
+	
+	
+</body>
+</html>

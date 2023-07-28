@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+<style>
+.disabled-link {
+  pointer-events: none;
+  background-color:#9b9b9b;
+  border-color:#9b9b9b;
+}
+</style>
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/judge/championship/'+${championshipId}+'/category/'+${asanaCategoryId}+'/'+${ageCategoryId}+'/'+${gender}+'/'+${round}}">Back</a>
+						</div>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert" id="message" hidden>
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-12">
+							<form id="scoreForm" method="post"
+								th:action="@{'/judge/participantTeamTotalScoringForRound/'+${championshipParticipantTeams.id}+'/round/'+${round}}">
+								<input type="hidden" id="championshipParticipantTeamId"
+									th:value="*{championshipParticipantTeams.id}" /> <input
+									type="hidden" th:value="*{round}" id="round" />
+								<!--  List of Participant -->
+								<div class="form-group row mt-5">
+									<div class="col-md-12">
+										<div class="row mb-4">
+											<div class="col-12">
+												<p>Criteria : Time consumed and process followed to
+													reach the final position of yogasana, Time consumed and
+													process followed to reach back to normal position Accuracy
+													of Posture (Final Pose) Stresslessness (Face) Stability/
+													Tremblinglessness Smooth Movements (No Jerks) Grace and
+													Presentation</p>
+											</div>
+
+										</div>
+
+										<section>
+											<div class="card mb-4">
+												<div class="card-body">
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered"
+															id="teamScoreTable" width="100%" cellspacing="0">
+															<thead>
+																<th class="sticky-col first-col">SL No</th>
+																<th class="sticky-col second-col">Chest Number</th>
+																<th:block
+																	th:each="mapEntry,iterationStatus: ${mapScoring}"
+																	th:if="${iterationStatus.count ==1}"
+																	th:with="participantTeamParticipant=${mapEntry.key}">
+																	<th:block
+																		th:each="participantTeamAsanasScoring,iterationStatus :${mapEntry.value}">
+
+																		<td>[[${participantTeamAsanasScoring.participantTeamAsanas.asana.name}]]</td>
+
+																	</th:block>
+																</th:block>
+																<th>Total</th>
+																<th>Score</th>
+
+															</thead>
+															<th:block
+																th:each="mapEntry,iterationStatus : ${mapScoring}"
+																th:with="participantTeamParticipant=${mapEntry.key},i=${iterationStatus.count}">
+																<tbody>
+
+																	<tr
+																		th:id="'participantRow'+${participantTeamParticipant.id}"
+																		th:entityName="${participantTeamParticipant.id}"
+																		class="participant-score-row">
+																		<td th:text="${iterationStatus.count}"
+																			class="sticky-col first-col"></td>
+
+																		<td class="sticky-col second-col">[[${participantTeamParticipant.participantTeam.chestNumber}]]-[[${participantTeamParticipant.sequenceNumber}]]
+																		 - [[${participantTeamParticipant.participant.kheloIndiaId}]]</td>
+
+																		<th:block
+																			th:each="participantTeamAsanasScoring,iterationStatus1 :${mapEntry.value}"
+																			th:with="j=${iterationStatus1.index}">
+
+																			<td
+																				th:if="${participantTeamAsanasScoring.score != null}"><input
+																				type="number" step="0.01" max="10" min="0"
+																				th:tabindex="${i} + (${j * 6})"
+																				th:id="'asanaScoreBox'+${participantTeamAsanasScoring.id}"
+																				th:entityId="${participantTeamParticipant.id}"
+																				th:entityName="${participantTeamAsanasScoring.id}"
+																				class="scores"
+																				th:classappend="'roundScores'+${participantTeamParticipant.id}"
+																				th:value="*{participantTeamAsanasScoring.score}"
+																				readonly /></td>
+																			<td
+																				th:if="${participantTeamAsanasScoring.score == null}">
+																				<input type="number" step="0.01" max="10" min="0"
+																				th:tabindex="${i} + (${j * 6})"
+																				th:id="'asanaScoreBox'+${participantTeamAsanasScoring.id}"
+																				th:entityId="${participantTeamParticipant.id}"
+																				th:entityName="${participantTeamAsanasScoring.id}"
+																				class="scores"
+																				th:classappend="'roundScores'+${participantTeamParticipant.id}" 
+																				th:value="*{participantTeamAsanasScoring.score}"
+																				onchange="validate(this);" />
+																			</td>
+
+
+																		</th:block>
+
+																		<td><input class="sm-input" type="number"
+																			step="0.01" min="0"
+																			th:entityId="${participantTeamParticipant.id}"
+																			th:id="'totalScore'+${participantTeamParticipant.id}"
+																			name="finalScore" value="0" readonly
+																			pattern="^\d*(\.\d{0,2})?$" /></td>
+																		<td><a
+																			th:id="'btn-save'+${participantTeamParticipant.id}"
+																			class="btn btn-primary participantTotalScore total-score float-right disabled-link"
+																			th:entityId="${participantTeamParticipant.id}"
+																			onclick="saveTotalScore(this);"> Save</a></td>
+																	</tr>
+																</tbody>
+															</th:block>
+														</table>
+													</div>
+
+												</div>
+											</div>
+
+
+											<div class="form-group row mt-5">
+												<h6><b><span class="span-error">Note <i class="fas fa-info-circle" aria-hidden="true"></i></span> : Kindly click on Save Total Score button given below after entering the score for all the participants to save the total team score.</b></h6>
+												
+												<table width="100%" cellspacing="0" class="mt-3">
+													<tr>
+														<td></td>
+
+														<td>Team Total Score</td>
+
+														<td><input class="lg-input" type="number" step="0.01"
+															min="0" id="teamTotalScore" name="teamTotalScore"
+															value="0" readonly /></td>
+														<td>
+															<button type="submit" class="btn btn-primary total-score">
+																Save Total Score</button>
+														</td>
+													</tr>
+
+												</table>
+											</div>
+										</section>
+
+
+
+									</div>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="editRefereeScoreModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	<script type="text/javascript" th:src="@{/js/validate.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		
+		$(document).ready(function(){
+			
+			document.querySelectorAll('.participantTotalScore').forEach(function(link) {
+			    // Now do something with my button
+				var id = link.getAttribute('id');
+			   // alert(id);
+			    
+			});
+		
+			
+		});
+		
+		
+		function validate(input) {
+
+			var reg = /^((10)(\.[0-0]{0,2})?$|([0-9])(\.[0-9]{1,2})?$)/;
+			var id = input.getAttribute('id');
+			var value = $('#' + id).val();
+			checkAllScoreGivenForParticipant(input);
+			console.log(value);
+			if(value == ""){
+				saveRoundScore(input);
+			}
+			if (!reg.exec(value)) {
+				console.log("invalid");
+				input.style.backgroundColor = 'red';
+				input.focus();
+				alert("Enter valid Score");
+			} else {
+				console.log("valid");
+				input.style.backgroundColor = 'white';
+				saveRoundScore(input);
+			}
+
+		}
+		
+		function checkAllScoreGivenForParticipant(input){
+			var participantTeamParticipantId = input.getAttribute('entityId');
+			var asanaScores = $('.roundScores' + participantTeamParticipantId);
+			var flag = true;
+			var allScoresForParticipant = [];
+			var saveButton = "btn-save"+participantTeamParticipantId;
+			var reg = /^((10)(\.[0-0]{0,2})?$|([0-9])(\.[0-9]{1,2})?$)/;
+			asanaScores.each(function(i) {
+				var score = $(this).val();
+
+				if (!reg.exec(score)) {
+					flag = false;
+					allScoresForParticipant.push(flag);
+				} else {
+					flag = true;
+					allScoresForParticipant.push(flag);
+				
+				}
+			});
+			//console.log(allScoresForParticipant);
+			
+			if(!allScoresForParticipant.includes(false)){
+			//	var linkEle=document.getElementById(saveButton);
+			//	saveTotalScore(linkEle);
+				document.getElementById(saveButton).classList.remove("disabled-link");
+			}
+			
+		}
+		
+
+		function saveRoundScore(input) {
+			getTeamTotalScore();
+			var totalScore = 0;
+			var participantTeamParticipantId = input.getAttribute('entityId');
+			$('.roundScores' + participantTeamParticipantId).each(
+					function() {
+
+						totalScore = parseFloat(
+								Number(totalScore) + Number($(this).val()))
+								.toFixed(2);
+					});
+			console.log(totalScore);
+
+			$('#totalScore' + participantTeamParticipantId).val(totalScore);
+			var participantTeamAsanasScoringId = input.getAttribute('entityName');
+			var score = input.value;
+			console.log(score);
+			var postUrl = base_url + "judge/participantTeamAsanaScoring/"
+					+ participantTeamAsanasScoringId;
+
+			//if (score != "" && score <= 10) {
+			if (score <= 10) {
+				params = {
+					score : score
+				};
+				$.post(postUrl, params, function(response) {
+					console.log(response);
+
+				}).fail(function() {
+					showErrorModal("Could not connect to the server");
+				});
+			} else {
+				alert("Please enter valid score");
+				input.focus();
+			}
+		}
+
+		function saveTotalScore(link) {
+			console.log("entered saveTotalScore");
+			var id = link.id;
+			var participantTeamParticipantId = link.getAttribute('entityId');
+			var asanaScores = $('.roundScores' + participantTeamParticipantId);
+			var flag = true;
+			var reg = /^((10)(\.[0-0]{0,2})?$|([0-9])(\.[0-9]{1,2})?$)/;
+			asanaScores.each(function(i) {
+				var score = $(this).val();
+
+				if (!reg.exec(score)) {
+					flag = false;
+					return false;
+				}
+			});
+			if (flag) {
+				document.getElementById(id).setAttribute('disabled', true);
+				document.getElementById(id).innerHTML = "Saved";
+
+				var round = $('#round').val();
+				var championshipParticipantId = $(
+						'#championshipParticipantTeamId').val();
+
+				var totalScore = $('#totalScore' + participantTeamParticipantId)
+						.val();
+				console.log(totalScore + round + participantTeamParticipantId
+						+ championshipParticipantId);
+				var url = base_url + "judge/championshipParticipantTeam/"
+						+ championshipParticipantId + "/participantTeam/"
+						+ participantTeamParticipantId + "/round/" + round;
+
+				params = {
+					totalScore : totalScore,
+
+				};
+				$
+						.post(
+								url,
+								params,
+								function(response) {
+
+									console
+											.log("total score for Participant saved successfully");
+									$('#message').removeAttr('hidden', true);
+									$('#message').text(
+											"Score Saved Successfully");
+
+								}).fail(function() {
+							showErrorModal("Could not connect to the server");
+						});
+			} else {
+				alert("Score is not saved.. Please enter valid scores & save");
+			}
+		}
+
+		$(document).ready(function() {
+			getTeamTotalScore();
+			showTotalScore();
+
+		});
+
+		function showTotalScore() {
+			var participant = document
+					.getElementsByClassName("participant-score-row");
+
+			for (var i = 0; i < participant.length; i++) {
+				var participantId = participant[i].getAttribute('entityName');
+				console.log(participantId);
+				var elements = $('.roundScores' + participantId);
+
+				var totalScore = 0;
+
+				elements.each(function(i) {
+					totalScore = parseFloat(
+							Number(totalScore) + Number($(this).val()))
+							.toFixed(2);
+				});
+				$('#totalScore' + participantId).val(totalScore);
+			}
+
+		}
+
+		function getTeamTotalScore() {
+			console.log("entered");
+			var teamTotalScore = 0;
+			var teamTotalScoreElements = $('.scores');
+			console.log(teamTotalScoreElements);
+			teamTotalScoreElements.each(function(i) {
+				teamTotalScore = parseFloat(
+						Number(teamTotalScore) + Number($(this).val()))
+						.toFixed(2);
+
+			});
+			console.log(teamTotalScore);
+			$('#teamTotalScore').val(teamTotalScore);
+		}
+	</script>
+
+</body>
+</html>

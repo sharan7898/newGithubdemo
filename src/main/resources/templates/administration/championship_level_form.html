@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head('Manage Championship levels', 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall" th:href="@{/admin/manage-championship-levels}">Back</a>
+						</div>
+					</div>
+
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="roleAddForm" th:action="@{/admin/manage-championship-levels/save}" method="post" th:object="${championshipLevels}" onsubmit="return validateForm(this);">
+								<input type="hidden" th:field="*{id}" />
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="title">Title <span class="form-star">*</span></label> 
+										<input type="text" class="form-control" th:field="*{title}" id="ageTitle" minlength="2" maxlength="30">
+										<span id="span-error-title" class="span-error" > </span>
+									</div>						
+								</div>
+								
+
+
+								<div class="form-group row">
+									<div class="col-md-12 mb-3">
+										<div class="checkbox">
+										  <input type="checkbox" th:field="*{enabled}">
+										  <label class="label"> &nbsp; Enabled</label>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group text-center mt-4 mb-5">
+									<input type="submit" value="Save" class="btn btn-primary" />
+									<a th:href="@{/admin/manage-championship-levels}" type="button" class="btn btn-primary-outline" id="buttonCancel" >Cancel</a>
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+	
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+	
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	
+	<script type="text/javascript">
+		var base_url =  "[[@{/}]]";
+		$(document).ready(function(){	
+			var pathname = window.location.pathname;
+			var parentpath = pathname.substring(0,24); 
+			var activeLink = document.querySelector('a.nav-link[href="'+parentpath+'"]');
+			activeLink.classList.add("active");
+
+				});	
+				
+		function validateForm(form) {
+			
+			if ((document.getElementById('ageTitle').value) == "") {
+				$("#span-error-title").text("Enter the title");
+				var flagTitle=false;
+			} else {
+				
+				$("#span-error-title").text("");
+				flagTitle=true;
+			}
+			
+			return flagTitle;
+		}			
+	</script>
+
+</body>
+</html>

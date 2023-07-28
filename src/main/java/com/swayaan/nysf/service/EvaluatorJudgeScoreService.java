@@ -1,0 +1,175 @@
+package com.swayaan.nysf.service;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.swayaan.nysf.entity.AsanaEvaluationQuestions;
+import com.swayaan.nysf.entity.ChampionshipParticipantTeams;
+import com.swayaan.nysf.entity.EvaluatorJudgeScore;
+import com.swayaan.nysf.entity.ParticipantTeamAsanas;
+import com.swayaan.nysf.entity.ParticipantTeamParticipants;
+import com.swayaan.nysf.entity.ParticipantTeamReferees;
+import com.swayaan.nysf.entity.QuestionTypeEnum;
+import com.swayaan.nysf.entity.Role;
+import com.swayaan.nysf.repository.EvaluatorJudgeScoreRepository;
+
+@Service
+public class EvaluatorJudgeScoreService {
+
+	@Autowired
+	EvaluatorJudgeScoreRepository repo;
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(EvaluatorJudgeScoreService.class);
+
+
+	public boolean isExistsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionsAndParticipantTeamParticipantsAndParticipantTeamAsanas(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion, ParticipantTeamParticipants participantTeamParticipants,
+			ParticipantTeamAsanas participantTeamAsanas) {
+		LOGGER.info("Entered isExistsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionsAndParticipantTeamParticipantsAndParticipantTeamAsanas method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit isExistsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionsAndParticipantTeamParticipantsAndParticipantTeamAsanas method -EvaluatorJudgeScoreService");
+	return repo
+				.existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipantsAndParticipantTeamAsanas(
+						championshipParticipantTeams, participantTeamReferees, asanaEvaluationQuestion,
+						participantTeamParticipants, participantTeamAsanas);
+	}
+
+	public void save(EvaluatorJudgeScore evaluatorJudgeScore) {
+		LOGGER.info("Entered save method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit save method -EvaluatorJudgeScoreService");
+	repo.save(evaluatorJudgeScore);
+
+	}
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsAndParticipantTeamAsanasOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			ParticipantTeamParticipants participantTeamParticipants, ParticipantTeamAsanas participantTeamAsanas) {
+		LOGGER.info("Entered findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsAndParticipantTeamAsanasOrderBySequenceNumberAsc method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsAndParticipantTeamAsanasOrderBySequenceNumberAsc method -EvaluatorJudgeScoreService");
+	return repo
+				.findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsAndParticipantTeamAsanasOrderBySequenceNumberAsc(
+						championshipParticipantTeams, participantTeamReferees, participantTeamParticipants,
+						participantTeamAsanas);
+	}
+
+	public EvaluatorJudgeScore findById(Integer id) {
+		LOGGER.info("Entered findById method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findById method -EvaluatorJudgeScoreService");
+	return repo.findById(id).get();
+	}
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams,
+			ParticipantTeamReferees participantTeamReferees) {
+		LOGGER.info("Entered findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsOrderBySequenceNumberAsc method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsOrderBySequenceNumberAsc method -EvaluatorJudgeScoreService");
+
+		return null;
+	}
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams,
+			ParticipantTeamReferees participantTeamReferees) {
+		LOGGER.info("Entered findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesOrderBySequenceNumberAsc method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesOrderBySequenceNumberAsc method -EvaluatorJudgeScoreService");
+	return repo.findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesOrderBySequenceNumberAsc(championshipParticipantTeams,participantTeamReferees);
+	}
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndRound(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round) {
+		LOGGER.info("Entered findAllByChampionshipParticipantTeamsAndRound method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByChampionshipParticipantTeamsAndRound method -EvaluatorJudgeScoreService");
+	return repo.findAllByChampionshipParticipantTeamsAndRound(championshipParticipantTeams,round);
+	}
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndRoundAndParticipantTeamReferees(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round,
+			ParticipantTeamReferees participantTeamReferees) {
+		LOGGER.info("Entered findAllByChampionshipParticipantTeamsAndRoundAndParticipantTeamReferees method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByChampionshipParticipantTeamsAndRoundAndParticipantTeamReferees method -EvaluatorJudgeScoreService");
+	return repo.findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndRound(championshipParticipantTeams, participantTeamReferees, round);
+		
+	}
+	
+	public boolean isExistsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestions(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion) {
+		LOGGER.info("Entered isExistsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestions method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit isExistsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestions method -EvaluatorJudgeScoreService");
+    return repo.existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(championshipParticipantTeams,participantTeamReferees,asanaEvaluationQuestion);
+	}
+
+	public List<EvaluatorJudgeScore> findAllByByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestions(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion) {
+		LOGGER.info("Entered findAllByByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestions method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestions method -EvaluatorJudgeScoreService");
+	return repo.findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(championshipParticipantTeams,participantTeamReferees,asanaEvaluationQuestion);
+	}
+
+	public EvaluatorJudgeScore findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions) {
+		LOGGER.info("Entered findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion method -EvaluatorJudgeScoreService");
+    return repo.findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(championshipParticipantTeams,participantTeamReferees,asanaEvaluationQuestions);
+	}
+
+	public boolean isExistsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionsAndSequenceNumber(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion, Integer sequenceNumber) {
+		LOGGER.info("Entered isExistsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionsAndSequenceNumber method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit isExistsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionsAndSequenceNumber method -EvaluatorJudgeScoreService");
+    return repo.existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndSequenceNumber(championshipParticipantTeams,participantTeamReferees,asanaEvaluationQuestion,sequenceNumber);
+	}
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndRoundAndParticipantTeamRefereesAndQuestionType(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round,
+			ParticipantTeamReferees eJudgeTeamReferee, QuestionTypeEnum commonquestionforasana) {
+		LOGGER.info("Entered findAllByChampionshipParticipantTeamsAndRoundAndParticipantTeamRefereesAndQuestionType method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByChampionshipParticipantTeamsAndRoundAndParticipantTeamRefereesAndQuestionType method -EvaluatorJudgeScoreService");
+		return repo.findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndRoundAndQuestionType(championshipParticipantTeams, eJudgeTeamReferee, round, commonquestionforasana);
+	}
+
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndRoundAndQuestionTypeAndSequenceNumber(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round,
+			QuestionTypeEnum commonquestionforasana, Integer i) {
+		LOGGER.info("Entered findAllByChampionshipParticipantTeamsAndRoundAndQuestionTypeAndSequenceNumber method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByChampionshipParticipantTeamsAndRoundAndQuestionTypeAndSequenceNumber method -EvaluatorJudgeScoreService");
+    return repo.findAllByChampionshipParticipantTeamsAndRoundAndQuestionTypeAndSequenceNumber(championshipParticipantTeams,round,commonquestionforasana,i);
+	}
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndRoundAndQuestionType(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round,
+			QuestionTypeEnum commonteamquestion) {
+		LOGGER.info("Entered findAllByChampionshipParticipantTeamsAndRoundAndQuestionType method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByChampionshipParticipantTeamsAndRoundAndQuestionType method -EvaluatorJudgeScoreService");
+	return repo.findAllByChampionshipParticipantTeamsAndRoundAndQuestionType(championshipParticipantTeams, round, commonteamquestion);
+	}
+
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndSequenceNumberAndQuestionType(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer i,
+			QuestionTypeEnum commonquestionforasana) {
+		LOGGER.info("Entered findAllByChampionshipParticipantTeamsAndSequenceNumberAndQuestionType method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findAllByChampionshipParticipantTeamsAndSequenceNumberAndQuestionType method -EvaluatorJudgeScoreService");
+	return repo.findAllByChampionshipParticipantTeamsAndSequenceNumberAndQuestionType(championshipParticipantTeams,i,commonquestionforasana);
+	}
+
+	public EvaluatorJudgeScore findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipants(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions, ParticipantTeamParticipants participantTeamParticipant) {
+		LOGGER.info("Entered findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipants method -EvaluatorJudgeScoreService");
+		LOGGER.info("Exit findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipants method -EvaluatorJudgeScoreService");
+	return repo.findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipants(championshipParticipantTeams,
+				participantTeamReferees,asanaEvaluationQuestions,participantTeamParticipant	);
+	}
+
+
+
+}

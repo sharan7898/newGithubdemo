@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{/admin/manage-asana}">Back</a>
+						</div>
+					</div>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="asanaAddForm" th:action="@{/admin/manage-asana/save}"
+								method="post" th:object="${asana}" enctype="multipart/form-data"
+								onsubmit="return validateForm(this);">
+								<input type="hidden" th:field="*{id}" id="id" />
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="name">Asana name <span
+											class="form-star">*</span></label> <input type="text"
+											class="form-control" th:field="*{name}" id="asanaName"
+											minlength="2" maxlength="64"> <span
+											id="span-error-name" class="span-error"> </span>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="image">Image <span
+											class="form-star">*</span></label> <input type="hidden"
+											th:field="*{image}" /> <input type="file" id="fileImage"
+											name="fileImage" accept="image/png,image/jpeg" class="mb-2" />
+										<span id="span-error-image" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<img id="thumbnail" alt="Image Preview" class="img-fluid"
+											th:src="@{${asana.ImagePath}}" />
+									</div>
+								</div>
+
+
+
+								<div class="form-group text-center mt-4 mb-5">
+									<input type="submit" value="Save" class="btn btn-primary" /> <a
+										th:href="@{/admin/manage-asana}" type="button"
+										class="btn btn-primary-outline" id="buttonCancel">Cancel</a>
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/js/asana_scripts.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		var MAX_FILE_SIZE = 1024000; // 1000kb 
+
+		$(document).ready(
+				function() {
+					var pathname = window.location.pathname;
+					var parentpath = pathname.substring(0, 24);
+					var activeLink = document.querySelector('a.nav-link[href="'
+							+ parentpath + '"]');
+					activeLink.classList.add("active");
+
+				});
+
+		function validateForm(form) {
+			let id = document.getElementById('id').value;
+			let image = document.getElementById('fileImage').value;
+
+			if ((document.getElementById('asanaName').value) == "") {
+				var flagAsanaName = false;
+				$("#span-error-name").text("Enter the asana name");
+			} else {
+				flagAsanaName = true;
+				$("#span-error-name").text("");
+			}
+
+			if (id == "" && image == "") {
+				var flagImage = false;
+				$('#span-error-image').text("Please upload the image");
+
+			} else {
+				flagImage = true;
+				$("#span-error-image").text("");
+			}
+			return (flagAsanaName && flagImage);
+		}
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0,shrink-to-fit=no">
+<meta charset="utf-8" />
+<title>Terms and Conditions - National Yogasana Sports Federation</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet">
+
+</head>
+
+
+<body>
+
+	<div id="layoutAuthentication">
+	<div th:replace="fragments/layout :: page_header_outside_application"></div>
+		<div id="layoutAuthentication_content">
+			<main>
+				<div class="container">
+					<div class="row justify-content-center mt-5 mb-5">
+						<div class="col-lg-10">
+							<div class="card shadow-lg border-0 rounded-lg">
+								<div class="card-header dark-card-header">
+									<h3 class="text-center font-weight-light my-4">Terms and Conditions</h3>
+								</div>
+								<div class="card-body">
+								<div></div>
+								
+
+								<form id="form1">
+									<div
+										class="form-group d-flex align-items-center justify-content-between mt-3 mb-0">
+
+										
+
+
+									<div
+										class="d-flex align-items-center justify-content-between mt-2 mb-0 ">
+										<div class="col-md-12 mb-3">
+											<label class="form-label">We will retain your personal information for as long as needed or permitted in light of the purpose(s) for which it was obtained and consistent with applicable law. The criteria used to determine our retention periods include:
+
+The length of time we have an ongoing relationship with you and provide the Services to you (for example, for as long as you have an account with us or keep using the Services);
+Whether there is a legal obligation to which we are subject (for example, certain laws require us to keep records of your transactions for a certain period of time before we can delete them); or
+Whether retention is advisable in light of our legal position (such as in regard to applicable statutes of limitations, litigation or regulatory investigations).
+											</label>
+											<label class="form-label">
+											The Services are controlled and operated by us from the United States and are not intended to subject us to 
+											the laws or jurisdiction of any state, country or territory other than that of the United States. Your personal 
+											information may be stored and processed in any country where we have facilities or in which we engage service providers, 
+											and by using our services you understand that your information will be transferred to countries outside of your country of residence, 
+											including the United States, which may have data protection rules that are different from those of your country. In certain circumstances,
+											 courts, law enforcement agencies, regulatory agencies or security authorities in those other countries may be entitled to access 
+											 your personal information. By using our services, including our website, you acknowledge and agree to this Privacy Policy and any 
+											 other agreement between you and us shall be governed in accordance with the laws of the State of California, USA, notwithstanding any
+											  conflict-of-law provisions to the contrary; and all disputes and claims relating to this Privacy Policy and any other agreement 
+											  between you and us shall be litigated in the courts located in the Country of India and you expressly waive any 
+											  objections to such jurisdiction and venue and irrevocably consent and submit to the personal and subject matter jurisdiction of such 
+											  court in any action or proceeding.
+											</label>
+											
+										</div>
+									</div>
+
+									</div>
+									
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</main>
+
+			<div id="layoutAuthentication_footer">
+                <!-- Footer fragment -->
+				<div th:replace="fragments/layout :: page_footer_outside_application"></div>
+            </div>
+		</div>
+		<!-- Modal fragment to display warnings -->
+		<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+	</div>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+
+	<script type="text/javascript">
+			var base_url = "[[@{/}]]";
+			// Add active state to header nav links
+   			var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
+       		 $("a.nav-link").each(function() {
+           	 	if (this.href === path) {
+               		 $(this).addClass("active");
+           		 }
+      	  	});
+			
+	</script>
+
+
+</body>
+
+</html>

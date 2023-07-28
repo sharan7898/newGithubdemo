@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{/referee/manage-referee-panels}">Back</a>
+						</div>
+					</div>
+
+
+					<hr>
+					<br />
+					<div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="panelAddForm" th:action="@{/referee/manage-referee-panels/save}" method="post"
+								th:object="${championshipRefereePanel}" onsubmit="return validateForm(this);">
+								<input type="hidden" th:field="*{id}" />
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="name">Panel name <span
+												class="form-star">*</span></label> <input type="text"
+											class="form-control" th:field="*{name}" id="panelName" minlength="2"
+											maxlength="45"> <span id="span-error-panel-name" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="championship">Championship
+											<span class="form-star">*</span>
+										</label> <select class="form-control" th:field="*{championship}"
+											id="championship">
+											<option value="">-- Select --</option>
+											<th:block th:each="championship : ${listChampionships}">
+												<option th:value="${championship.id}">[[${championship.name}]]</option>
+											</th:block>
+										</select> <span id="span-error-championship" class="span-error">
+										</span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="asanaCategory">Asana
+											Team type <span class="form-star">*</span>
+										</label> <select class="form-control" th:field="*{asanaCategory}"
+											id="asana-category">
+											<option value="">-- Select --</option>
+											<th:block th:each="category : ${listCategories}">
+												<option th:value="${category.id}">[[${category.name}]]</option>
+											</th:block>
+										</select> <span id="span-error-asana-category" class="span-error">
+										</span>
+									</div>
+
+								</div>
+
+								<div class="form-group text-center mt-4 mb-5">
+									<input type="submit" value="Save" class="btn btn-primary" /> <a
+										th:href="@{/referee/manage-referee-panels}" type="button"
+										class="btn btn-primary-outline" id="buttonCancel">Cancel</a>
+								</div>
+
+								<!-- Show listing of Referees -->
+
+
+
+
+								<div class="row justify-content-center align-items-center h-100">
+									<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+										<!-- Show List of Referees -->
+										<th:block th:if="${championshipRefereePanel.id != null}">
+											<!-- Show List of Referees -->
+											<div class="form-group row mt-5">
+												<div class="col-md-12">
+													<div class="row mb-4">
+														<div class="col-6">
+															<h5>List of Judges</h5>
+														</div>
+														<div class="col-6 text-right" id="div-add-judges">
+															<a id="btnAddJudges" class="btn btn-primary btnAddNew">Add
+																Judges</a>
+														</div>
+													</div>
+
+													<div class="card mb-4">
+														<div class="card-body">
+															<div class="table-responsive">
+																<table class="table table-striped table-bordered"
+																	id="refereesTable">
+
+																	<thead>
+																		<tr>
+																			<th>Sl.No</th>
+																			<th>Name</th>
+																			<th>Jrn Number</th>
+																			<th>Type</th>
+																			<th>State</th>
+																			<th></th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<th:block
+																			th:if="${#lists.isEmpty(listAssignedReferees)}">
+																			<tr>
+																				<td colspan="5" class="text-center">No
+																					Judges
+																					assigned yet.</td>
+																			</tr>
+																		</th:block>
+
+																		<th:block
+																			th:if="${not #lists.isEmpty(listAssignedReferees)}">
+																			<tr
+																				th:each="user,iterationStatus : ${listAssignedReferees}">
+																				<td th:text="${iterationStatus.count}">
+																				</td>
+																				<td>[[${user.getUserName}]]</td>
+																				<td>[[${user.judgeUser.getJrnNumber}]]
+																				</td>
+																				<td>[[${user.type.type}]]</td>
+																				<td>[[${user.getUser.getState.getName}]]
+																				</td>
+																				<td class="text-center"><a
+																						class="btn btn-primary btnOperate link-delete"
+																						th:href="@{'/referee/manage-referee-panels/referees/delete/'+${user.id}}"
+																						th:entityId="${user.id}"
+																						th:title="'Remove referee' + ${user.id}">
+																						<i class="fas fa-trash"></i>
+																					</a></td>
+																			</tr>
+																		</th:block>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+
+
+										</th:block>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="addJudgesModalDialog">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<form id="assignRefereesForm"
+					th:action="@{/referee/manage-referee-panels/referees/assign/}+${championshipRefereePanel.id}"
+					method="post">
+					<div class="modal-header modal-bg-header ">
+						<h5 class="modal-title">Add Judges</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">&times;</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group row">
+							<div class="col-sm-12">
+								<label class="col-form-label">Select Judges: (Pick any
+									10)</label>
+
+
+								<div class="table-responsive">
+									<table class="table table-striped table-bordered" id="assignRefereeTable">
+										<thead>
+											<tr>
+												<th><input type="checkbox" th:name="Selectall"
+														th:onClick="checkAll(this)" class="m-2" /></th>
+												<th>Name</th>
+												<th>Type</th>
+												<th>State</th>
+											</tr>
+										</thead>
+										<tbody>
+											<th:block th:if="${#lists.isEmpty(listNonSelectedReferrees)}">
+												<tr>
+													<td colspan="4" class="text-center ">No Users to add.</td>
+												</tr>
+											</th:block>
+											<th:block th:if="${not #lists.isEmpty(listNonSelectedReferrees)}">
+												<tr th:each="referee : ${listNonSelectedReferrees}">
+													<td><input type="checkbox" name="listReferees"
+															th:value="${referee.id}" class="refereeCheckbox m-2" /></td>
+													<td>[[${referee.getFullName()}]]</td>
+													<td>[[${referee.getRoleName()}]]</td>
+													<td>[[${referee.getState().getName}]]</td>
+												</tr>
+											</th:block>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<!--  <button type="button" class="btn btn-primary">Save</button>  -->
+							<button type="submit" class="btn btn-secondary">Save</button>
+							<button type="button" class="btn btn-secondary btn-modal-cancel"
+								data-dismiss="modal">Cancel</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<!-- modal body ends -->
+
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: confirm_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+
+		$(document).ready(
+			function () {
+				var pathname = window.location.pathname;
+				var parentpath = pathname.substring(0, 33);
+				var activeLink = document.querySelector('a.nav-link[href="'
+					+ parentpath + '"]');
+				activeLink.classList.add("active");
+			});
+		$(document).ready(function () {
+
+			$('#div-add-judges').on('click', '#btnAddJudges', function (e) {
+				$("#addJudgesModalDialog").modal();
+			});
+
+			$('#assignRefereeTable').DataTable({
+				"pageLength": 30,
+				'columns': [{
+					data: 'slno'
+				}, // index - 0
+				{
+					data: 'name'
+				}, // index - 1
+				{
+					data: 'type'
+				}, // index - 2
+				{
+					data: 'state'
+				} // index - 3
+				],
+				'columnDefs': [{
+					'targets': [], // column index (start from 0)
+					'orderable': false, // set orderable false for selected columns
+				}]
+			});
+
+			$('#refereesTable').DataTable({
+				"pageLength": 10,
+				'columns': [{
+					data: 'slno'
+				}, // index - 0
+				{
+					data: 'name'
+				}, // index - 1
+				{
+					data: 'type'
+				}, // index - 2
+				{
+					data: 'jrn number'
+				}, //index -3
+				{
+					data: 'state'
+				}, //index -4
+				{
+					data: 'delete'
+				} //index -5 
+				],
+				'columnDefs': [{
+					'targets': [5], // column index (start from 0)
+					'orderable': false, // set orderable false for selected columns
+				}]
+			});
+
+		});
+
+		function validateForm(form) {
+
+			if ((document.getElementById('panelName').value) == "") {
+				var flagPanelName = false;
+				$("#span-error-panel-name").text("Enter the panel name");
+
+			} else {
+				flagPanelName = true;
+				$("#span-error-panel-name").text("");
+			}
+
+			if ((document.getElementById('championship').value) == "") {
+				var flagChampionship = true;
+				$("#span-error-championship").text("Select the championship");
+
+			} else {
+				flagChampionship = true;
+				$("#span-error-championship").text("");
+			}
+
+			if ((document.getElementById('asana-category').value) == "") {
+				var flagAsanaCategory = false;
+				$("#span-error-asana-category").text(
+					"Select the asana team type");
+
+			} else {
+				flagAsanaCategory = true;
+				$("#span-error-asana-category").text("");
+			}
+
+			return (flagPanelName && flagChampionship && flagAsanaCategory)
+		}
+
+		function checkAll(bx) {
+			console.log("Entered CheckAll Method");
+			var form = bx.form;
+			var ischecked = bx.checked;
+			for (var i = 0; i < form.length; ++i) {
+				if (form[i].type == 'checkbox') {
+					form[i].checked = ischecked;
+				}
+			}
+		}
+	</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,3102 @@
+{
+    "championship_name": "khelo india university games",
+    "championship_id": 1,
+    "description": "Winners",
+    "sport_id": 51,
+    "sport_name": "Yoga",
+    "categories": [
+           {
+            "category_name": "Under 18 Girls",
+            "category_detail_id": 8,
+            "event_id": 966,
+            "event_description": "Traditional Yogasana",
+            "gender": "Female",
+            "rounds": [
+                {
+                    "name": "Round One",
+                    "teams": [
+                        {
+                            "chest_id": "team 1",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 1,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "C1",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "C2",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "C3",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "C4",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 2",
+                            "state_name": "Punjab",
+                            "state_id": "30",
+                            "rank": 2,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "C1",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "C2",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "C3",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "C4",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 3",
+                            "state_name": "Delhi",
+                            "state_id": "20",
+                            "rank": 3,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "C1",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "C2",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "C3",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "C4",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 4",
+                            "state_name": "UttarPradesh",
+                            "state_id": "20",
+                            "rank": 4,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "C1",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "C2",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "C3",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "C4",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 5",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 5,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "C1",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "C2",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "C3",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "C4",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                         ]
+                },
+                {
+                    "name": "Round Two",
+                    "teams": [
+                        {
+                            "chest_id": "team 1",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 1,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "C1",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "C2",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "C3",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "C4",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 2",
+                            "state_name": "Punjab",
+                            "state_id": "30",
+                            "rank": 2,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "C1",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "C2",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "C3",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "C4",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 3",
+                            "state_name": "Delhi",
+                            "state_id": "20",
+                            "rank": 3,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "C1",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "C2",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "C3",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "C4",
+                                            "type": "compulsory",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                         ]
+                }
+            ]
+        },
+        {
+            "category_name": "Under 18 Girls",
+            "category_detail_id": 8,
+            "event_id": 967,
+            "event_description": "Artistic Yogasana Single",
+            "gender": "Female",
+            "rounds": [
+                {
+                    "name": "Round One",
+                    "teams": [
+                        {
+                            "chest_id": "team 1",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 1,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 2",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 2,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 3",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 3,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                         ]
+                }
+               
+            ]
+        },
+        {
+            "category_name": "Under 18 Girls",
+            "category_detail_id": 8,
+            "event_id": 968,
+            "event_description": "Artistic Yogasana Pair",
+            "gender": "Female",
+            "rounds": [
+                {
+                    "name": "Round One",
+                    "teams": [
+                        {
+                            "chest_id": "team 1",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 1,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A2",
+                                    "kitd_unique_id": "KITD2",
+                                    "name": "Athelet_Two",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 2",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 2,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A2",
+                                    "kitd_unique_id": "KITD2",
+                                    "name": "Athelet_Two",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 3",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 3,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A2",
+                                    "kitd_unique_id": "KITD2",
+                                    "name": "Athelet_Two",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                        ]
+                }
+               
+            ]
+        },
+        {
+            "category_name": "Under 18 Girls",
+            "category_detail_id": 8,
+            "event_id": 969,
+            "event_description": "Rhythmic Yogasana Pair",
+            "gender": "Female",
+            "rounds": [
+                {
+                    "name": "Round One",
+                    "teams": [
+                        {
+                            "chest_id": "team 1",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 1,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A2",
+                                    "kitd_unique_id": "KITD2",
+                                    "name": "Athelet_Two",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 2",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 2,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A2",
+                                    "kitd_unique_id": "KITD2",
+                                    "name": "Athelet_Two",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 3",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 3,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A2",
+                                    "kitd_unique_id": "KITD2",
+                                    "name": "Athelet_Two",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "9"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "9"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                         ]
+                }
+               
+            ]
+        },
+        {
+            "category_name": "Under 18 Girls",
+            "category_detail_id": 8,
+            "event_id": 1041,
+            "event_description": "Artistic Yogasana Group",
+            "gender": "Female",
+            "rounds": [
+                {
+                    "name": "Round One",
+                    "teams": [
+                        {
+                            "chest_id": "team 1",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 1,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A2",
+                                    "kitd_unique_id": "KITD2",
+                                    "name": "Athelet_Two",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                }, 
+                                {
+                                    "prn_id": "A3",
+                                    "kitd_unique_id": "KITD3",
+                                    "name": "Athelete_Three",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A4",
+                                    "kitd_unique_id": "KITD4",
+                                    "name": "Athelet_Four",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A5",
+                                    "kitd_unique_id": "KITD5",
+                                    "name": "Athelet_Five",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 2",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 2,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A2",
+                                    "kitd_unique_id": "KITD2",
+                                    "name": "Athelet_Two",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                }, 
+                                {
+                                    "prn_id": "A3",
+                                    "kitd_unique_id": "KITD3",
+                                    "name": "Athelete_Three",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A4",
+                                    "kitd_unique_id": "KITD4",
+                                    "name": "Athelet_Four",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A5",
+                                    "kitd_unique_id": "KITD5",
+                                    "name": "Athelet_Five",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "chest_id": "team 3",
+                            "state_name": "Haryana",
+                            "state_id": "20",
+                            "rank": 3,
+                            "total_score": "300",
+                            "athletes": [
+                                {
+                                    "prn_id": "A1",
+                                    "kitd_unique_id": "KITD1",
+                                    "name": "Athelet_One",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A2",
+                                    "kitd_unique_id": "KITD2",
+                                    "name": "Athelet_Two",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                }, 
+                                {
+                                    "prn_id": "A3",
+                                    "kitd_unique_id": "KITD3",
+                                    "name": "Athelete_Three",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A4",
+                                    "kitd_unique_id": "KITD4",
+                                    "name": "Athelet_Four",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "prn_id": "A5",
+                                    "kitd_unique_id": "KITD5",
+                                    "name": "Athelet_Five",
+                                    "PlayerImage": "https://youthgames.kheloindia.gov.in/static-assets/images/cssimages/about.png",
+                                    "player_total_score": "-",
+                                    "asanas": [
+                                        {
+                                            "asana_id": "As1",
+                                            "asana_name": "PaschimUttanasana",
+                                            "display_name": "O1",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As2",
+                                            "asana_name": "Sarvangasana",
+                                            "display_name": "O2",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As3",
+                                            "asana_name": "Ourna Dhanurasana",
+                                            "display_name": "O3",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As4",
+                                            "asana_name": "Karna Pidasana",
+                                            "display_name": "O4",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As5",
+                                            "asana_name": "Garudhasana",
+                                            "display_name": "O5",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As6",
+                                            "asana_name": "Titiabhasana",
+                                            "display_name": "O6",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O7",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O8",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O9",
+                                            "type": "optional",
+                                            "score": "-"
+                                        },
+                                        {
+                                            "asana_id": "As7",
+                                            "asana_name": "Hanumanasana",
+                                            "display_name": "O10",
+                                            "type": "optional",
+                                            "score": "-"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                        ]
+                }
+               
+            ]
+        }
+    ]
+}

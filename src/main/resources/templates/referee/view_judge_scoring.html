@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<!--  <div class="col-sm-4 text-sm-right align-self-center">
+							<a href="#" class="btn btn-primary btnActionSmall"
+								onClick="doExport('#teamScoreTable', {type: 'excel'});">
+								Export </a> <a class="btn btn-primary btnActionSmall"
+								th:href="@{'/referee/score-report/championship/'+${championshipId}+'/category/'+${asanaCategoryId}+'/'+${ageCategoryId}+'/'+${gender}+'/'+${round}}">Back</a>
+						</div> -->
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert" id="message" hidden>
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-12">
+
+
+							<form id="calculateFinalScores" method="post">
+								<p>Calculate the Total score for each team</p>
+
+								<input type="hidden" name="championshipParticipantTeamsId"
+									id="championshipParticipantTeamsId"
+									th:value="${championshipTeamId}" />
+								<th:block th:if="${allJudgeScoresGivenStatus}">
+									<input type="submit" id="calculateTeamScores"
+										onclick="calculateFinalScoresTotalForTeam();"
+										value="Calculate Final Scores" class="btn btn-primary" />
+								</th:block>
+
+								<th:block th:unless="${allJudgeScoresGivenStatus}">
+									<input type="submit" id="calculateTeamScores" disabled="true"
+										value="Calculate Final Scores" class="btn btn-primary" />
+								</th:block>
+
+							</form>
+
+
+
+							<div class="card mb-4">
+								<div class="card-body">
+									<div class="table-responsive">
+
+										<table class="table table-striped table-bordered"
+											id="teamScoreTable" width="100%" cellspacing="0">
+											<tbody>
+												<tr>
+													<th:block
+														th:if="${not #maps.isEmpty(refereeParticipantAsanaScoreMap)}">
+														<th:block
+															th:each="participantTeamRefereeEntry,iterationStatus :${refereeParticipantAsanaScoreMap}"
+															th:with="participantTeamReferee=${participantTeamRefereeEntry.key},participantTeamRefereeParticipantMap=${participantTeamRefereeEntry.value}">
+
+
+															<td>
+																<table>
+																	<thead>
+																		<tr>
+																			<th colspan="6">[[${participantTeamReferee.getUserName}]]</th>
+																		</tr>
+																		<tr>
+																			<th>SL No</th>
+																			<th>Asana</th>
+																			<th>As Per Given Sequence?</th>
+																			<th>Has Performed Asana</th>
+																			<th>Penalty</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<th:block
+																			th:each="participantTeamParticipantEntry,iterationStatus1 :${participantTeamRefereeParticipantMap}"
+																			th:with="participantTeamParticipant=${participantTeamParticipantEntry.key},participantTeamParticipantAsanaMap=${participantTeamParticipantEntry.value}">
+																			<th:block th:if="${iterationStatus1.count==1}"
+																				th:each="participantTeamParticipantAsanaEntry,iterationStatus2:${participantTeamParticipantAsanaMap}"
+																				th:with="participantTeamParticipantAsana=${participantTeamParticipantAsanaEntry.key},listParticipantTeamParticipantAsanaScore=${participantTeamParticipantAsanaEntry.value}">
+																				<tr>
+																					<td>[[${iterationStatus2.count}]]</td>
+																					<td>[[${participantTeamParticipantAsana.asana.name}]]</td>
+																					<th:block
+																						th:each="participantTeamParticipantAsanaScoreEntry:${listParticipantTeamParticipantAsanaScore}">
+																						<!-- As per sequence conditions -->
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.asPerSequence==T(com.swayaan.nysf.entity.SequenceEnum).PERFORMEDINSEQUENCE}"><input
+																							type="checkbox" value="Save" name="save" checked
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'sequencePenalty'+${participantTeamParticipantAsanaScoreEntry.id}"
+																							disabled /></td>
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.asPerSequence==T(com.swayaan.nysf.entity.SequenceEnum).DIDNOTPERFORMINSEQUENCE}"><input
+																							type="checkbox" value="Save" name="save" disabled
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'sequencePenalty'+${participantTeamParticipantAsanaScoreEntry.id}" /></td>
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.asPerSequence==null}"><input
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'sequencePenalty'+${participantTeamParticipantAsanaScoreEntry.id}"
+																							type="checkbox" value="Save" name="save"
+																							onclick="saveAsPerSequence(this);" /></td>
+																						<!-- Is performed conditions -->
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.isPerformed==T(com.swayaan.nysf.entity.AsanaPerformEnum).PERFORMED}"><input
+																							type="checkbox" value="Save" name="save" checked
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'notPerformedPenalty'+${participantTeamParticipantAsanaScoreEntry.id}"
+																							disabled /></td>
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.isPerformed==T(com.swayaan.nysf.entity.AsanaPerformEnum).NOTPERFORMED}"><input
+																							type="checkbox" value="Save" name="save"
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'notPerformedPenalty'+${participantTeamParticipantAsanaScoreEntry.id}"
+																							disabled /></td>
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.isPerformed==null}"><input
+																							type="checkbox" value="Save" name="save"
+																							onclick="saveIsPerformed(this);"
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'notPerformedPenalty'+${participantTeamParticipantAsanaScoreEntry.id}" /></td>
+																						<td>[[${participantTeamParticipantAsanaScoreEntry.penaltyScore}]]</td>
+																						
+																					</th:block>
+																				</tr>
+																			</th:block>
+																		</th:block>
+																	</tbody>
+
+
+																</table>
+
+															</td>
+														</th:block>
+													</th:block>
+
+												</tr>
+
+											</tbody>
+										</table>
+
+
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="editRefereeScoreModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+
+		function calculateFinalScoresTotalForTeam(form) {
+			var championshipParticipantTeamsId = $(
+					"#championshipParticipantTeamsId").val();
+
+			var form = $('#calculateFinalScores')[0];
+			var data = new FormData(form);
+			var formData = new FormData();
+			formData.append("championshipParticipantTeamsId", $(
+					"#championshipParticipantTeamsId").val());
+			$("#calculateTeamScores").prop("disabled", true);
+
+			var postUrl = base_url + "referee/calculate/championshipTeam/"
+					+ championshipParticipantTeamsId + "/final-scores";
+			$.ajax({
+				type : "POST",
+				url : postUrl,
+				data : formData,
+				processData : false,
+				contentType : false,
+				cache : false,
+				timeout : 1000000,
+				xhr : function() {
+					var xhr = $.ajaxSettings.xhr();
+					xhr.onerror = function() {
+						$("#status").html("Upload Failed!");
+					};
+					xhr.onabort = function() {
+						$("#status").html("Upload Aborted!");
+					};
+
+					return xhr;
+				},
+				beforeSend : function(xhr) {
+				},
+				"success" : function(data, status) {
+					console.log(data);
+					console.log("status" + status);
+				}
+
+			});
+
+			return false;
+
+		}
+
+		function calculateAsanaJudgeTotal(form) {
+			//post or get call ??
+		}
+
+		function calculateTeamJudgeTotal(form) {
+
+		}
+	</script>
+
+</body>
+</html>

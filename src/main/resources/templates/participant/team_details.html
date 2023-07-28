@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/participant/championship/'+${championshipId}+'/getDetails'}">Back</a>
+						</div>
+					</div>
+					<hr>
+					<br />
+					<div class="mdl-card mdl-shadow--2dp">
+
+						<div class="mdl-card__supporting-text">
+
+							<div class="mdl-stepper-horizontal-alternative">
+								<div class="mdl-stepper-step active-step ">
+									<div class="mdl-stepper-circle">
+										<span>1</span>
+									</div>
+									<div class="mdl-stepper-title">Select Team Lead</div>
+									<div class="mdl-stepper-bar-left"></div>
+									<div class="mdl-stepper-bar-right"></div>
+								</div>
+								<div class="mdl-stepper-step">
+									<div class="mdl-stepper-circle">
+										<span>2</span>
+									</div>
+									<div class="mdl-stepper-title">Select Asanas</div>
+									<div class="mdl-stepper-bar-left"></div>
+									<div class="mdl-stepper-bar-right"></div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div hidden id="errorMessage"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert"></div>
+
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="saveLeadForm" method="post"
+								th:object="${participantTeam}">
+								<input type="hidden" th:field="*{id}" /> <input type="hidden"
+									th:value="${isAsanasFrozen}" id="asanas-frozen" /> <input
+									type="hidden" th:value="${isTeamLead}"
+									id="current-user-team-lead" />
+								<div class="form-team row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="name">Team name</label> <input
+											type="text" class="form-control"
+											th:value="${participantTeam.name}" id="teamName" disabled>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="name">Chest number </label> <input
+											type="text" class="form-control"
+											th:value="${participantTeam.chestNumber}" id="chestNumber"
+											disabled>
+									</div>
+									
+									<div class="col-md-6 m b-3">
+										<label class="form-label" for="name">Team Id </label> <input
+											id="chestNumber" type="text" class="form-control"
+											th:value="${participantTeam.autogenChestNumber}" disabled>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="name">Category</label> <input
+											type="text" class="form-control"
+											th:value="${participantTeam.asanaCategory.name}"
+											id="chestNumber" disabled>
+									</div>
+
+								</div>
+								<th:block th:if="${participantTeam.id != null}">
+									<!--  List of Participants -->
+									<div class="form-team row mt-5">
+										<div class="col-md-12">
+											<div class="row mb-4">
+												<div class="col-6">
+													<h5>List of Participants</h5>
+												</div>
+											</div>
+
+											<th:block>
+												<div class="card mb-4">
+													<div class="card-body">
+														<div class="table-responsive">
+															<table class="table table-striped table-bordered"
+																id="selectedParticipantsTable" width="100%"
+																cellspacing="0">
+																<thead>
+																	<tr>
+																		<th>Sl.No</th>
+																		<th>Name</th>
+																		<th>Team Lead</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<th:block
+																		th:if="${#lists.isEmpty(participantTeam.participantTeamParticipants)}">
+																		<tr>
+																			<td colspan="4" class="text-center">No
+																				Participants assigned yet.</td>
+																		</tr>
+																	</th:block>
+																	<th:block
+																		th:if="${not #lists.isEmpty(participantTeam.participantTeamParticipants)}">
+																		<tr>
+																			<label class="form-label text-center">Only
+																				team lead is allowed to add asanas to the team</label>
+																		</tr>
+
+																		<tr>
+																			<span id="span-error-participant"
+																				class="span-error form-label" hidden>(Please
+																				select one team lead )</span>
+																		</tr>
+
+																		<th:block
+																			th:if="${isAsanasFrozen==false && isTeamLead==false}">
+																			<tr
+																				th:each="teamParticipant,iterationStatus : ${participantTeam.participantTeamParticipants}">
+																				<td th:text="${iterationStatus.count}"></td>
+																				<td>[[${teamParticipant.getParticipantFullName}]]</td>
+																				<td><input type="checkbox"
+																					th:id="'participant'+${teamParticipant.id}"
+																					th:entityId="${teamParticipant.id}"
+																					th:entityName="${participantTeam.id}"
+																					class="teamLeadBoxes"
+																					onclick="verifyTeamLead(this);"
+																					th:checked="${teamParticipant.isTeamLead}"
+																					th:value="${teamParticipant.isTeamLead}" /></td>
+																			</tr>
+																		</th:block>
+
+																		<th:block
+																			th:if="${isAsanasFrozen==false && isTeamLead==true}">
+																			<tr
+																				th:each="teamParticipant,iterationStatus : ${participantTeam.participantTeamParticipants}">
+																				<td th:text="${iterationStatus.count}"></td>
+																				<td>[[${teamParticipant.getParticipantFullName}]]</td>
+																				<td><input type="checkbox"
+																					th:id="'participant'+${teamParticipant.id}"
+																					th:entityId="${teamParticipant.id}"
+																					th:entityName="${participantTeam.id}"
+																					class="teamLeadBoxes"
+																					th:checked="${teamParticipant.isTeamLead}"
+																					th:value="${teamParticipant.isTeamLead}" disabled /></td>
+																			</tr>
+																		</th:block>
+
+																		<th:block th:if="${isAsanasFrozen==true}">
+																			<tr
+																				th:each="teamParticipant,iterationStatus : ${participantTeam.participantTeamParticipants}">
+																				<td th:text="${iterationStatus.count}"></td>
+																				<td>[[${teamParticipant.getParticipantFullName}]]</td>
+																				<td><input type="checkbox"
+																					th:id="'participant'+${teamParticipant.id}"
+																					th:entityId="${teamParticipant.id}"
+																					th:entityName="${participantTeam.id}"
+																					class="teamLeadBoxes"
+																					th:checked="${teamParticipant.isTeamLead}"
+																					th:value="${teamParticipant.isTeamLead}" disabled /></td>
+																			</tr>
+																		</th:block>
+																	</th:block>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+											</th:block>
+										</div>
+									</div>
+								</th:block>
+								<th:block th:if="${isAsanasFrozen==false}">
+									<div class="form-team text-right mt-5 mb-5">
+										<input type="button" onclick="saveTeamLead(this);"
+											value="Proceed" class="btn btn-primary" />
+									</div>
+								</th:block>
+								<th:block th:if="${isAsanasFrozen==true}">
+									<div class="form-team text-right mt-5 mb-5">
+										<a
+											th:href="@{'/participant/championship/'+${championshipId}+'/team/'+${participantTeam.id}+'/showTeamDetailsWithAsanas'}"
+											class="btn btn-primary">Asanas are frozen - view details</a>
+									</div>
+								</th:block>
+							</form>
+
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script th:src="@{/js/scripts.js}"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css"
+		crossorigin="anonymous"></script>
+
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		//var listAsanasUrl = "[[@{/asanas/list_by_asana_category}]]";
+		var dropdownAsanas;
+		function saveTeamLead(form) {
+
+			var isOneCheckbox = false;
+			var selectedLead = $('.teamLeadBoxes' + ':checked');
+
+			if (selectedLead.length == 1) {
+				isOneCheckbox = true;
+				$('#errorMessage').attr('hidden', true);
+
+			} else if (selectedLead.length == 0) {
+
+				isOneCheckbox = false;
+				//	$('#errorMessage').removeAttr('hidden', true);
+				//	$('#errorMessage').text("Please select your team lead");
+				$('#span-error-participant').removeAttr("hidden");
+
+			} else {
+
+				isOneCheckbox = false;
+				$('#errorMessage').removeAttr('hidden', true);
+				$('#errorMessage').text("Please select 1 team lead");
+				$('#span-error-participant').removeAttr("hidden");
+
+			}
+
+			if (isOneCheckbox) {
+				var participantId = selectedLead.attr('entityId');
+				var teamId = selectedLead.attr('entityName');
+				postUrl = base_url + 'participant/team/' + teamId + '/lead/'
+						+ participantId;
+				$("#saveLeadForm").attr("action", postUrl);
+
+				$("#saveLeadForm").submit();
+			} else {
+				$('#span-error-participant').removeAttr("hidden");
+				//	$('#errorMessage').removeAttr('hidden', true);
+				//	$('#errorMessage').text("Please select 1 team lead");
+
+			}
+		}
+
+		$(document).ready(
+				function() {
+					disableOtherCheckBoxes();
+					var pathname = window.location.pathname;
+					var parentpath = pathname.substring(0, 31);
+					var activeLink = document.querySelector('a.nav-link[href="'
+							+ parentpath + '"]');
+					activeLink.classList.add("active");
+
+				});
+
+		function verifyTeamLead(input) {
+			var id = input.id;
+			var participantId = input.getAttribute('entityId');
+			var teamId = input.getAttribute('entityName');
+			var isOneCheckboxChecked = false;
+			var checkedBoxes = $('.teamLeadBoxes' + ':checked');
+			if (checkedBoxes.length == 1) {
+				isOneCheckboxChecked = true;
+			} else if (checkedBoxes.length == 0) {
+				enableAllCheckBoxes();
+			}
+			if (isOneCheckboxChecked) {
+				disableOtherCheckBoxes();
+				$('#span-error-participant').attr("hidden", true);
+				//	saveTeamLead(participantId, teamId);
+			} else {
+				$('#span-error-participant').removeAttr("hidden");
+				input.prop('checked', false);
+
+			}
+
+		}
+
+		function disableOtherCheckBoxes() {
+
+			var selectedCheckbox = $('.teamLeadBoxes' + ':checked');
+			var allUncheckedBoxes = $('.teamLeadBoxes' + ':not(:checked)');
+			var allCheckboxes = $('.teamLeadBoxes');
+			var isFrozen = $('#asanas-frozen').val();
+			var isTeamLead = $('#current-user-team-lead').val();
+			console.log(allUncheckedBoxes);
+			console.log(allCheckboxes);
+			console.log(isFrozen);
+			let selectedCheckboxId = selectedCheckbox.attr('id');
+
+			$(".teamLeadBoxes").each(function() {
+				var checkboxId = $(this).attr('id');
+
+				$('#' + checkboxId).attr('disabled', 'disabled');
+
+				if (checkboxId == selectedCheckboxId) {
+
+					$('#' + selectedCheckboxId).removeAttr('disabled');
+				}
+
+			});
+			if (allUncheckedBoxes.length == allCheckboxes.length) {
+				$(".teamLeadBoxes").each(function() {
+					var checkboxId = $(this).attr('id');
+
+					$('#' + checkboxId).removeAttr('disabled');
+
+				});
+			}
+
+			if (isFrozen == 'true' || isTeamLead == 'true') {
+				$(".teamLeadBoxes").each(function() {
+					var checkboxId = $(this).attr('id');
+
+					$('#' + checkboxId).attr('disabled', 'disabled');
+
+				});
+			}
+		}
+
+		function enableAllCheckBoxes() {
+			var allCheckBoxes = $('.teamLeadBoxes');
+			allCheckBoxes.each(function(box) {
+				var checkboxId = $(this).attr('id');
+				$('#' + checkboxId).removeAttr('disabled');
+			});
+
+		}
+	</script>
+
+
+</body>
+</html>

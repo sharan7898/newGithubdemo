@@ -1,0 +1,7 @@
+package com.swayaan.nysf.entity;
+
+public enum QuestionTypeEnum {
+
+	PARTICIPANTSPECIFICASANAQUESTION,COMMONTEAMQUESTION,COMMONQUESTIONFORASANA;
+
+}

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<style>
+.disabled-link {
+	pointer-events: none;
+	background-color: #9b9b9b;
+	border-color: #9b9b9b;
+}
+</style>
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/judge/championship/'+${championshipId}+'/category/'+${asanaCategoryId}+'/'+${ageCategoryId}+'/'+${gender}+'/'+${round}}">Back</a>
+						</div>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert" id="message" hidden>
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-12">
+							<form id="scoreForm" method="post"
+								th:action="@{'/ajudge/artisticJudgeScoreForRound/'+${championshipParticipantTeams.id}+'/round/'+${round}}">
+								<input type="hidden" id="championshipParticipantTeamId"
+									th:value="*{championshipParticipantTeams.id}" /> <input
+									type="hidden" id="participantTeamRefereesId"
+									th:value="*{participantTeamReferees.id}" /> <input
+									type="hidden" id="championshipId" th:value="*{championshipId}" />
+								<input type="hidden" th:value="*{round}" id="round" />
+								<section>
+									<div class="card mb-4">
+										<div class="card-body">
+											<div class="table-responsive">
+
+												<table class="table table-striped table-bordered"
+													id="teamScoreTable" width="100%" cellspacing="0"
+													cellpadding="0">
+													<thead>
+													</thead>
+													<tr>
+														<th:block
+															th:each="participantAsanaScore,iterationStatus : ${participantAsanaScoreMap}"
+															th:with="participantTeamParticipant=${participantAsanaScore.key}">
+
+															<th th:if="${iterationStatus.count==1}">
+															Chest Number - [[${championshipParticipantTeams.participantTeam.chestNumber}]] :
+																 <span class="float-right">   Participant -
+																[[${participantTeamParticipant.sequenceNumber}]] </span> </th>
+																
+															<th th:if="${iterationStatus.count>1}">
+																<span class="float-left">   Participant -
+																	[[${participantTeamParticipant.sequenceNumber}]] </span></th>
+									
+														</th:block>	
+													</tr>
+													<tbody>
+														<tr>
+															<th:block
+																th:each="participantAsanaScore,iterationStatus : ${participantAsanaScoreMap}"
+																th:with="participantTeamParticipant=${participantAsanaScore.key},participantTeamParticipantAsanasMap=${participantAsanaScore.value}">
+
+																<td><table cellspacing="0" cellpadding="0">
+																		<thead>
+																			<tr>
+																				<th:block th:if="${iterationStatus.count==1}">
+																					<th>SL NO</th>
+																					<th>Asana</th>
+																					<th>Image</th>
+																					<th>Base value</th>
+																				</th:block>
+
+																				<th>Score (EP[[${iterationStatus.count}]])</th>
+																				<th:block th:if="${iterationStatus.count!=1}">
+
+																					<th>Save</th>
+																					<th>Total Score</th>
+																				</th:block>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<th:block
+																				th:each="participantTeamParticipantAsana,iterationStatus1 : ${participantTeamParticipantAsanasMap}"
+																				th:with="participantAsana=${participantTeamParticipantAsana.key},participantTeamParticipantAsanasScores=${participantTeamParticipantAsana.value}">
+
+																				<tr class="row-height">
+
+																					<th:block th:if="${iterationStatus.count==1}">
+																						<td>[[${iterationStatus1.count}]]</td>
+
+																						<td>[[${participantAsana.asanaCode}]]-[[${participantAsana.asana.name}]]</td>
+																						<td><img id="thumbnail" alt="Img"
+																							class="img-fluid yogaImage"
+																							th:src="@{${participantAsana.asana.ImagePath}}" /></td>
+
+																						<td th:id="'baseValue'+${participantAsana.id}">[[${participantAsana.baseValue}]]</td>
+																					</th:block>
+
+																					<td
+																						th:if="${participantTeamParticipantAsanasScores.status ==true}">
+																						<input
+																						type="number" step="0.25" max="10" min="0"
+																						th:id="'score'+${participantTeamParticipantAsanasScores.id}"
+																						th:class="'scores'+${participantTeamParticipantAsanasScores.id}"
+																						th:classappend="'rpscore'+${iterationStatus1.count}"
+																						th:entityName="${participantTeamParticipantAsanasScores.id}"
+																						th:entityId="${participantAsana.id}"
+																						th:value="*{participantTeamParticipantAsanasScores.score}"
+																						onchange="validate(this);" readonly /></td>
+																					<td
+																						th:if="${participantTeamParticipantAsanasScores.status !=true}">
+																						<input
+																						type="number" step="0.25" max="10" min="0"
+																						th:id="'score'+${participantTeamParticipantAsanasScores.id}"
+																						th:class="'scores'+${participantTeamParticipantAsanasScores.id}"
+																						th:classappend="'rpscore'+${iterationStatus1.count}"
+																						th:entityName="${participantTeamParticipantAsanasScores.id}"
+																						th:value="*{participantTeamParticipantAsanasScores.score}"
+																						th:entityId="${participantAsana.id}"
+																						onchange="validate(this);" /></td>
+																					<th:block th:if="${iterationStatus.count!=1}">
+
+																						<td
+																							th:if="${participantTeamParticipantAsanasScores.status==true}"><input
+																							type="checkbox" value="Save" name="save"
+																							th:id="'saveCheckBox'+${participantTeamParticipantAsanasScores.id}"
+																							th:entityName="${participantTeamParticipantAsanasScores.id}"
+																							th:class="'saveCheckBox'+${participantTeamParticipantAsanasScores.id}"
+																							th:checked="*{participantTeamParticipantAsanasScores.status}"
+																							checked disabled /></td>
+																						<td
+																							th:if="${participantTeamParticipantAsanasScores.status!=true}"><input
+																							type="checkbox" value="Save" name="save"
+																							th:id="'saveCheckBox'+${participantTeamParticipantAsanasScores.id}"
+																							th:entityName="${participantTeamParticipantAsanasScores.id}"
+																							th:entityId="${participantAsana.id}"
+																							th:class="'saveCheckBox'+${participantTeamParticipantAsanasScores.id}"
+																							th:checked="*{participantTeamParticipantAsanasScores.status}"
+																							th:onclick="saveRPScore(this,[[${iterationStatus1.count}]]);" /></td>
+
+																						<td><input type="number" step="0.25" max="10"
+																							min="0"
+																							th:id="'totalRPRowScore'+${iterationStatus1.count}"
+																							th:class="'scores'+${participantTeamParticipantAsanasScores.id}"
+																							th:classappend="'rpRowTotalScore'+${iterationStatus1.count}"
+																							th:entityName="${participantTeamParticipantAsanasScores.id}"
+																							th:value="*{participantTeamParticipantAsanasScores.totalScore}"
+																							readonly /></td>
+																					</th:block>
+
+
+																				</tr>
+																			</th:block>
+																		</tbody>
+																	</table></td>
+
+															</th:block>
+
+														</tr>
+
+													</tbody>
+												</table>
+											</div>
+
+											<div class="card mb-4">
+												<div class="card-body">
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered"
+															id="QuestionTable" width="100%" cellspacing="0">
+															<thead>
+																<th>Question Id</th>
+																<th>Question</th>
+															</thead>
+
+															<tbody>
+																<th:block
+																	th:each="participantAsanaScore,iterationStatus : ${participantAsanaScoreMap}"
+																	th:with="participantTeamParticipant=${participantAsanaScore.key},participantTeamParticipantAsanasMap=${participantAsanaScore.value}">
+
+																	<th:block
+																		th:each="participantTeamParticipantAsanasScoreEntry,iterationStatus1 : ${participantTeamParticipantAsanasMap}"
+																		th:with="participantTeamParticipantAsana=${participantTeamParticipantAsanasScoreEntry.key},listParticipantTeamParticipantAsanaScores=${participantTeamParticipantAsanasScoreEntry.value}">
+
+																		<th:block
+																			th:each="questionScore,iterationStatus2:${listParticipantTeamParticipantAsanaScores}">
+																			<tr
+																				th:if="${iterationStatus1.count==1 and iterationStatus.count==1 }">
+																				<td>[[${iterationStatus2.count}]]</td>
+																				<td>[[${questionScore.asanaEvaluationQuestion.question}]]</td>
+
+																			</tr>
+																		</th:block>
+																	</th:block>
+																</th:block>
+
+															</tbody>
+
+														</table>
+													</div>
+
+												</div>
+											</div>	
+											
+										</div>
+									</div>
+								</section>
+							<div th:replace="fragments/layout :: page_footer"></div>
+								
+								</form>
+						</div>
+					</div>
+
+					
+				</div>
+				</main>
+		</div>
+	</div>
+
+	<!-- Footer fragment -->
+<!-- 	<div th:replace="fragments/layout :: page_footer"></div> -->
+
+	<div class="modal fade" id="editRefereeScoreModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+<!-- 	<script type="text/javascript" th:src="@{/js/validate.js}"></script>  -->
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		//	var reg = /^(?:\d*\.\d{1,2}|\d+)$/;
+		var reg = /^(?!0\d)\d*(?:[.](?:25|5|50|75|0|00))?$/;
+
+		function validate(input) {
+			var id = input.getAttribute('id');
+			let questionId = input.getAttribute('entityName');
+			var maximumValue = 10;
+			var score = $('#' + id).val();
+			var flagValidScore = true;
+
+			if (score == "" || score == null) {
+				input.style.backgroundColor = 'red';
+				input.focus();
+				flagValidScore = false;
+				showErrorModal("Enter valid Score");
+			//	alert("Enter valid Score");
+
+			} else if (Number(score) > Number(maximumValue)) {
+				input.style.backgroundColor = 'red';
+				input.focus();
+				flagValidScore = false;
+				showErrorModal("Enter valid Score");
+			//	alert("Enter valid Score");
+			} else if (!reg.exec(score)) {
+				console.log("invalid");
+				input.style.backgroundColor = 'red';
+				input.focus();
+				showErrorModal("Enter valid Score");
+			//	alert("Enter valid Score");
+				flagValidScore = false;
+			} else {
+				console.log("valid");
+				input.style.backgroundColor = 'white';
+
+			}
+
+			if (flagValidScore) {
+				saveScore(input);
+			}
+
+		}
+
+		function saveScore(input) {
+
+			var asanaId = input.getAttribute('entityId');
+			//Question id 
+			var id = input.id;
+			var questionId = input.getAttribute('entityName');
+			var score = $("#score" + questionId).val();
+			var postUrl = base_url + "judge/traditionalJudgeScore/"
+					+ questionId + "/saveScore";
+
+			params = {
+				score : score,
+			};
+
+			$.post(postUrl, params, function(response) {
+				console.log("Score saved successfully");
+				//$('#message').removeAttr('hidden', true);
+				//$('#message').text("Score Saved Successfully");
+
+			}).fail(function() {
+				showErrorModal("Could not connect to the server");
+			});
+
+		}
+
+		function saveRPScore(input, iterationCount) {
+
+			var id = input.id;
+			var rpscoreElements = $('.rpscore' + iterationCount);
+			
+			var flagScoreStatus = true;
+			var totalRPRowScore = 0;
+			var count = 0;
+			var questionIdList = [];
+			participantTeamAsanaId = rpscoreElements[0]
+					.getAttribute('entityId');
+			baseValueElement = document.getElementById('baseValue'
+					+ participantTeamAsanaId);
+			baseValue = baseValueElement.innerHTML;
+			maxValue = 10;
+			rpscoreElements.each(function(i) {
+				
+				count++;
+				flagScoreStatus = scoreValidate(this.id,$(this).val(), maxValue);
+				if (!flagScoreStatus) {
+
+					return false;
+				}
+				questionId = this.getAttribute('entityName');
+				questionIdList.push(questionId);
+
+				console.log("BASEVALUE" + baseValue);
+				totalRPRowScore = Number(totalRPRowScore)
+						+ (Number($(this).val()) * Number(baseValue));
+
+			});
+			if (flagScoreStatus) {
+				totalRPRowScore = (Number(totalRPRowScore / 2));
+				totalRPRowScore = parseFloat(Number(totalRPRowScore))
+						.toFixed(2);
+				$('#totalRPRowScore' + iterationCount).val(totalRPRowScore);
+				params = {
+					totalScore : totalRPRowScore,
+					questionIdList : questionIdList,
+
+				};
+				var url = base_url
+						+ "judge/RhythmicPairTraditionalJudgeTotalScoreForAsana/saveTotalScore";
+
+				$.post(
+						url,
+						params,
+						function(response) {
+							console.log("Total Score saved successfully");
+							$('#message').removeAttr('hidden', true);
+							$('#message')
+									.text("Total Score Saved Successfully");
+							$('#totalRPRowScore' + iterationCount).val(
+									totalRPRowScore);
+							window.location.reload();
+
+						}).fail(function() {
+					showErrorModal("Could not connect to the server");
+				});
+			} else {
+				$('#' + id).prop('checked', false);
+				showErrorModal("Scores not saved, Please enter valid score.");
+			//	alert("Scores not saved, Please enter valid score.");
+			}
+
+		}
+
+		function scoreValidate(id,score, maxValue) {
+					
+			console.log("score"+score);
+			
+			if (Number(score) > Number(maxValue)) {
+				document.getElementById(id).style.backgroundColor = 'red';
+				document.getElementById(id).focus();
+				flagValidScore = false;
+				showErrorModal("Enter valid Score");
+			//	alert("Enter valid Score");
+				return false;
+			} else if (!reg.exec(score)) {
+				document.getElementById(id).style.backgroundColor = 'red';
+				document.getElementById(id).focus();
+				flagValidScore = false;
+				showErrorModal("Enter valid Score");
+			//	alert("Enter valid Score");
+				return false;
+
+			} else if (score == "" || score == null) {
+				document.getElementById(id).style.backgroundColor = 'red';
+				document.getElementById(id).focus();
+				flagValidScore = false;
+				showErrorModal("Enter valid Score");
+			//	alert("Enter valid Score");
+				return false;
+
+			} else {
+				document.getElementById(id).style.backgroundColor = 'white';
+			
+				return true;
+			}
+
+		}
+	</script>
+
+</body>
+</html>

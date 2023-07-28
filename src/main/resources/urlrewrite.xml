@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE urlrewrite
+    PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
+    "http://www.tuckey.org/res/dtds/urlrewrite3.0.dtd">
+
+<urlrewrite>
+	<rule>
+		<name>Domain Name Check</name>
+		<condition name="host" operator="notequal">http://localhost:8081/kheloindia-youth-demo</condition>
+		<from>^(.*)$</from>
+		<to type="redirect">http://localhost:8081/kheloindia-youth-demo$1</to>
+	</rule>
+
+</urlrewrite>

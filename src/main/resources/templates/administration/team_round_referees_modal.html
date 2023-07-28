@@ -1,0 +1,109 @@
+<div class="modal-header modal-bg-header">
+	<h5 class="modal-title">Select Round Judge Panels</h5>
+	<button type="button" class="btn-close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+	<form id="assignRefereesPanelForm" name="refereePanel"
+		th:action="@{'/admin/manage-team/referees/assign/'+${participantTeam.id}+'/round/'+${round}}" method="post"
+		th:object="${participantTeam}" onsubmit="return validateForm(this);">
+		<input type="hidden" id="round" name="round" th:value="${round}" />
+
+		<div class="modal-body">
+			<div class="form-group row">
+				<div class="col-sm-6">
+
+					<label class="col-form-label">Select Panel :</label> <select class="form-control" id="panel"
+						name="panel">
+						<option value="">-- Select --</option>
+						<th:block th:each="panel : ${listChampionshipRefereePanels}">
+							<option th:value="${panel.id}">[[${panel.name}]]</option>
+						</th:block>
+					</select><span id="span-error-panel" class="span-error"> </span>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<table id="refereePanelsTable" style="display: none;" class="table" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								<th>Sl no</th>
+								<th>Judge name</th>
+								<th>Type</th>
+								<th>State</th>
+							</tr>
+						</thead>
+
+					</table>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<!--  <button type="button" class="btn btn-primary">Save</button>  -->
+				<button type="submit" class="btn btn-secondary">Proceed</button>
+				<button type="button" class="btn btn-secondary btn-modal-cancel" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+		<!-- modal body ends -->
+
+	</form>
+</div>
+
+<!--<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+	crossorigin="anonymous"></script>-->
+<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+<script type="text/javascript">
+	var base_url = "[[@{/}]]";
+	var listRefereesUrl = "[[@{/referees/list_by_panel/}]]";
+	$(document).ready(function () {
+
+		ddRefereePanels = $("#panel");
+		ddRefereePanels.on("change", function () {
+			console.log("changed");
+			loadRefereesForPanels();
+		});
+
+	});
+
+
+	function loadRefereesForPanels() {
+		console.log("Entered");
+		selectedPanel = $("#panel option:selected");
+		panelId = selectedPanel.val();
+		url = listRefereesUrl + panelId;
+
+		$.get(
+			url,
+			function (responseJson) {
+				$("#refereePanelsTable").css("display", "block");
+				$("#refereePanelsTable tbody").remove();
+				$.each(responseJson, function (index, obj) {
+					$("#refereePanelsTable").append(
+						"<tbody><tr><td>" + (index + 1) + "</td><td>"
+						+ obj.name + "</td><td>" + obj.type
+						+ "</td><td>"
+						+ obj.state
+						+ "</td></tr></tbody>");
+				});
+			}).fail(function () {
+				showErrorModal("Error loading Judge's for the selected panel.");
+			})
+
+	}
+	
+	function validateForm(form) {		
+					if ((document.getElementById('panel').value) == "") {
+				var flagPanel = false;
+				$("#span-error-panel").text("please select the panel");
+
+			} else {
+				flagPanel = true;
+				$("#span-error-panel").text("");
+			}
+		return (flagPanel);
+	}
+
+
+</script>

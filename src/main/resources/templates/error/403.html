@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+	xmlns:sec="http://www.thymeLeaf.org/thymeleaf-extras-springsecurity5">
+<head
+	th:replace="fragments/layout :: page_head('Forbidden - 403', 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row justify-content-center">
+						<div class="col-lg-6">
+							<div class="text-center mt-4">
+								<h1 class="display-1">403</h1>
+								<p class="lead">Forbidden</p>
+								<p>Access to this resource is denied.</p>
+								<th:block
+									sec:authorize="hasAnyAuthority('Administrator','SubAdministrator')">
+									<a th:href="@{/}"> <i class="fas fa-arrow-left mr-1"></i>
+										Return to Dashboard
+									</a>
+								</th:block>
+								<th:block sec:authorize="hasAuthority('Judge')">
+									<a th:href="@{/judge/common-team-scoring}"> <i
+										class="fas fa-arrow-left mr-1"></i> Return to Dashboard
+									</a>
+								</th:block>
+								<th:block sec:authorize="hasAuthority('Participant')">
+									<a th:href="@{/participant/dashboard}"> <i
+										class="fas fa-arrow-left mr-1"></i> Return to Dashboard
+									</a>
+								</th:block>
+								<th:block sec:authorize="hasAuthority('EventManager')">
+									<a th:href="@{/eventmanager/dashboard}"> <i
+										class="fas fa-arrow-left mr-1"></i> Return to Dashboard
+									</a>
+								</th:block>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			<div>
+				<!-- Footer fragment -->
+				<div th:replace="fragments/layout :: page_footer"></div>
+			</div>
+		</div>
+
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+</body>
+</html>

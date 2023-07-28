@@ -1,0 +1,132 @@
+<div class="modal-header modal-bg-header">
+	<h5 class="modal-title">Assign EventManager</h5>
+	<button type="button" class="btn-close hideModal" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+	<form id="assignEventManagerForm"
+		th:action="@{'/admin/manage-championship/'+${currentChampionship.id}+'/event-manager/assign'}" method="post">
+		<div class="modal-body m-3">
+			<div class="row justify-content-center align-items-center h-100">
+				<input type="hidden" th:value="${currentChampionship.id}" name="championshipId">
+				<div class="form-group row">
+					<div class="col-sm-12">
+						<label class="col-form-label">Select EventManager: (Pick
+							any 1)</label>
+						<div>
+							<span id="span-error-eventmanager" class="span-error">
+							</span>
+						</div>
+
+					</div>
+					<div class="col-sm-12 scrollcheckbox">
+						<!--  <div class="col-sm-8">
+						<input type="checkbox" th:name="Selectall"
+							th:onClick="checkAll(this)" class="m-2" /><b>Select all</b> <br>
+					</div> -->
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered" id="eventManagerTable" width="100%"
+									cellspacing="0">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Name</th>
+											<th>ERN Number/EmailId</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="eventManager :${listNonAssignedUsers}">
+											<th:block th:if="${eventManager.id == currentChampionship.createdBy.id}">
+												<td><input type="checkbox" id="eventManager" name="eventManager"
+														th:value="${eventManager.id}" class="eventManagerCheckbox m-2"
+														checked />
+												</td>
+											</th:block>
+											<th:block th:if="${eventManager.id != currentChampionship.createdBy.id}">
+												<td><input type="checkbox" id="eventManager" name="eventManager"
+														th:value="${eventManager.id}"
+														class="eventManagerCheckbox m-2" />
+												</td>
+											</th:block>
+											<td>[[${eventManager.getFullName}]]</td>
+											<td>[[${eventManager.userName}]]</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<input type="submit" value="Save" class="btn btn-secondary link-submit" />
+
+			<button type="button" class="btn btn-secondary btn-modal-cancel hideModal" data-dismiss="modal"
+				id="cancelBtn">Cancel</button>
+		</div>
+
+	</form>
+</div>
+
+
+<div th:replace="fragments/modal_fragments :: save_confirm_modal"></div>
+<script type="text/javascript" th:src="@{/js/refresh_modal_scripts.js}"></script>
+
+
+<script type="text/javascript">
+
+
+		$(document).ready(function () {
+
+			$('#eventManagerTable').DataTable({
+				"pageLength": 20,
+				'columns': [{
+					data: 'checkbox'
+				}, // index - 0
+				{
+					data: 'name'
+				}, // index - 1
+				{
+					data: 'phone'
+				} // index - 2
+
+				]
+
+			});
+
+			$(".link-submit").on("click", function (e) {
+				e.preventDefault();
+				var checkboxValue = $('.eventManagerCheckbox:checked').length;
+				var flageventManager = false;
+				if (checkboxValue == 0) {
+					$("#span-error-eventmanager").text("");
+					showSaveConfirmModal($(this));
+				}
+				else if (checkboxValue == 1) {
+					$("#span-error-eventmanager").text("");
+					$('#assignEventManagerForm').submit();
+				} else {
+						$("#span-error-eventmanager").text("Assign only one user");
+					
+				}
+			});
+
+		});
+		function showSaveConfirmModal(link) {
+
+			$("#confirmText").text("Are you sure you want assign admin to this championship" + "?");
+			$("#saveConfirmModal").modal();
+		}
+
+		$('#saveYesButton').on('click', function (e) {
+			$('#assignEventManagerForm').submit();
+		});
+
+
+
+
+
+</script>

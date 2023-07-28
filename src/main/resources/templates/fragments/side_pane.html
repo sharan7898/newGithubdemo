@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<body>
+	<div th:fragment="page_sidebar" id="layoutSidenav_nav">
+		<nav class="sb-sidenav accordion sb-sidenav-dark always-open" id="sidenavAccordion">
+			<div class="sb-sidenav-menu">
+				<div class="nav">
+
+					<th:block sec:authorize="hasAuthority('Judge')">
+					<br>
+						<a class="nav-link p-1" th:href="@{/judge/common-team-scoring}"> &nbsp;&nbsp;&nbsp;Dashboard</a>
+					</th:block>
+
+					<a class="nav-link" href="#collapseHome" data-toggle="collapse" data-target="#collapseHome"> Home
+						<div class="sb-sidenav-collapse-arrow">
+							<i class="fas fa-angle-down"></i>
+						</div>
+					</a>
+					
+
+					<div class="collapse show" id="collapseHome" data-parent="#sidenavAccordion" aria-expanded="false">
+						<nav class="sb-sidenav-menu-nested nav">
+							<th:block sec:authorize="hasAuthority('Administrator')">
+								<a class="nav-link p-1" th:href="@{/dashboard}">&nbsp;&nbsp;&nbsp;Dashboard</a>
+								<a class="nav-link" href="#collapseAdministrator" data-toggle="collapse"
+									data-target="#collapseAdministrator">
+									Administrator
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a>
+								<div class="collapse show" id="collapseAdministrator" aria-expanded="false">
+									<nav class="sb-sidenav-menu-nested nav">
+										
+										<a class="nav-link p-1" th:href="@{/admin/manage-roles}">Manage
+											Roles</a> <a class="nav-link p-1" th:href="@{/admin/manage-judges}">Manage
+											Judges</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-championship}">Manage
+											Championships</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-participant}">Manage
+											Participants</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-team}">Manage Teams</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-referee-panels}">Manage Judge
+
+											Panels</a><a class="nav-link p-1"
+											th:href="@{/admin/manage-eventmanager}">Manage
+											EventManagers </a>
+										<!--<a class="nav-link p-1"
+											th:href="@{/admin/select-participant-team}">Add
+											Participant Team Asanas </a> -->
+										<a class="nav-link p-1" th:href="@{/admin/populate-team-judge-panel}"> Assign
+											Judge Panels </a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-winners}">Evaluate Winners</a> <a
+											class="nav-link p-1" th:href="@{/admin/display-winners}">Display
+											Winners</a>
+										<!-- <a class="nav-link p-1"
+											th:href="@{/admin/select-championship}">View Live Scores</a> -->
+										<a class="nav-link p-1" th:href="@{/admin/view-scores}">
+											View Live Scores </a> <a class="nav-link p-1"
+											th:href="@{/admin/choose-championship}">View Team Scores
+										</a> <a class="nav-link p-1" th:href="@{/admin/manage-schedule}">Manage
+											Schedule</a> <a class="nav-link p-1" th:href="@{/admin/manage-score-board-image}">Manage
+											Score Board Image</a><a class="nav-link p-1"
+											th:href="@{/admin/navigation-history}">Navigation History
+										</a> <a class="nav-link p-1" th:href="@{/admin/audit-report}">User
+											AuditLog </a>
+									</nav>
+								</div>
+
+								<a class="nav-link" href="#collapseRegistration" data-toggle="collapse"
+									data-target="#collapseRegistration">
+									Registrations
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a>
+								<div class="collapse show" id="collapseRegistration" aria-expanded="false">
+									<nav class="sb-sidenav-menu-nested nav">
+										<a class="nav-link p-1"
+											th:href="@{/admin/manage-participant-registrations}">Manage
+											Participant Registrations</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-judge-registrations}">Manage
+											Judge Registrations</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-eventmanager-registrations}">Manage
+											EventManager Registrations</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-event-registrations}">Manage
+											Event Registrations</a>
+
+									</nav>
+								</div>
+
+								<a class="nav-link" href="#collapseEnrollments" data-toggle="collapse"
+									data-target="#collapseEnrollments">
+									Enrollments
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a>
+
+								<div class="collapse show" id="collapseEnrollments" aria-expanded="false">
+									<nav class="sb-sidenav-menu-nested nav">
+										<a class="nav-link p-1" th:href="@{/admin/manage-registered-team}">Participant
+											Championship
+											Enrollments</a>
+
+									</nav>
+								</div>
+
+								<a class="nav-link" href="#collapseMaster" data-toggle="collapse"
+									data-target="#collapseMaster">
+									Masters
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a>
+								<div class="collapse show mb-5" id="collapseMaster" aria-expanded="false">
+									<nav class="sb-sidenav-menu-nested nav">
+										<a class="nav-link p-1" th:href="@{/admin/manage-asana-category}">Asana
+											Category</a>
+										<a class="nav-link p-1" th:href="@{/admin/manage-agecategory}">Age
+											Category</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-championship-levels}">Championship
+											levels</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-asana}">Asanas</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-exec-score}">Asana
+											Execution Score</a> <a class="nav-link p-1"
+											th:href="@{/admin/manage-eval-questions}"> Judge
+											Evaluation Questions </a><a class="nav-link p-1"
+											th:href="@{/admin/manage-round-asanas}">Compulsory Asanas</a>
+
+
+									</nav>
+								</div>
+							</th:block>
+
+
+							<th:block sec:authorize="hasAuthority('Participant')">
+								
+								<div class="collapse show" id="collapseParticipant" aria-expanded="false">
+									<nav class="sb-sidenav-menu-nested nav">
+										<a class="nav-link p-1" th:href="@{/participant/championships}">Upcoming
+											Championships</a> <a class="nav-link p-1"
+											th:href="@{/participant/enrolled-championships}">Enrolled
+											Championships</a>
+											<a class="nav-link p-1"
+											th:href="@{/participant/register-team/checkStatus}">Check Team Status
+											</a>
+
+
+									</nav>
+								</div>
+
+
+							</th:block>
+
+							<th:block sec:authorize="hasAuthority('EventManager')">
+
+
+								<nav class="sb-sidenav-menu-nested nav">
+
+									<a class="nav-link p-1" th:href="@{/eventmanager/dashboard}">Dashboard</a>
+									<br> <a class="nav-link p-1"
+										th:href="@{/eventmanager/register-championship}">Register
+										Championship</a> <br> <a class="nav-link p-1"
+										th:href="@{/eventmanager/championship}">My Championships</a> <br>
+									<a class="nav-link p-1"
+										th:href="@{/eventmanager/championship/register-championship/checkStatus}">Check
+										Championship Status </a> <br> <a class="nav-link p-1"
+										th:href="@{'/eventmanager/manage-agecategory'}"> Age
+										Category </a>
+
+								</nav>
+							</th:block>
+
+
+							<div class="collapse show" id="collapseHome" data-parent="#sidenavAccordion"
+								aria-expanded="false">
+								<nav class="sb-sidenav-menu-nested nav">
+									<th:block sec:authorize="hasAuthority('SubAdministrator')">
+										<a class="nav-link" href="#collapseAdministrator" data-toggle="collapse"
+											data-target="#collapseAdministrator">
+											Administrator
+											<div class="sb-sidenav-collapse-arrow">
+												<i class="fas fa-angle-down"></i>
+											</div>
+										</a>
+										<div class="collapse show" id="collapseAdministrator" aria-expanded="false">
+											<nav class="sb-sidenav-menu-nested nav">
+												<a class="nav-link p-1" th:href="@{/admin/manage-judges}">Manage
+													Judges</a> <a class="nav-link p-1"
+													th:href="@{/admin/manage-championship}">Manage
+													Championships</a> <a class="nav-link p-1"
+													th:href="@{/admin/manage-participant}">Manage
+													Participants</a> <a class="nav-link p-1"
+													th:href="@{/admin/manage-team}">Manage Teams</a> <a
+													class="nav-link p-1"
+													th:href="@{/admin/manage-referee-panels}">Manage Judge
+
+													Panels</a><a class="nav-link p-1"
+													th:href="@{/admin/manage-eventmanager}">Manage
+													EventManagers </a>
+												<!--<a class="nav-link p-1"
+											th:href="@{/admin/select-participant-team}">Add
+											Participant Team Asanas </a> -->
+												<a class="nav-link p-1" th:href="@{/admin/populate-team-judge-panel}">
+													Assign
+													Judge Panels </a> <a class="nav-link p-1"
+													th:href="@{/admin/manage-winners}">Evaluate Winners</a> <a
+													class="nav-link p-1" th:href="@{/admin/display-winners}">Display
+													Winners</a>
+												<!-- <a class="nav-link p-1"
+											th:href="@{/admin/select-championship}">View Live Scores</a> -->
+												<a class="nav-link p-1" th:href="@{/admin/view-scores}">
+													View Live Scores </a> <a class="nav-link p-1"
+													th:href="@{/admin/choose-championship}">View Team
+													Scores </a> <a class="nav-link p-1"
+													th:href="@{/admin/manage-schedule}">Manage Schedule</a> <a
+													class="nav-link p-1"
+													th:href="@{/admin/navigation-history}">Navigation
+													History </a> <a class="nav-link p-1"
+													th:href="@{/admin/audit-report}">User AuditLog </a>
+											</nav>
+										</div>
+
+										<a class="nav-link" href="#collapseRegistration" data-toggle="collapse"
+											data-target="#collapseRegistration">
+											Registrations
+											<div class="sb-sidenav-collapse-arrow">
+												<i class="fas fa-angle-down"></i>
+											</div>
+										</a>
+										<div class="collapse show mb-5" id="collapseRegistration" aria-expanded="false">
+											<nav class="sb-sidenav-menu-nested nav">
+												<a class="nav-link p-1"
+													th:href="@{/admin/manage-participant-registrations}">Manage
+													Participant Registrations</a> <a class="nav-link p-1"
+													th:href="@{/admin/manage-judge-registrations}">Manage
+													Judge Registrations</a> <a class="nav-link p-1"
+													th:href="@{/admin/manage-eventmanager-registrations}">Manage
+													EventManager Registrations</a> <a class="nav-link p-1"
+													th:href="@{/admin/manage-event-registrations}">Manage
+													Event Registrations</a>
+
+											</nav>
+										</div>
+
+										<a class="nav-link" href="#collapseMaster" data-toggle="collapse"
+											data-target="#collapseMaster">
+											Masters
+											<div class="sb-sidenav-collapse-arrow">
+												<i class="fas fa-angle-down"></i>
+											</div>
+										</a>
+										<div class="collapse show mb-5" id="collapseMaster" aria-expanded="false">
+											<nav class="sb-sidenav-menu-nested nav">
+
+												<a class="nav-link p-1" th:href="@{/admin/manage-agecategory}">Age
+													Category</a> <a class="nav-link p-1"
+													th:href="@{/admin/manage-round-asanas}">Compulsory
+													Asanas</a>
+											</nav>
+										</div>
+									</th:block>
+
+
+									<!--	<th:block
+								sec:authorize="hasAuthority('Chief Judge') || hasAuthority('D Judge')">
+								<a class="nav-link" href="#collapseReferee"
+									data-toggle="collapse" data-target="#collapseReferee"> Home
+									<div class="sb-sidenav-collapse-arrow">
+										<i class="fas fa-angle-down"></i>
+									</div>
+								</a>
+
+
+
+									<div class="collapse show" id="collapseReferee"
+									aria-expanded="false">
+									<nav class="sb-sidenav-menu-nested nav">
+									 	<a class="nav-link p-1" th:href="@{/referee/group-scoring}">Manage
+											Scores</a>  
+									</nav>
+								</div>
+							</th:block>-->
+
+									<th:block th:if="${session.judgeTypeName} == 'Timekeeper Judge'">
+										<a class="nav-link" th:href="@{/judge/common-team-scoring}">
+											Give Scores </a>
+
+										<!--								<a class="nav-link"
+									th:href="@{/referee/manage-championship}">
+									Manage Championship Teams </a>-->
+
+									<!-- 	<a class="nav-link" th:href="@{/referee/display-winners}">
+											Display Winners </a> -->
+
+									</th:block>
+
+
+
+									<th:block th:if="${session.judgeTypeName} == 'Scorer'">
+
+										<a class="nav-link" th:href="@{/referee/manage-championship}">
+											Change Team Status </a>
+										<a class="nav-link" th:href="@{/judge/common-team-scoring}">
+											View & Calculate Scores </a>
+
+										<!-- 	<a class="nav-link" th:href="@{/admin/manage-exec-score}">
+									Asana Execution Scores </a>
+
+								<a class="nav-link" th:href="@{/referee/manage-users}">
+									Manage Judges </a>
+
+								<a class="nav-link" th:href="@{/referee/manage-team}">
+									Manage Teams </a>
+
+								<a class="nav-link" th:href="@{/referee/manage-referee-panels}">
+									Manage Judge Panels </a>  -->
+									</th:block>
+
+
+
+									<th:block th:if=" ${session.judgeTypeName}=='ChiefJudge'">
+										<a class=" nav-link" th:href="@{/judge/common-team-scoring}">
+
+											View & Calculate Scores </a>
+									</th:block>
+								</nav>
+							</div>
+					</div>
+
+					<!--  <div class="nav" id="navmenu"></div> -->
+
+
+				</div>
+
+
+				<!-- <div class="sb-sidenav-footer">
+                 <div class="small">Logged in as:</div>
+             </div> -->
+		</nav>
+
+	</div>
+
+</body>
+
+</html>

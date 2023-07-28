@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/judge/championship/'+${championshipId}+'/category/'+${asanaCategoryId}+'/'+${ageCategoryId}+'/'+${gender}+'/'+${round}}">Back</a>
+						</div>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert" id="message" hidden>
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-12">
+
+							<div class="card mb-4">
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-striped table-bordered"
+											id="timekeeperScoringTable" width="100%" cellspacing="0">
+											<thead>
+												<tr>
+													<th colspan=7>Chest Number -
+														[[${championshipParticipantTeams.participantTeam.chestNumber}]]
+														:</th>
+												</tr>
+												<tr>
+													<th>Sl no.</th>
+													<th>Asana</th>
+													<th>Asana Image</th>
+													<th>Base Value</th>
+													<th>Attempt 1 (time in seconds)</th>
+													<th>Attempt 2 (time in seconds)</th>
+													<th>Penalty</th>
+													<th>Save</th>
+													<th>Total score</th>
+												</tr>
+											</thead>
+											<tbody>
+												<th:block th:if="${#lists.isEmpty(listTimekeeperScoring)}">
+													<tr>
+														<td colspan="8" class="text-center">No Asanas added .</td>
+													</tr>
+												</th:block>
+												<th:block
+													th:if="${not #lists.isEmpty(listTimekeeperScoring)}">
+
+													<tr
+														th:each="participantTeamAsanaScore,iterationStatus : ${listTimekeeperScoring}">
+
+														<td th:text="${iterationStatus.count}"></td>
+														<td>[[${participantTeamAsanaScore.participantTeamAsanas.asanaCode}]]-[[${participantTeamAsanaScore.participantTeamAsanas.asana.name}]]</td>
+														<td><img id="thumbnail" alt="Img" class="img-fluid"
+															th:src="@{${participantTeamAsanaScore.participantTeamAsanas.asana.ImagePath}}" />
+														</td>
+														<td>[[${participantTeamAsanaScore.participantTeamAsanas.baseValue}]]</td>
+
+
+														<th:block
+															th:if="${participantTeamAsanaScore.status==null}">
+
+
+															<td
+																th:if="${participantTeamAsanaScore.participantTeamAsanas.compulsory == true && isFinal == true}"><input
+																type="number" class="small-txtbox" min="0" max="15"
+																step="1" th:entityName="attempt1"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:id="'attempt1'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1}"
+																onchange="validateAndSaveTime(this);" /> <input
+																type="checkbox"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt1CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityName="attempt1"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1Status}"
+																onclick="calculateTotalScore(this);" /></td>
+
+															<td
+																th:if="${participantTeamAsanaScore.participantTeamAsanas.compulsory == true && isFinal == false}"><input
+																type="number" class="small-txtbox" min="0" max="30"
+																step="1" th:entityName="attempt1"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:id="'attempt1'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1}"
+																onchange="validateAndSaveTime(this);" /> <input
+																type="checkbox"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt1CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityName="attempt1"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1Status}"
+																onclick="calculateTotalScore(this);" /></td>	
+
+															<td
+																th:if="${participantTeamAsanaScore.participantTeamAsanas.compulsory != true && isFinal == true}"><input
+																type="number" class="small-txtbox" min="0" max="15"
+																step="1" th:entityName="attempt1"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:id="'attempt1'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1}"
+																onchange="validateAndSaveTime(this);" /> <input
+																type="checkbox" th:data-maxm="15"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt1CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityName="attempt1"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1Status}"
+																onclick="calculateTotalScore(this);" /></td>
+																
+																<td
+																th:if="${participantTeamAsanaScore.participantTeamAsanas.compulsory != true && isFinal == false}"><input
+																type="number" class="small-txtbox" min="0" max="15"
+																step="1" th:entityName="attempt1"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:id="'attempt1'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1}"
+																onchange="validateAndSaveTime(this);" /> <input
+																type="checkbox" th:data-maxm="15"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt1CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityName="attempt1"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1Status}"
+																onclick="calculateTotalScore(this);" /></td>
+
+
+															<td
+																th:if="${participantTeamAsanaScore.participantTeamAsanas.compulsory == true && isFinal == true}"><input
+																type="number" class="small-txtbox" min="0" max="15"
+																step="1" th:entityName="attempt2" 
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:id="'attempt2'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt2}"
+																onchange="validateAndSaveTime(this);" /> <input
+																th:if="${participantTeamAsanaScore.attempt2Status!=true}"
+																type="checkbox" 
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" /> <input
+																th:if="${participantTeamAsanaScore.attempt2Status==true}"
+																type="checkbox"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" /></td>
+																
+																<td
+																th:if="${participantTeamAsanaScore.participantTeamAsanas.compulsory == true && isFinal == false}"><input
+																type="number" class="small-txtbox" min="0" max="30"
+																step="1" th:entityName="attempt2" th:data-maxm="30"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:id="'attempt2'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt2}"
+																onchange="validateAndSaveTime(this);" /> <input
+																th:if="${participantTeamAsanaScore.attempt2Status!=true}"
+																type="checkbox" th:data-maxm="30"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" /> <input
+																th:if="${participantTeamAsanaScore.attempt2Status==true}"
+																type="checkbox" th:data-maxm="30"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" /></td>
+
+															<td
+																th:if="${participantTeamAsanaScore.participantTeamAsanas.compulsory !=true && isFinal == true}"><input
+																type="number" class="small-txtbox" min="0" max="15"
+																step="1" th:entityName="attempt2" th:data-maxm="15"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:id="'attempt2'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt2}"
+																onchange="validateAndSaveTime(this);" /> <input
+																th:if="${participantTeamAsanaScore.attempt2Status!=true}"
+																type="checkbox" th:data-maxm="15"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" /> <input
+																th:if="${participantTeamAsanaScore.attempt2Status==true}"
+																type="checkbox" th:data-maxm="15"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" /></td>
+																
+															<td
+																th:if="${participantTeamAsanaScore.participantTeamAsanas.compulsory !=true && isFinal == false}"><input
+																type="number" class="small-txtbox" min="0" max="15"
+																step="1" th:entityName="attempt2"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:id="'attempt2'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt2}"
+																onchange="validateAndSaveTime(this);" /> <input
+																th:if="${participantTeamAsanaScore.attempt2Status!=true}"
+																type="checkbox" th:data-maxm="15"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" /> <input
+																th:if="${participantTeamAsanaScore.attempt2Status==true}"
+																type="checkbox"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2"
+																th:compulsory="${participantTeamAsanaScore.participantTeamAsanas.compulsory}"
+																th:isFinal="${isFinal}"
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" /></td>
+
+
+															<td><input type="checkbox"
+																th:id="'penaltyCheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="penaltyCheckBox"
+																th:class="'rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.penaltyScore}"
+																onclick="calculateTotalScore(this);" /></td>
+
+															<td><input type="checkbox" value="Save" name="save"
+																th:checked="*{participantTeamAsanaScore.status}"
+																th:id="'saveCheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="saveCheckBox"
+																onclick="saveFinalTime(this);" /></td>
+
+
+															<td><input type="number" class="small-txtbox"
+																th:id="'totalScore'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="totalScore"
+																th:value="*{participantTeamAsanaScore.totalScore}"
+																readonly /></td>
+
+														</th:block>
+
+
+														<th:block
+															th:unless="${participantTeamAsanaScore.status == null}">
+
+															<td><input type="number" class="small-txtbox"
+																min="0" max="30" step="1" th:entityName="attempt1"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:id="'attempt1'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1}"
+																onchange="validateAndSaveTime(this);" disabled /> <input
+																th:if="${participantTeamAsanaScore.attempt1Status==null  or participantTeamAsanaScore.attempt1Status!=true}"
+																type="checkbox"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt1CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityName="attempt1"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1Status}"
+																onclick="calculateTotalScore(this);" disabled /> <input
+																th:if="${participantTeamAsanaScore.attempt1Status==true}"
+																type="checkbox"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt1CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityName="attempt1" checked
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt1Status}"
+																onclick="calculateTotalScore(this);" disabled /></td>
+
+															<td><input type="number" class="small-txtbox"
+																min="0" max="30" step="1" th:entityName="attempt2"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:id="'attempt2'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.attempt2}"
+																onchange="validateAndSaveTime(this);" disabled /> <input
+																type="checkbox"
+																th:if="${participantTeamAsanaScore.attempt2Status==null or participantTeamAsanaScore.attempt2Status!=true}"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2"
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" disabled /> <input
+																th:if="${participantTeamAsanaScore.attempt2Status==true}"
+																type="checkbox"
+																th:class="'attemptCheckBox'+${participantTeamAsanaScore.id} + ' rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:id="'attempt2CheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="attempt2" checked
+																th:value="*{participantTeamAsanaScore.attempt2Status}"
+																onclick="calculateTotalScore(this);" disabled /></td>
+
+															<td><input type="checkbox"
+																th:if="${participantTeamAsanaScore.penaltyScore==null or participantTeamAsanaScore.penaltyScore!=true }"
+																th:id="'penaltyCheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="penaltyCheckBox"
+																th:class="'rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.penaltyScore}"
+																onclick="calculateTotalScore(this);" disabled /> <input
+																type="checkbox"
+																th:if="${participantTeamAsanaScore.penaltyScore==true}"
+																th:id="'penaltyCheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="penaltyCheckBox" checked
+																th:class="'rowCheckBox'+${participantTeamAsanaScore.id}"
+																th:value="*{participantTeamAsanaScore.penaltyScore}"
+																onclick="calculateTotalScore(this);" disabled /></td>
+
+
+															<td><input type="checkbox" value="Save" name="save"
+																th:checked="*{participantTeamAsanaScore.status}"
+																th:id="'saveCheckBox'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="saveCheckBox"
+																onclick="saveFinalTime(this);" disabled /></td>
+
+
+															<td><input type="number" class="small-txtbox"
+																th:id="'totalScore'+${participantTeamAsanaScore.id}"
+																th:entityId="${participantTeamAsanaScore.id}"
+																th:entityName="totalScore"
+																th:value="*{participantTeamAsanaScore.totalScore}"
+																disabled /></td>
+
+														</th:block>
+
+
+
+
+
+													</tr>
+												</th:block>
+											</tbody>
+
+										</table>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="editRefereeScoreModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+
+		function validateAndSaveTime(input) {
+			let id = input.id;
+			let isValidTime = validateScore(input);
+			if (isValidTime) {
+				console.log("entered");
+				saveScore(input);
+			} else {
+				document.getElementById(id).style.backgroundColor = 'red';
+				document.getElementById(id).focus();
+			}
+
+		}
+
+		function calculateTotalScore(input) {
+			disableOtherTwoCheckBoxes(input);
+			var params;
+			var id = input.id;
+			var totalScore = 0.0;
+			var isCompulsory = input.getAttribute('compulsory');
+			var isFinal = input.getAttribute('isFinal');
+			var scoreValidationStatus = true;
+			var attemptNumber = input.getAttribute('entityName');
+			var entityId = input.getAttribute('entityId');
+			console.log($('#' + id).is(":checked"));
+			if ($('#' + id).is(":checked")) {
+				var timeInSec = $('#' + attemptNumber + entityId).val();
+				var checkedElement = $('#' + attemptNumber + entityId);
+				var attempt;
+
+				if (!id.includes("penaltyCheckBox")) {
+					scoreValidationStatus = validateScore(checkedElement);
+
+					if (scoreValidationStatus) {
+
+						if (attemptNumber == "attempt1") {
+							attempt = 1;
+							totalScore = calculateTotalScoreForAttempt(attempt,
+									timeInSec, isCompulsory,isFinal);
+
+						} else if (attemptNumber == "attempt2") {
+							attempt = 2;
+
+							totalScore = calculateTotalScoreForAttempt(attempt,
+									timeInSec, isCompulsory,isFinal);
+
+						}
+						console.log("totalScore" + totalScore);
+						$('#totalScore' + entityId).val(totalScore);
+
+					} else {
+						$('#' + id).prop('checked', false);
+						document.getElementById(attemptNumber + entityId).style.backgroundColor = 'red';
+						document.getElementById(attemptNumber + entityId)
+								.focus();
+
+						//	alert("Enter valid score");
+						showErrorModal("Enter valid score");
+					}
+
+				} else {
+
+					$('#totalScore' + entityId).val(totalScore);
+
+				}
+			}
+			saveScore(input);
+		}
+
+		function saveFinalTime(input) {
+			var id = input.id;
+			var entityId = input.getAttribute('entityId');
+			var attempt1 = $('#attempt1' + entityId).val();
+			var attempt2 = $('#attempt2' + entityId).val();
+			var penalty = $('#penaltyCheckBox' + entityId).is(":checked");
+			var attempt1checkBox = $('#attempt1CheckBox' + entityId).is(
+					":checked");
+			var attempt2checkBox = $('#attempt2CheckBox' + entityId).is(
+					":checked");
+			var totalScore = $('#totalScore' + entityId).val();
+
+			var isOneCheckboxChecked = false;
+			var checkedAttemptElements = $('.rowCheckBox' + entityId
+					+ ':checked');
+			if (checkedAttemptElements.length == 1) {
+				isOneCheckboxChecked = true;
+
+			}
+			console.log("penalty" + penalty);
+
+			if (isOneCheckboxChecked) {
+				var postUrl = base_url + "judge/timekeeperJudge/" + entityId
+						+ "/saveAttemptTime";
+				params = {
+
+					attempt1 : attempt1,
+					attempt1Status : attempt1checkBox,
+					attempt2 : attempt2,
+					attempt2Status : attempt2checkBox,
+					penalty : penalty,
+					totalScore : totalScore,
+					status : true
+				}
+
+				$.post(postUrl, params, function(response) {
+					console.log("Total Score saved successfully");
+					$('#message').removeAttr('hidden', true);
+					$('#message').text("Score Saved Successfully");
+					//$('#totalScore' + entityId).val(totalScore);
+					location.reload();
+
+				}).fail(function() {
+					showErrorModal("Could not connect to the server");
+				});
+
+			} else {
+				showErrorModal("Score not saved, Please enter valid score.");
+				//	alert("Score not saved, Please enter valid score.");
+				$('#' + id).prop('checked', false);
+				//location.reload();
+			}
+		}
+
+		// ----------------------------------utility methods--------------------------------------- 
+
+		function saveScore(input) {
+			var id = input.id;
+			var entityId = input.getAttribute('entityId');
+			var attemptNumber = input.getAttribute('entityName');
+			var time = $('#' + id).val();
+			var params;
+
+			var currentAttempt1 = $('#attempt1' + entityId).val();
+			var currentAttempt2 = $('#attempt2' + entityId).val();
+			var currentPenalty = $('#penaltyCheckBox' + entityId)
+					.is(":checked");
+			var currentAttempt1checkBox = $('#attempt1CheckBox' + entityId).is(
+					":checked");
+			var currentAttempt2checkBox = $('#attempt2CheckBox' + entityId).is(
+					":checked");
+			var currentTotalScore = $('#totalScore' + entityId).val();
+			console.log("attempt1 " + currentAttempt1 + " attempt2 "
+					+ currentAttempt2 + " penalty " + currentPenalty
+					+ " attempt1checkBox " + currentAttempt1checkBox
+					+ " attempt2checkBox " + currentAttempt2checkBox);
+
+			params = {
+
+				attempt1 : currentAttempt1,
+				attempt1Status : currentAttempt1checkBox,
+				attempt2 : currentAttempt2,
+				attempt2Status : currentAttempt2checkBox,
+				penalty : currentPenalty,
+			//	totalScore : currentTotalScore
+			}
+
+			//make rest call
+			var attemptNumber = input.getAttribute('entityName');
+			var postUrl = base_url + "judge/timekeeperJudge/" + entityId
+					+ "/saveAttemptTime";
+
+			$.post(postUrl, params, function(response) {
+				console.log("Time saved successfully");
+			}).fail(function() {
+				showErrorModal("Could not connect to the server");
+			});
+
+		}
+
+		function disableOtherTwoCheckBoxes(input) {
+
+			let id = input.id;
+			console.log(id);
+			let entityId = input.getAttribute('entityId');
+			let attempt1Element = $('#attempt1' + entityId);
+			let attempt1Checkbox = $('#attempt1CheckBox' + entityId);
+			let attempt2Element = $('#attempt2' + entityId);
+			let attempt2Checkbox = $('#attempt2CheckBox' + entityId);
+			let penaltyCheckbox = $('#penaltyCheckBox' + entityId);
+			console.log("i" + attempt2Checkbox[0].id);
+			if ($('#' + id).is(":checked")) {
+				if (id == attempt1Checkbox[0].id) {
+					attempt2Checkbox.attr('disabled', true);
+					penaltyCheckbox.attr('disabled', true);
+					attempt2Element.attr('disabled', true);
+					if (validateScore(attempt1Element)) {
+						attempt1Element.attr('disabled', true);
+					}
+
+				} else if (id == attempt2Checkbox[0].id) {
+					attempt1Checkbox.attr('disabled', true);
+					penaltyCheckbox.attr('disabled', true);
+					attempt1Element.attr('disabled', true);
+					if (validateScore(attempt2Element)) {
+						attempt2Element.attr('disabled', true);
+					}
+				} else {
+					attempt1Checkbox.attr('disabled', true);
+					attempt1Element.attr('disabled', true);
+					attempt2Checkbox.attr('disabled', true);
+					attempt2Element.attr('disabled', true);
+
+				}
+			} else {
+
+				if (id == attempt1Checkbox[0].id) {
+					attempt2Checkbox.removeAttr('disabled', true);
+					penaltyCheckbox.removeAttr('disabled', true);
+					attempt2Element.removeAttr('disabled', true);
+					attempt1Element.removeAttr('disabled', true);
+
+				} else if (id == attempt2Checkbox[0].id) {
+					attempt1Checkbox.removeAttr('disabled', true);
+					penaltyCheckbox.removeAttr('disabled', true);
+					attempt1Element.removeAttr('disabled', true);
+					attempt2Element.removeAttr('disabled', true);
+				} else {
+					attempt1Checkbox.removeAttr('disabled', true);
+					attempt1Element.removeAttr('disabled', true);
+					attempt2Checkbox.removeAttr('disabled', true);
+					attempt2Element.removeAttr('disabled', true);
+
+				}
+
+			}
+
+		}
+
+		function calculateTotalScoreForAttempt(attempt, timeInSec, isCompulsory,isFinal) {
+			var totalScore = 0.0;
+
+			if (isCompulsory == 'true' && isFinal == 'true') {
+
+				if (attempt == 1) {
+					//for
+					//totalScore = (Number(timeInSec) * 2) / 15;
+					totalScore = (Number(timeInSec) * 2) / 15;
+				}
+				if (attempt == 2) {
+					//totalScore = (Number(timeInSec) * 2) / 15;
+					totalScore = (Number(timeInSec) * 1) / 15;
+				}
+				return parseFloat(Number(totalScore)).toFixed(2);
+			}else if (isCompulsory == 'true' && isFinal == 'false') {
+
+				if (attempt == 1) {
+					//for
+					//totalScore = (Number(timeInSec) * 2) / 15;
+					totalScore = (Number(timeInSec) * 2) / 30;
+				}
+				if (attempt == 2) {
+					//totalScore = (Number(timeInSec) * 2) / 15;
+					totalScore = (Number(timeInSec) * 1) / 30;
+				}
+				return parseFloat(Number(totalScore)).toFixed(2);
+			} else if (isCompulsory == 'false' && isFinal == 'true') {
+
+				if (attempt == 1) {
+					//for
+					//totalScore = (Number(timeInSec) * 2) / 15;
+					totalScore = (Number(timeInSec) * 2) / 15;
+				}
+				if (attempt == 2) {
+					//totalScore = (Number(timeInSec) * 2) / 15;
+					totalScore = (Number(timeInSec) * 1) / 15;
+				}
+				return parseFloat(Number(totalScore)).toFixed(2);
+			}  else if (isCompulsory == 'false' && isFinal == 'false') {
+				if (attempt == 1) {
+					totalScore = (Number(timeInSec) * 2) / 15;
+				}
+				if (attempt == 2) {
+					totalScore = (Number(timeInSec) * 1) / 15;
+				}
+				return parseFloat(Number(totalScore)).toFixed(2);
+			}
+
+		}
+
+		function validateScore(input) {
+			console.log(input);
+			let id = input.id;
+
+			if (id == undefined) {
+				id = input[0].id;
+			}
+			console.log("id" + id);
+			let max = input.max;
+			if (max == undefined) {
+				max = input[0].max;
+			}
+
+			let timeInSec = $('#' + id).val();
+
+			console.log("input id" + id + " timeInSec " + timeInSec);
+			if (Number(timeInSec) == null || Number(timeInSec) == "" || timeInSec != Math.floor(timeInSec)) {
+				document.getElementById(id).style.backgroundColor = 'red';
+				document.getElementById(id).focus();
+				showErrorModal("Enter valid time");
+				//	alert("Enter valid time");
+				return false;
+			} else if (Number(timeInSec) < 0 || Number(timeInSec) > max) {
+				document.getElementById(id).style.backgroundColor = 'red';
+				document.getElementById(id).focus();
+				showErrorModal("Enter valid time");
+				//	alert("Enter valid time");
+				return false;
+			} else if (Number(timeInSec) == 0) {
+				document.getElementById(id).style.backgroundColor = '';
+				return true;
+			} else {
+				document.getElementById(id).style.backgroundColor = '';
+				return true;
+			}
+
+		}
+	</script>
+</body>
+</html>

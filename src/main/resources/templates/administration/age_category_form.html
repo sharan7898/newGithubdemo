@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head th:replace="fragments/layout :: page_head('Manage Age Category', 'tag')"></head>
+
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-2 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall" th:href="@{/admin/manage-agecategory}">Back</a>
+						</div>
+					</div>
+
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-10 col-lg-10 col-xl-9">
+							<form id="roleAddForm" th:action="@{/admin/manage-agecategory/save}" method="post"
+								th:object="${ageCategory}" onsubmit="return validateForm(this);">
+								<input type="hidden" th:field="*{id}" />
+								<div class="form-group row">
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="title">Title <span
+												class="form-star">*</span></label>
+										<input type="text" class="form-control" th:field="*{title}" id="ageTitle"
+											minlength="2" maxlength="38">
+										<span id="span-error-ageTitle" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="code">Code <span
+												class="form-star">*</span></label>
+										<input type="text" minlength="2" maxlength="35" class="form-control"
+											th:field="*{code}" id="ageCode">
+										<span id="span-error-ageCode" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="ageAbove">Age above <span
+												class="form-star">*</span></label>
+										<input type="number" min="0" class="form-control" th:field="*{ageAbove}"
+											oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+											maxlength="2">
+										<span id="span-error-ageAbove" class="span-error"> </span>
+									</div>
+
+									<div class="col-md-6 mb-3">
+										<label class="form-label" for="ageBelow">Age below <span
+												class="form-star">*</span></label>
+										<input type="number" min="0"
+											oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+											maxlength="2"  class="form-control" th:field="*{ageBelow}">
+										<span id="span-error-ageBelow" class="span-error"> </span>
+									</div>
+								</div>
+
+
+
+								<div class="form-group row">
+									<div class="col-md-12 mb-3">
+										<div class="checkbox">
+											<input type="checkbox" th:field="*{enabled}">
+											<label class="label"> &nbsp; Enabled</label>
+										</div>
+									</div>
+								</div>
+                                <input type=hidden th:text="${message1}"/>
+								<div class="form-group text-center mt-4 mb-5">
+
+									<input type="submit" value="Save" id="submitButton" class="btn btn-primary" />
+									<a th:href="@{/admin/manage-agecategory}" type="button"
+										class="btn btn-primary-outline" id="buttonCancel">Cancel</a>
+								</div>
+								<div id="waiting" style="display:none; color:red;"  >Please wait until it loads...</div>
+							</form>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+	
+	<div class="modal" id="waitModal" tabindex="-1"
+		data-backdrop="static" data-bs-keyboard="false"
+		aria-labelledby="exampleModalLabel1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" >
+			<div class="modal-content">
+				<div class="modal-header text-white" style="height:70px"  >
+					<h5 class="modal-title" id="exampleModalLabel">Saving Please Wait...</h5>
+				</div>
+				<div class="modal-body d-flex flex-column align-items-center" >
+					<div class="text-center mt-4">
+							<img th:src="@{/images/importProgress.gif}" style="height:120px"class="importLoadIcon" />
+						</div>
+					</div>
+				</div>
+				<div class="modal-body d-flex flex-column align-items-center">
+					<div class="mt-4 text-css">
+						<span></span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+
+		$(document).ready(function () {
+			var pathname = window.location.pathname;
+			var parentpath = pathname.substring(0, 24);
+			var activeLink = document.querySelector('a.nav-link[href="' + parentpath + '"]');
+			activeLink.classList.add("active");
+
+		});
+
+		function validateForm(form) {
+			var ageAbove = document.getElementById('ageAbove').value;
+			var ageBelow = document.getElementById('ageBelow').value;
+
+			if ((document.getElementById('ageTitle').value) == "") {
+				$("#span-error-ageTitle").text("Enter the age title");
+				return false;
+			} else {
+
+				$("#span-error-ageTitle").text("");
+			}
+
+			if ((document.getElementById('ageCode').value) == "") {
+				$("#span-error-ageCode").text("Enter the age code field");
+				return false;
+			} else {
+
+				$("#span-error-ageCode").text("");
+			}
+
+			if ((document.getElementById('ageAbove').value) == "") {
+				$("#span-error-ageAbove").text("Enter the age above field");
+				return false;
+			} else {
+
+				//flagStartDate = true;
+				if (Number(ageAbove) < Number(ageBelow)) {
+					//var flagStartDateCheck = true;
+					$("#span-error-ageAbove").text("");
+
+
+				} else {
+
+					if ((document.getElementById('ageBelow').value) == "") {
+						$("#span-error-ageBelow").text("Enter the age below field");
+						return false;
+					} else {
+						if (Number(ageAbove) < Number(ageBelow)) {
+							//var flagStartDateCheck = true;
+							$("#span-error-ageBelow").text("");
+
+
+						} else {
+							//	flagStartDateCheck = false;
+							$("#span-error-ageBelow").text("Age must be above");
+							return false;
+
+						}
+						$("#span-error-ageBelow").text("");
+					}
+
+					//	flagStartDateCheck = false;
+					$("#span-error-ageAbove").text("Age must be below than AgeBelow");
+					return false;
+
+				}
+				$("#span-error-ageAbove").text("");
+
+			}
+           
+			$("#submitButton").prop("disabled", true);
+
+			$("#waitModal").modal('show');
+			return true;
+
+
+
+			//	return (flagTitle && flagAgeCode && flagAgeAbove && flagAgeBelow)
+		}
+	</script>
+
+</body>
+
+</html>

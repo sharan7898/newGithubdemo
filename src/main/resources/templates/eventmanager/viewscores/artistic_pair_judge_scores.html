@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+		<div
+						th:replace="fragments/layout :: eventmanager_championship_subheader"></div>
+			<main>
+				<div class="container-fluid">
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h3 class="content-title">[[${pageTitle}]]</h3>
+						</div>
+						<div class="col-sm-4 text-sm-right align-self-center">
+							<a class="btn btn-primary btnActionSmall"
+								th:href="@{'/eventmanager/championship/view-scores/'+${championshipId}+'/category/'+${asanaCategoryId}+'/'+${ageCategoryId}+'/'+${gender}+'/'+${round}}">Back</a>
+						</div>
+					</div>
+					<div th:if="${errorMessage != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${errorMessage}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert" id="message" hidden>
+
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+						<div
+					class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert" id="errormessage" hidden>
+						
+					</div>
+		
+						<div
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert" id="successmessage" hidden>
+
+						
+					</div>
+					<hr>
+					<br />
+
+					<div class="row justify-content-center align-items-center h-100">
+						<div class="col col-sm-6 col-md-12 col-lg-12 col-xl-12">
+							<form id="calculateFinalScores" method="post">
+								<input type="hidden" name="championshipParticipantTeamsId"
+									id="championshipParticipantTeamsId"
+									th:value="${championshipTeamId}" />
+								<th:block th:if="${championshipRound == 'COMPLETED'}">
+									<th:block th:if="${allJudgeScoresGivenStatus}">
+										<input type="submit" id="calculateTeamScores" disabled="true"
+											onclick="calculateFinalScoresTotalForTeam();" value="Calculate Final Scores"
+											class="btn btn-primary" />
+									</th:block>
+
+									<th:block th:unless="${allJudgeScoresGivenStatus}">
+										<input type="submit" id="calculateTeamScores" disabled="true"
+											value="Calculate Final Scores" class="btn btn-primary" />
+									</th:block>
+
+								</th:block>
+								<th:block th:if="${championshipRound != 'COMPLETED'}">
+									<th:block th:if="${allJudgeScoresGivenStatus}">
+										<input type="submit" id="calculateTeamScores"
+											onclick="calculateFinalScoresTotalForTeam();" value="Calculate Final Scores"
+											class="btn btn-primary" />
+									</th:block>
+
+									<th:block th:unless="${allJudgeScoresGivenStatus}">
+										<input type="submit" id="calculateTeamScores" disabled="true"
+											value="Calculate Final Scores" class="btn btn-primary" />
+									</th:block>
+								</th:block>
+
+							</form>
+							<br />
+
+							<!-- /*/  D judge Scores/*/ -->
+							<div class="card mb-4">
+								<div class="card-header">
+									<h4 class="mt-2">D JUDGE</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<th:block
+											th:if="${not #maps.isEmpty(refereeParticipantAsanaDJudgeScoreMap)}">
+											<th:block
+												th:each="participantTeamRefereeEntry,iterationStatus :${refereeParticipantAsanaDJudgeScoreMap}"
+												th:with="participantTeamReferee=${participantTeamRefereeEntry.key},participantTeamRefereeDJudgeScoreMap=${participantTeamRefereeEntry.value}">
+												<div class="p-3 mb-2 bg-secondary text-white">
+													<b>D JUDGE - [[${participantTeamReferee.getUserName}]]</b>
+												</div>
+
+												<table class="table table-striped table-bordered"
+													id="teamScoreTable" width="100%" cellspacing="0">
+													<thead>
+
+														<tr>
+															<th:block
+																th:each="participantAsanaScore,iterationStatus1 : ${participantTeamRefereeDJudgeScoreMap}"
+																th:with="participantTeamParticipant=${participantAsanaScore.key}">
+
+																<th th:if="${iterationStatus1.count==1}">Chest
+																	Number -
+																	[[${championshipParticipantTeams.participantTeam.chestNumber}]]
+																	: <span class="float-right"> Participant -
+																		[[${participantTeamParticipant.sequenceNumber}]] </span>
+																</th>
+
+																<th th:if="${iterationStatus1.count>1}"><span
+																	class="float-right"> Participant -
+																		[[${participantTeamParticipant.sequenceNumber}]] </span></th>
+																<th th:if="${iterationStatus1.count>1}"></th>
+															</th:block>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th:block
+																th:each="participantAsanaScore,iterationStatus : ${participantTeamRefereeDJudgeScoreMap}"
+																th:with="participantTeamParticipant=${participantAsanaScore.key},participantTeamParticipantAsanasMap=${participantAsanaScore.value}">
+																<td>
+																	<table>
+																		<thead>
+																			<th:block
+																				th:each="participantTeamParticipantAsanasScoreEntry,iterationStatus1 : ${participantTeamParticipantAsanasMap}"
+																				th:with="participantTeamParticipantAsana=${participantTeamParticipantAsanasScoreEntry.key},listParticipantTeamParticipantAsanaScores=${participantTeamParticipantAsanasScoreEntry.value}">
+																				<th:block th:if="${iterationStatus1.index} == 0">
+																					<tr style="height: 75px;">
+																						<th:block
+																							th:each="questionScore,iterationStatus2:${listParticipantTeamParticipantAsanaScores}">
+
+																							<th:block th:if="${iterationStatus2.index} == 0">
+
+																								<th th:if="${iterationStatus1.index} == 0">SL No</th>
+																								<th
+																									th:rowspan="${listParticipantTeamParticipantAsanaScores.size}">Asana
+																								</th>
+														
+																								<th
+																									th:rowspan="${listParticipantTeamParticipantAsanaScores.size}">Base
+																									Value</th>
+																							</th:block>
+																							<th>Question Id</th>
+																							<th>Reference Marks</th>
+																							<th>Score</th>
+																					</tr>
+																				</th:block>
+																			</th:block>
+																		</thead>
+																		<tbody>
+																			<th:block
+																				th:each="participantTeamParticipantAsanasScoreEntry,iterationStatus1 : ${participantTeamParticipantAsanasMap}"
+																				th:with="participantTeamParticipantAsana=${participantTeamParticipantAsanasScoreEntry.key},listParticipantTeamParticipantAsanaScores=${participantTeamParticipantAsanasScoreEntry.value}">
+																				<tr style="height:75px;"
+																					th:entityName="${participantTeamParticipantAsana.id}">
+																					<th:block
+																						th:each="questionScore,iterationStatus2:${listParticipantTeamParticipantAsanaScores}">
+
+																						<th:block th:if="${iterationStatus2.index} == 0">
+
+																							<td
+																								th:rowspan="${listParticipantTeamParticipantAsanaScores.size}">[[${iterationStatus1.count}]]</td>
+
+
+																							<td
+																								th:rowspan="${listParticipantTeamParticipantAsanaScores.size}">[[${participantTeamParticipantAsana.asanaCode}]]-[[${participantTeamParticipantAsana.asana.name}]]
+																							</td>
+																				
+																							<td
+																								th:id="'baseValue'+${participantTeamParticipantAsana.id}"
+																								th:class="'apqBaseValue'+${iterationStatus2.count}"
+																								th:rowspan="${listParticipantTeamParticipantAsanaScores.size}">[[${participantTeamParticipantAsana.baseValue}]]</td>
+																						</th:block>
+																						<td>[[${iterationStatus2.count}]]</td>
+																						<td th:id="'maxValue'+${questionScore.id}">[[${questionScore.asanaEvaluationQuestion.referenceMarks}]]</td>
+																						<td>[[${questionScore.score}]] </td>
+																		
+																				</tr>
+																			</th:block>
+																		</tbody>
+																	</table>
+																</td>
+
+															</th:block>
+															<td>
+																<th:block
+																	th:if="${not #maps.isEmpty(refereeDJudgeCommonQuestionAsanaScoreMap)}">
+																	<th:block
+																		th:each="participantTeamRefereeEntry,iterationStatus3 :${refereeDJudgeCommonQuestionAsanaScoreMap}"
+																		th:with="participantTeamReferee=${participantTeamRefereeEntry.key},commonQuestionDJudgeScoreMap=${participantTeamRefereeEntry.value}">
+																		<th:block
+																			th:if="${iterationStatus.count == iterationStatus3.count}">
+
+
+																			<th:block
+																				th:each="commonAsanaQuestionEntry,iterationStatus1 : ${commonQuestionDJudgeScoreMap}"
+																				th:with="asanaQuestion=${commonAsanaQuestionEntry.key},listAsanaScoreRow=${commonAsanaQuestionEntry.value}">
+																				<table>
+
+																					<thead>
+																						<tr style="height: 75px;">
+																					
+																							<th>Formation</th>
+																							
+																						</tr>
+																					</thead>
+																					<tbody>
+																						<th:block
+																							th:each="asanaScoreRow,iterationStatus1 : ${listAsanaScoreRow}">
+																							<tr style="height:75px;">
+																								<td>[[${asanaScoreRow.score}]]</td>
+																							</tr>
+																						</th:block>
+																					</tbody>
+
+																				</table>
+																			</th:block>
+																		</th:block>
+																	</th:block>
+																</th:block>
+																
+															</td>
+
+														</tr>
+													</tbody>
+												</table>
+
+
+											</th:block>
+										</th:block>
+
+
+									</div>
+								</div>
+							</div>
+							<!-- /*/  D judge Scores/*/ -->
+
+							<!-- /*/  Artistic judge Scores /*/ -->
+							<div class="card mb-4">
+								<div class="card-header">
+									<h4 class="mt-2">A JUDGE</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<th:block
+											th:if="${not #maps.isEmpty(refereeAJudgeTeamScoreMap)}">
+											<th:block
+												th:each="participantTeamRefereeEntry,iterationStatus :${refereeAJudgeTeamScoreMap}"
+												th:with="participantTeamReferee=${participantTeamRefereeEntry.key},participantTeamRefereeAJudgeScoreMap=${participantTeamRefereeEntry.value}">
+												<div class="p-3 mb-2 bg-secondary text-white">
+													<b>A JUDGE - [[${participantTeamReferee.getUserName}]]</b>
+												</div>
+
+
+												<table class="table table-striped table-bordered"
+													id="teamScoreTable" width="100%" cellspacing="0">
+													<thead>
+														<th>Sl No</th>
+														<th>Question</th>
+														<th>Reference Marks</th>
+														<th>Execution Value</th>
+														<th>Penalty</th>
+														<th>Total</th>
+
+													</thead>
+
+													<tbody>
+														<th:block
+															th:each="scoring,iterationStatus1 :${participantTeamRefereeAJudgeScoreMap}">
+															<tr>
+																<td th:text="${iterationStatus1.count}"></td>
+																<td>[[${scoring.asanaEvaluationQuestion.question}]]</td>
+																<td
+																	th:id="'referenceMarks'+${scoring.asanaEvaluationQuestion.id}"
+																	th:entityId="${scoring.asanaEvaluationQuestion.id}">[[${scoring.asanaEvaluationQuestion.referenceMarks}]]</td>
+
+																<td th:if="${scoring.score != null}">[[${scoring.score}]]
+
+
+
+
+																
+																<td th:unless="${scoring.score != null}">--</td>
+
+																<td>[[${scoring.penaltyScore}]]</td>
+
+																<td th:if="${scoring.totalScore != null}">[[${scoring.totalScore}]]
+
+
+
+
+																
+																<td th:unless="${scoring.totalScore != null}">--</td>
+
+															</tr>
+														</th:block>
+													</tbody>
+												</table>
+											</th:block>
+										</th:block>
+									</div>
+								</div>
+							</div>
+
+							<!-- /*/  Artistic judge Scores /*/ -->
+
+							<!-- /*/  T judge Scores /*/ -->
+							<div class="card mb-4">
+								<div class="card-header">
+									<h4 class="mt-2">T JUDGE</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<th:block
+											th:if="${not #maps.isEmpty(refereeTJudgeAsanaScoreMap)}">
+											<th:block
+												th:each="participantTeamRefereeEntry,iterationStatus :${refereeTJudgeAsanaScoreMap}"
+												th:with="participantTeamReferee=${participantTeamRefereeEntry.key},participantTeamRefereeTJudgeScoreMap=${participantTeamRefereeEntry.value}">
+												<div class="p-3 mb-2 bg-secondary text-white">
+													<b>T JUDGE - [[${participantTeamReferee.getUserName}]]</b>
+												</div>
+
+												<table class="table table-bordered" id="teamScoreTable"
+													width="100%" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<table width="100%" cellspacing="0">
+																	<thead>
+																		<tr>
+																			<th>SL No</th>
+																			<th>Asana</th>
+																			<th>Time in Seconds (TA)</th>
+																			<th>Score</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<th:block
+																			th:each="participantTeamParticipantAsanaEntry,iterationStatus1:${participantTeamRefereeTJudgeScoreMap}"
+																			th:with="participantTeamParticipantAsana=${participantTeamParticipantAsanaEntry.key},listParticipantTeamParticipantAsanaScore=${participantTeamParticipantAsanaEntry.value}">
+																			<tr>
+																				<td>[[${iterationStatus1.count}]]</td>
+																				<td>[[${participantTeamParticipantAsana.asana.name}]]</td>
+																				<th:block
+																					th:each="participantTeamParticipantAsanaScore,iterationStatus2:${listParticipantTeamParticipantAsanaScore}">
+																					<td>[[${participantTeamParticipantAsanaScore.timeInSeconds}]]</td>
+																					<td>[[${participantTeamParticipantAsanaScore.score}]]</td>
+																				</th:block>
+																			</tr>
+																		</th:block>
+
+																	</tbody>
+																</table>
+															</td>
+															<td><th:block  refereeTJudgeCommonQuestionScoreMap
+																	th:if="${not #maps.isEmpty(refereeTJudgeCommonQuestionScoreMap)}">
+																	<th:block
+																		th:each="participantTeamRefereeEntry,iterationStatus3 :${refereeTJudgeCommonQuestionScoreMap}"
+																		th:with="participantTeamReferee=${participantTeamRefereeEntry.key},commonQuestionTJudgeScore=${participantTeamRefereeEntry.value}">
+																		<th:block
+																			th:if="${iterationStatus.count == iterationStatus3.count}">
+																			<table width="100%" cellspacing="0">
+																				<thead>
+																					<tr>
+																						<th>Whole Time in Minutes</th>
+																						<th>Whole Time in Seconds (TW)</th>
+																						<th>Score</th>
+																					</tr>
+																				</thead>
+																				<tbody>
+																					<tr th:if="${commonQuestionTJudgeScore != null and commonQuestionTJudgeScore.timeInMinutes != null and commonQuestionTJudgeScore.timeInSeconds != null }">
+																						<td>
+																						[[${commonQuestionTJudgeScore.timeInMinutes
+																							+ "m "+ commonQuestionTJudgeScore.timeInSeconds
+																							+"s"}]]</td>
+																						<td>[[${commonQuestionTJudgeScore.timeInMinutes}
+																							* 60 +
+																							${commonQuestionTJudgeScore.timeInSeconds}]] s</td>
+																						<td>[[${commonQuestionTJudgeScore.totalScore}]]</td>
+																					</tr>
+																				</tbody>
+
+																			</table>
+																		</th:block>
+
+																	</th:block>
+																</th:block></td>
+
+														</tr>
+													</tbody>
+												</table>
+
+
+											</th:block>
+										</th:block>
+									</div>
+								</div>
+							</div>
+							<!-- /*/  T judge Scores /*/ -->
+
+							<!-- /*/  Evaluator judge Scores/*/ -->
+							<div class="card mb-4">
+								<div class="card-header">
+									<h4 class="mt-2">EVALUATOR</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<th:block
+											th:if="${not #maps.isEmpty(refereeParticipantAsanaScoreMap)}">
+											<th:block
+												th:each="participantTeamRefereeEntry,iterationStatus :${refereeParticipantAsanaScoreMap}"
+												th:with="participantTeamReferee=${participantTeamRefereeEntry.key},participantTeamRefereeParticipantMap=${participantTeamRefereeEntry.value}">
+												<div class="p-3 mb-2 bg-secondary text-white">
+													<b>EVALUATOR -
+														[[${participantTeamReferee.getUserName}]]</b>
+												</div>
+
+												<table class="table table-bordered" id="teamScoreTable"
+													width="100%" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<table width="100%" cellspacing="0">
+																	<thead>
+																		<tr>
+																			<th>SL No</th>
+																			<th>Asana</th>
+																			<th>As Per Given Sequence?</th>
+																			<th>Has Performed Asana</th>
+																			<th>Penalty</th>
+
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<th:block
+																			th:each="participantTeamParticipantEntry,iterationStatus1 :${participantTeamRefereeParticipantMap}"
+																			th:with="participantTeamParticipant=${participantTeamParticipantEntry.key},participantTeamParticipantAsanaMap=${participantTeamParticipantEntry.value}">
+																			<th:block th:if="${iterationStatus1.count==1}"
+																				th:each="participantTeamParticipantAsanaEntry,iterationStatus2:${participantTeamParticipantAsanaMap}"
+																				th:with="participantTeamParticipantAsana=${participantTeamParticipantAsanaEntry.key},listParticipantTeamParticipantAsanaScore=${participantTeamParticipantAsanaEntry.value}">
+																				<tr>
+																					<td>[[${iterationStatus2.count}]]</td>
+																					<td>[[${participantTeamParticipantAsana.asana.name}]]</td>
+																					<th:block
+																						th:each="participantTeamParticipantAsanaScoreEntry:${listParticipantTeamParticipantAsanaScore}">
+																						<!-- As per sequence conditions -->
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.asPerSequence==T(com.swayaan.nysf.entity.SequenceEnum).PERFORMEDINSEQUENCE}"><input
+																							type="checkbox" value="Save" name="save" checked
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'sequencePenalty'+${participantTeamParticipantAsanaScoreEntry.id}"
+																							disabled /></td>
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.asPerSequence==T(com.swayaan.nysf.entity.SequenceEnum).DIDNOTPERFORMINSEQUENCE}"><input
+																							type="checkbox" value="Save" name="save" disabled
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'sequencePenalty'+${participantTeamParticipantAsanaScoreEntry.id}" /></td>
+
+																						<!-- Is performed conditions -->
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.isPerformed==T(com.swayaan.nysf.entity.AsanaPerformEnum).PERFORMED}"><input
+																							type="checkbox" value="Save" name="save" checked
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'notPerformedPenalty'+${participantTeamParticipantAsanaScoreEntry.id}"
+																							disabled /></td>
+																						<td
+																							th:if="${participantTeamParticipantAsanaScoreEntry.isPerformed==T(com.swayaan.nysf.entity.AsanaPerformEnum).NOTPERFORMED}"><input
+																							type="checkbox" value="Save" name="save"
+																							th:entityId="${participantTeamParticipantAsanaScoreEntry.id}"
+																							th:id="'notPerformedPenalty'+${participantTeamParticipantAsanaScoreEntry.id}"
+																							disabled /></td>
+
+																						<td>[[${participantTeamParticipantAsanaScoreEntry.penaltyScore}]]</td>
+
+																					</th:block>
+																				</tr>
+																			</th:block>
+																		</th:block>
+																	</tbody>
+																</table>
+
+															</td>
+
+															<td><th:block
+																	th:if="${not #maps.isEmpty(refereeCommonQuestionScoreMap)}">
+																	<th:block
+																		th:each="participantTeamRefereeEntry,iterationStatus3 :${refereeCommonQuestionScoreMap}"
+																		th:with="participantTeamReferee=${participantTeamRefereeEntry.key},commonQuestionEvalJudgeScore=${participantTeamRefereeEntry.value}">
+																		<th:block
+																			th:if="${iterationStatus.count == iterationStatus3.count}">
+																			<table width="100%" cellspacing="0">
+																				<thead>
+																					<tr>
+																						<th>Penalty for not covering all categories</th>
+																					</tr>
+																				</thead>
+																				<tbody>
+																					<tr th:if="${commonQuestionEvalJudgeScore != null}">
+																						<td>[[${commonQuestionEvalJudgeScore.penaltyScore}]]</td>
+																					</tr>
+																				</tbody>
+
+																			</table>
+																		</th:block>
+																	</th:block>
+																</th:block></td>
+														</tr>
+													</tbody>
+												</table>
+
+											</th:block>
+										</th:block>
+
+
+									</div>
+
+								</div>
+							</div>
+
+							<!-- /*/  Evaluator judge Scores /*/ -->
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="editRefereeScoreModal">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content"></div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+
+		window.setInterval('refresh()', 15000);
+		// (15 seconds).
+		// Refresh or reload page.
+		function refresh() {
+			window.location.reload();
+		}
+
+		function calculateFinalScoresTotalForTeam(form) {
+			var championshipParticipantTeamsId = $(
+					"#championshipParticipantTeamsId").val();
+
+			var form = $('#calculateFinalScores')[0];
+			var data = new FormData(form);
+			var formData = new FormData();
+			formData.append("championshipParticipantTeamsId", $(
+					"#championshipParticipantTeamsId").val());
+			$("#calculateTeamScores").prop("disabled", true);
+
+			var postUrl = base_url + "referee/calculate/championshipTeam/"
+					+ championshipParticipantTeamsId + "/final-scores";
+			$.ajax({
+				type : "POST",
+				url : postUrl,
+				data : formData,
+				processData : false,
+				contentType : false,
+				cache : false,
+				timeout : 1000000,
+				xhr : function() {
+					var xhr = $.ajaxSettings.xhr();
+					xhr.onerror = function() {
+						$("#status").html("Upload Failed!");
+					};
+					xhr.onabort = function() {
+						$("#status").html("Upload Aborted!");
+					};
+
+					return xhr;
+				},
+				beforeSend : function(xhr) {
+				},
+				"success" : function(data){
+					if(data=="success"){
+					console.log(data);
+					$('#successmessage').removeAttr('hidden');
+					$('#errormessage').attr("hidden",true);
+					$("#successmessage").text('Scores calculated successfully');
+					}else{
+						$('#successmessage').attr("hidden",true);
+						$('#errormessage').removeAttr('hidden');
+						$("#errormessage").text('Unable to calculate scores');
+					}
+				}
+		/*		"success" : function(data, status) {
+					console.log(data);
+					console.log("status" + status);
+				}*/
+
+			});
+
+			return false;
+
+		}
+	</script>
+
+</body>
+</html>

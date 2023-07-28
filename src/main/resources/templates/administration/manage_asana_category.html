@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head th:replace="fragments/layout :: page_head(${pageTitle}, 'tag')"></head>
+<body class="sb-nav-fixed">
+	<!-- Header fragment -->
+	<div th:replace="fragments/layout :: page_header"></div>
+
+	<div id="layoutSidenav">
+		<!-- Sidebar fragment -->
+		<div th:replace="fragments/side_pane :: page_sidebar"></div>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid">
+				<section>
+					<div class="row mt-4 mb-4">
+						<div class="col-sm">
+							<h2 class="content-title">[[${pageTitle}]]</h2>
+						</div>
+						
+						<div class="col-sm-4 text-sm-right align-self-center">
+								<button class="btn filter-icon" onclick="filter();">
+									<img th:src="@{/images/svg/filter.svg}" alt="Filter" />
+								</button>
+							<a id="btnImport" class="btn btn-primary btnActionMedium"
+								th:href="@{'/admin/manage-asana-category/new'}">Add Asana
+								category</a>
+						</div>
+					</div>
+</section>
+					<div th:if="${message != null}"
+						class="alert alert-success alert-dismissible fade show text-center"
+						role="alert">
+						[[${message}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
+					<div th:if="${message1 != null}"
+						class="alert alert-danger alert-dismissible fade show text-center"
+						role="alert">
+						[[${message1}]]
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+<section class="mt-4 d-none" id="filter-accordian">
+						<div class="container-fluid p-0">
+							<div class="accordion accrodion-flush"
+								style="box-shadow: 0px 0px 44px rgba(89, 89, 89, 0.12); border-radius: 10px;"
+								id="accordionExample">
+								<div class="accordion-item">
+									<div id="collapseOne" class="accordion-collapse collapse show"
+										aria-labelledby="headingOne"
+										data-bs-parent="#accordionExample">
+										<div class="accordion-body">
+											<br>
+											<div class="row align-items-center">
+
+												<form th:action="@{/admin/manage-asana-category/page/1}"
+													class="form-inline" id="searchForm">
+													<input type="hidden" name="sortField"
+														th:value="${sortField}" /> <input type="hidden"
+														name="sortDir" th:value="${sortDir}" />
+													<div class="row p-2">
+														Filter:&nbsp; &nbsp; <input type="text" name="keyword1"
+															placeholder="Search by Name" th:value="${keyword1}"
+															class="form-control" /> &nbsp;&nbsp; <input type="text"
+															name="keyword2" placeholder="Search by Code"
+															th:value="${keyword2}" class="form-control">
+
+														&nbsp; &nbsp;
+														<button type="submit" class="btn btn-primary">Search</button>
+														&nbsp; &nbsp;
+														<button type="button" class="btn btn-secondary"
+															onclick="clearFilter()">
+															<i class="fal fa-times"></i>
+														</button>
+													</div>
+												</form>
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section>
+					<div class="card mb-4">
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-striped table-bordered"
+									id="asanaCategoryTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+										<th scope="col">
+													<div class="d-flex justify-content-between">
+														<span> #</span>
+													</div>
+												</th>
+												<th scope="col">
+													<div class="d-flex justify-content-between">
+														<a class="column_sort_link"
+															th:href="@{${moduleURL} + '/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${sortField != sortField ? sortDir : reverseSortDir }  +  ${keyword1 != null ? '&keyword1=' + keyword1 : ''}+  ${keyword2 != null ? '&keyword2=' + keyword2 : ''}}">
+															<span> Name <img
+																th:src="@{/images/svg/table-headericon.svg}" alt="">
+														</span>
+														</a>
+													</div>
+												</th>
+
+												<th scope="col">
+													<div class="d-flex justify-content-between">
+														<a class="column_sort_link"
+															th:href="@{${moduleURL} + '/page/' + ${currentPage} + '?sortField=code&sortDir=' + ${sortField != sortField ? sortDir : reverseSortDir }  +  ${keyword1 != null ? '&keyword1=' + keyword1 : ''}+  ${keyword2 != null ? '&keyword2=' + keyword2 : ''}}">
+															<span> Code <img
+																th:src="@{/images/svg/table-headericon.svg}" alt="">
+														</span>
+														</a>
+													</div>
+												</th>
+										<!--  <th>SL NO</th>
+											<th>Name</th>
+											<th>Code</th> -->
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="category,iterationStatus : ${listCategories}">
+									<!-- 		<td th:text="${iterationStatus.count}"></td>  -->
+									<td scope="row" th:text="${iterationStatus.index+startCount}">1</td>
+											<td>[[${category.name}]]</td>
+											<td>[[${category.code}]]</td>
+											<td class="text-center"><a
+												th:href="@{'/admin/manage-asana-category/edit/' + ${category.id}}"
+												class="btn btn-primary btnOperate link-edit"><i
+													class="fas fa-edit"></i> Edit</a></td>
+
+											</td>
+											<td class="text-center"><a
+												class="btn btn-primary btnOperate link-delete"
+												th:href="@{'/admin/manage-asana-category/delete/' + ${category.id}}"
+												th:entityId="${category.id}"
+												th:entityFieldName="${category.getName}"
+
+												th:title="'Delete Category ID ' + ${category.id}"> <i
+													class="fas fa-trash"></i> Delete
+											</a></td>
+
+
+
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div th:replace="fragments/modal_fragments :: admin_pagination2"></div>
+						</div>
+					</div>
+					</section>
+				</div>
+			</main>
+			<!-- Footer fragment -->
+			<div th:replace="fragments/layout :: page_footer"></div>
+		</div>
+	</div>
+
+	<!-- Modal fragment to display warnings -->
+	<div th:replace="fragments/modal_fragments :: confirm_modal"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		crossorigin="anonymous"></script>
+		
+		
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+<!--  	<script type="text/javascript" th:src="@{../js/scripts.js}"></script>  -->
+	<script
+		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+		crossorigin="anonymous"></script>
+
+  	<script type="text/javascript" th:src="@{/js/scripts.js}"></script> 
+
+	<script type="text/javascript">
+		var base_url = "[[@{/}]]";
+		var moduleURL = "[[@{/admin/manage-asana-category}]]";
+
+		$(document).ready(function() {
+
+			// on click delete show modal
+
+			$("#asanaCategoryTable").on("click", ".link-delete", function(e) {
+				e.preventDefault();
+				showDeleteConfirmModal($(this), 'Asana category');
+			});
+
+			// Call the dataTables jQuery plugin
+			// Code to disable sorting for selected columns
+	/*		$('#asanaCategoryTable').DataTable({
+				"pageLength" : 10,
+				'columns' : [ {
+					data : 'id'
+				}, // index - 0
+				{
+					data : 'name'
+				}, // index - 1
+				{
+					data : 'code'
+				}, // index - 2
+				{
+					data : 'edit'
+				}, // index - 3
+				{
+					data : 'delete'
+				} // index - 4
+				],
+				'columnDefs' : [ {
+					'targets' : [ 3, 4 ], // column index (start from 0)
+					'orderable' : false, // set orderable false for selected columns
+				} ]
+			});   */
+
+		});
+
+		function showDeleteConfirmModal(link, entityName) {
+			entityId = link.attr("entityId");
+		entityFieldName = link.attr("entityFieldName");
+
+			$("#yesButton").attr("href", link.attr("href"));
+			$("#confirmText").text(
+					"Are you sure you want to delete this " + entityName
+							 + " - " + entityFieldName + " ?");
+			$("#confirmModal").modal();
+		}
+	</script>
+</body>
+</html>

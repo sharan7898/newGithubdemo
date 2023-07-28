@@ -1,0 +1,77 @@
+package com.swayaan.nysf.repository;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.swayaan.nysf.entity.AsanaEvaluationQuestions;
+import com.swayaan.nysf.entity.ChampionshipParticipantTeams;
+import com.swayaan.nysf.entity.EvaluatorJudgeScore;
+import com.swayaan.nysf.entity.ParticipantTeamAsanas;
+import com.swayaan.nysf.entity.ParticipantTeamParticipants;
+import com.swayaan.nysf.entity.ParticipantTeamReferees;
+import com.swayaan.nysf.entity.QuestionTypeEnum;
+import com.swayaan.nysf.entity.Role;
+
+@Repository
+public interface EvaluatorJudgeScoreRepository extends CrudRepository<EvaluatorJudgeScore, Integer> {
+
+	public boolean existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipantsAndParticipantTeamAsanas(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion, ParticipantTeamParticipants participantTeamParticipants,
+			ParticipantTeamAsanas participantTeamAsanas);
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndParticipantTeamParticipantsAndParticipantTeamAsanasOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			ParticipantTeamParticipants participantTeamParticipants, ParticipantTeamAsanas participantTeamAsanas);
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesOrderBySequenceNumberAsc(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees);
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndRound(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round);
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndRound(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			Integer round);
+
+	public boolean existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion);
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion);
+
+	public EvaluatorJudgeScore findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestion(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions);
+
+	public boolean existsByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndSequenceNumber(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestion, Integer sequenceNumber);
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndParticipantTeamRefereesAndRoundAndQuestionType(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees eJudgeTeamReferee,
+			Integer round, QuestionTypeEnum commonquestionforasana);
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndRoundAndQuestionTypeAndSequenceNumber(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round,
+			QuestionTypeEnum commonquestionforasana, Integer i);
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndRoundAndQuestionType(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer round,
+			QuestionTypeEnum commonteamquestion);
+
+	public List<EvaluatorJudgeScore> findAllByChampionshipParticipantTeamsAndSequenceNumberAndQuestionType(
+			ChampionshipParticipantTeams championshipParticipantTeams, Integer i,
+			QuestionTypeEnum commonquestionforasana);
+
+	public EvaluatorJudgeScore findByChampionshipParticipantTeamsAndParticipantTeamRefereesAndAsanaEvaluationQuestionAndParticipantTeamParticipants(
+			ChampionshipParticipantTeams championshipParticipantTeams, ParticipantTeamReferees participantTeamReferees,
+			AsanaEvaluationQuestions asanaEvaluationQuestions, ParticipantTeamParticipants participantTeamParticipant);
+
+
+
+}

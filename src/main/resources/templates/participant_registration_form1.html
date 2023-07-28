@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,shrink-to-fit=no">
+	<meta charset="utf-8" />
+	<title>Participant Registration - National Yogasana Sports
+		Federation</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+		<a class="navbar-brand text-center" href="index.html"> <img th:src="@{/images/Yogasana-Logo.png}" width="50%"
+				alt=""> NYSF
+		</a>
+	</nav>
+
+	<div id="layoutAuthentication">
+		<div id="layoutAuthentication_content">
+			<main>
+				<div class="container">
+					<div class="row justify-content-center mt-5 mb-5">
+						<div class="col-lg-10">
+							<div class="card shadow-lg border-0 rounded-lg">
+								<div class="card-header dark-card-header">
+									<h3 class="text-center font-weight-light my-4">Participant
+										Registration</h3>
+								</div>
+								<div class="card-body">
+									<div></div>
+									<div th:if="${message != null}"
+										class="alert alert-success alert-dismissible fade show text-center"
+										role="alert">
+										[[${message}]]
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
+									<div th:if="${message1 != null}" class="alert alert-danger text-center">
+										[[${message1}]]
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
+									<form id="form1" th:action="@{/manage-registration/register/participant/save}"
+										method="post" th:object="${participantRegistration}"
+										enctype="multipart/form-data"
+										onsubmit="return (validateForm(this) && checkEmailUnique(this));">
+										<input type="hidden" th:field="*{id}" id="id" />
+										<div
+											class="form-group d-flex align-items-center justify-content-between mt-3 mb-0">
+
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="firstName">First name
+													<span class="form-star">*</span>
+												</label> <input type="text" class="form-control" id="first-name"
+													th:field="*{firstName}" minlength="2" maxlength="40"><span
+													id="span-error-first-name" class="span-error"> </span>
+											</div>
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="lastName">Last name <span
+														class="form-star">*</span></label> <input type="text"
+													id="last-name" class="form-control" th:field="*{lastName}">
+												<span id="span-error-last-name" class="span-error"> </span>
+											</div>
+										</div>
+										<div class=" d-flex align-items-center justify-content-between mt-2 mb-0">
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="dob">Date of Birth <span
+														class="form-star">*</span></label> <input type="date"
+													class="form-control" id="date-of-birth" th:field="*{dob}">
+												<span id="span-error-date" class="span-error"></span>
+											</div>
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="gender">Gender <span
+														class="form-star">*</span></label> <select class="form-control"
+													id="gender" th:field="*{gender}">
+													<option value="">-- Select --</option>
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
+												</select> <span id="span-error-gender" class="span-error"> </span>
+											</div>
+										</div>
+										<div class=" d-flex align-items-center justify-content-between mt-2 mb-0">
+											<div class="col-md-12 mb-3">
+												<label class="form-label" for="email">Email <span
+														class="form-star">*</span></label> <input type="text" id="email"
+													name="email" class="form-control" th:field="*{email}" maxlength="65"> <span
+													id="span-error-email" class="span-error"> </span>
+											</div>
+										</div>
+
+										<div class=" d-flex align-items-center justify-content-between mt-2 mb-0">
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="aadharNumber">Aadhar
+													Number </label> <input type="text" class="form-control"
+													th:field="*{aadharNumber}">
+											</div>
+											
+
+										</div>
+										<div class=" d-flex align-items-center justify-content-between mt-2 mb-0">
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="image">Please attach
+													your passport size latest photograph below 1MB (Size of
+													photo: 3.5 x 4.5 cm) <span class="form-star">*</span>
+												</label> <input type="hidden" th:field="*{image}" /> <input type="file"
+													id="participantImage" name="participantImage"
+													accept="image/png,image/jpeg" class="mb-2" /><span
+													id="span-error-participant-image" class="span-error">
+												</span>
+											</div>
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="birthCertificate">Please
+													Attach Birth Proof below 1MB ( Birth Certificate/ Govt Id/
+													School letter) <span class="form-star">*</span>
+												</label> <input type="hidden" th:field="*{birthCertificate}" /> <input
+													type="file" id="birthCertificateFile" name="birthCertificateFile"
+													accept="image/png,image/jpeg" class="mb-2" /><span
+													id="span-error-birth-certificate" class="span-error"> </span>
+											</div>
+
+										</div>
+										<hr>
+										<div class="col-12">
+											<h5>Address</h5>
+											<label class="form-label">Please provide Full address
+												details for communication and courier </label>
+										</div>
+
+										<div class=" d-flex align-items-center justify-content-between mt-2 mb-0">
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="addressLine1">Address
+													Line 1 <span class="form-star">*</span>
+												</label> <input type="text" class="form-control" id="address-line1"
+													th:field="*{addressLine1}"><span id="span-error-address-line1"
+													class="span-error"> </span>
+											</div>
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="addressLine2">Address
+													Line 2 </label> <input type="text" class="form-control"
+													th:field="*{addressLine2}">
+											</div>
+										</div>
+
+										<div class=" d-flex align-items-center justify-content-between mt-2 mb-0">
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="town">Town <span
+														class="form-star">*</span></label> <input type="text"
+													class="form-control" id="town" th:field="*{town}">
+												<span id="span-error-town" class="span-error"> </span>
+											</div>
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="district">District <span
+														class="form-star">*</span></label> <input type="text"
+													class="form-control" id="district" th:field="*{district}">
+												<span id="span-error-district" class="span-error"> </span>
+											</div>
+										</div>
+
+										<div class=" d-flex align-items-center justify-content-between mt-2 mb-0">
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="state">State <span
+														class="form-star">*</span></label> <select class="form-control"
+													id="state" th:field="*{state}">
+													<option value="">-- Select --</option>
+													<th:block th:each="state : ${listStates}">
+														<option th:value="${state.id}">[[${state.name}]]</option>
+													</th:block>
+												</select> <span id="span-error-state" class="span-error"> </span>
+											</div>
+
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="postalCode">Postal
+													Code <span class="form-star">*</span>
+												</label> <input type="text" class="form-control" id="postal-code"
+													th:field="*{postalCode}"> <span id="span-error-postal-code"
+													class="span-error"> </span>
+											</div>
+										</div>
+
+
+										<div class="d-flex align-items-center justify-content-between mt-2 mb-0 ">
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="phoneNumber">WhatsApp
+													Mobile Number <span class="form-star">*</span>
+												</label> <label class="form-label" for="phoneNumber"> <u>Note:</u>
+													Please Provide only your parents or self WhatsApp Number.
+													All information will provided through WhatsApp
+												</label> <input type="text" class="form-control" id="phone-number"
+													th:field="*{phoneNumber}"> <span id="span-error-phone-number"
+													class="span-error"> </span>
+											</div>
+											<div class="col-md-12 mb-3">
+												<label class="form-label " for="physicallyFit">Are
+													you physically fit to participate in yogasana sports
+													championship <span class="form-star">*</span>
+												</label>
+												<div class="checkbox">
+													<input type="checkbox" th:field="*{physicallyFit}"
+														id="physically-fit"> <label class="label">
+														&nbsp; Yes</label> <span id="span-error-physically-fit"
+														class="span-error"> </span>
+												</div>
+											</div>
+										</div>
+										<!--	<div class="col-md-12 mb-3">
+											<label class="form-label " for="urlTraditional">Please
+												Attach YouTube link of Traditional Individual Yogasana </label> <input
+												type="text" class="form-control"
+												th:field="*{urlTraditional}">
+										</div>
+										<div class="col-md-12 mb-3">
+											<label class="form-label " for="urlArtisticSingle">Please
+												Attach YouTube link of Artistic Yogasana Single </label> <input
+												type="text" class="form-control"
+												th:field="*{urlArtisticSingle}">
+										</div>
+										<div class="col-md-12 mb-3">
+											<label class="form-label " for="urlArtisticPair">Please
+												Attach YouTube link of Artistic Yogasana Pair </label> <input
+												type="text" class="form-control"
+												th:field="*{urlArtisticPair}">
+										</div>
+										<div class="col-md-12 mb-3">
+											<label class="form-label " for="otherArtisticPairPlayerName">Name
+												of the other Artistic Yogasana Pair player name </label> <input
+												type="text" class="form-control"
+												th:field="*{otherArtisticPairPlayerName}">
+										</div>
+										<div class="col-md-12 mb-3">
+											<label class="form-label " for="urlRhythmicPair">Please
+												Attach YouTube link of Rhythmic Yogasana Pair </label> <input
+												type="text" class="form-control"
+												th:field="*{urlRhythmicPair}">
+										</div>
+										<div class="col-md-12 mb-3">
+											<label class="form-label " for="otherRhythmicPairPlayerName">Name
+												of the other Rhythmic Yogasana Pair player name </label> <input
+												type="text" class="form-control"
+												th:field="*{otherRhythmicPairPlayerName}">
+										</div>
+										<div class="col-md-12 mb-3">
+											<label class="form-label " for="urlArtisticGroup">Please
+												Attach YouTube link of Artistic Yogasana Group </label> <input
+												type="text" class="form-control"
+												th:field="*{urlArtisticGroup}">
+										</div>
+										<div class="col-md-12 mb-3">
+											<label class="form-label " for="otherArtisticGroupPlayerName">Name
+												of the other Artistic Yogasana Group 4 Players </label> <input
+												type="text" class="form-control"
+												th:field="*{otherArtisticGroupPlayerName}">
+										</div>  -->
+										<div class="d-flex align-items-center justify-content-between mt-2 mb-0 ">
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="medicalCertificate">Please
+													attach your Medical Fitness Certificate by a MBBS Doctor
+													(Below 1MB) <span class="form-star">*</span>
+												</label> <input type="hidden" th:field="*{medicalCertificate}" /> <input
+													type="file" id="medicalCertificateFile"
+													name="medicalCertificateFile" accept="image/png,image/jpeg"
+													class="mb-2" /><span id="span-error-medical-certificate"
+													class="span-error"> </span>
+											</div>
+
+											<div class="col-md-6 mb-3">
+												<label class="form-label" for="paymentReceipt">Please
+													attach your receipt of payment (Below 1MB) <span
+														class="form-star">*</span>
+												</label> <input type="hidden" th:field="*{paymentReceipt}" /> <input
+													type="file" id="paymentReceiptFile" name="paymentReceiptFile"
+													accept="image/png,image/jpeg" class="mb-2" /><span
+													id="span-error-payment-reciept" class="span-error"> </span>
+											</div>
+										</div>
+										<div class="d-flex align-items-center justify-content-between mt-2 mb-0 ">
+											<div class="col-md-6 mb-3">
+												<label class="form-label " for="paymentTransactionId">Payment
+													Transaction ID </label> <input type="text" class="form-control"
+													id="payment-transaction-id" th:field="*{paymentTransactionId}"><span
+													id="span-error-payment-transaction-id" class="span-error">
+												</span>
+											</div>
+
+
+
+											<div class="col-md-6 mb-3">
+												<label class="form-label " for="paymentMode">Payment
+													Mode </label> <input type="radio" value="cash" class="form-control"
+													id="payment-mode" th:field="*{paymentMode}" /><span>cash</span>
+												<input type="radio" value="" class="form-control" id="payment-mode"
+													disabled><span>online</span> <span id="span-error-payment-mode"
+													class="span-error"> </span>
+											</div>
+										</div>
+										<div class="col-md-6 mb-3">
+											<input type="hidden" class="form-control" id="age" name="age">
+										</div>
+										<div class="d-flex align-items-center justify-content-between mt-2 mb-0 ">
+											<div class="col-md-12 mb-3">
+												<label class="form-label " for="certificateNumber">Those
+													player who have already participated in the MYSA/NYSF
+													Yogasana championship please mention Certificate number
+													here.<label style="color: darkred"> (For
+														Registration fee exemption)</label>
+												</label> <input type="text" class="form-control" id="certificate-number"
+													th:field="*{certificateNumber}">
+												<span id="span-error-certificate-number" class="span-error">
+												</span>
+											</div>
+										</div>
+										<div class="d-flex align-items-center justify-content-between mt-2 mb-0 ">
+											<div class="col-md-12 mb-3">
+												<label class="form-label " for="acceptRules">I have
+													read all the Rules and Regulation of Online District
+													Yogasana Sports Championship. I accept it. <span
+														class="form-star">*</span>
+												</label>
+												<div class="checkbox">
+													<input type="checkbox" th:field="*{acceptRules}" id="accept-rules">
+													<label class="label">
+														&nbsp; Accept Rules</label> <span id="span-error-accept-rules"
+														class="span-error"> </span>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="g-recaptcha" id="g-recaptcha"
+												data-sitekey="6Lcc4vQcAAAAAF9jYUwh7a5flUjMku475xE832-7">
+											</div>
+											<span id="span-error-recaptcha" class="span-error"> </span>
+										</div>
+
+										<div class="d-flex align-items-center justify-content-between mt-3 mb-3">
+											<div class="col-md-12 mb-3 text-center">
+												<input type="submit" value="Submit" class="btn btn-primary" />
+												<a th:href="@{/login}" type="button" class="btn btn-primary-outline"
+													id="buttonCancel">Cancel</a>
+											</div>
+										</div>
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+
+			<div id="layoutAuthentication_footer">
+				<!-- Footer fragment -->
+				<div th:replace="fragments/layout :: page_footer_outside_application"></div>
+			</div>
+		</div>
+		<!-- Modal fragment to display warnings -->
+		<div th:replace="fragments/modal_fragments :: warning_modal"></div>
+
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+			crossorigin="anonymous"></script>
+		<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+
+
+		<script type="text/javascript">
+			var base_url = "[[@{/}]]";
+			var checkEmailUrl = "[[@{/user/check_email}]]";
+			var MAX_FILE_SIZE = 1000000;//1MB
+			var reg = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+			var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			function checkEmailUnique(form) {
+				checkEmailUrl = "[[@{/user/check_email}]]";
+				userEmail = $("#email").val();
+				participantId = $("#id").val();
+				csrfValue = $("input[name='_csrf']").val();
+				params = {
+					id: participantId,
+					email: userEmail,
+					_csrf: csrfValue
+				};
+
+				$
+					.post(
+						checkEmailUrl,
+						params,
+						function (response) {
+							if (response == "OK") {
+								form.submit();
+							} else if (response == "Duplicated") {
+								showWarningModal("There is another user with the email : "
+									+ userEmail);
+
+								return false;
+							} else {
+								showErrorModal("Unknown error from the server");
+								return false;
+							}
+						}).fail(function () {
+							showErrorModal("Could not connect to the server");
+						});
+
+				return false;
+			}
+
+			$('#date-of-birth').on(
+				"change",
+				function calculateAge() {
+					var now = new Date();
+					var userDateinput = document
+						.getElementById("date-of-birth").value;
+					// convert user input value into date object
+					var birthDate = new Date(userDateinput);
+					console.log(" birthDate" + birthDate);
+
+					// get difference from current date;
+					var difference = Date.now() - birthDate.getTime();
+
+					var ageDate = new Date(difference);
+					var calculatedAge = Math
+						.abs(ageDate.getUTCFullYear() - 1970);
+
+					$('#age').val(calculatedAge);
+
+					if (calculatedAge < 14)
+						$('#age').val("SUBJUNIOR");
+					else if (calculatedAge >= 14 && calculatedAge <= 18)
+						$('#age').val("JUNIOR");
+					else
+						$('#age').val("SENIOR");
+
+				});
+
+			$(document).ready(
+				function () {
+					document.getElementById("payment-mode").setAttribute(
+						"checked", "checked")
+				});
+			/*	function checkDate() {
+					var selectedDate = document.getElementById('date-of-birth').value;
+					var now = new Date().toISOString().slice(0, 10);
+					var dt1 = Date.parse(now), dt2 = Date.parse(selectedDate);
+					//     if (dt1 <= dt2) {
+					//          $("#span-error-date").text("Date must not be in the future");
+					if (dt1 > dt2) {
+						//	$("#span-error-date").text("Date must not be in the future");
+						response = "OK";
+					//	form.submit();
+						return true;
+
+					} else {
+						//		 $("#span-error-date").text("Date must not be in the future");
+						response = "Invalid Date";
+						showWarningModal("Date should not be in the future");
+						return false;
+					}
+				} */
+
+			function validateForm(form) {
+				let id = document.getElementById('id').value;
+				let selectedDate = document.getElementById('date-of-birth').value;
+				let now = new Date().toISOString().slice(0, 10);
+				let dt1 = Date.parse(now);
+				let dt2 = Date.parse(selectedDate);
+				let participantImage = document
+					.getElementById('participantImage').value;
+				let birthCertificate = document
+					.getElementById('birthCertificateFile').value;
+				let medicalCertificate = document
+					.getElementById('medicalCertificateFile').value;
+				let paymentReciept = document
+					.getElementById('paymentReceiptFile').value;
+			
+				//let category = document.getElementById('category').value;
+				//let asanaCategory = document.getElementById('asana-category').value;
+
+				let gender = document.getElementById('gender').value;
+				let district = document.getElementById('district').value;
+				let dateOfBirth = document.getElementById('date-of-birth').value;
+				var phonePattern = reg.exec(document
+					.getElementById('phone-number').value);
+				var emailPattern = mailformat.exec(document
+					.getElementById('email').value);
+
+				if ((document.getElementById('first-name').value) == "") {
+					var flagFirstName = false;
+					$("#span-error-first-name").text("Enter the first name");
+
+				} else {
+					flagFirstName = true;
+					$("#span-error-first-name").text("");
+				}
+
+				if ((document.getElementById('last-name').value) == "") {
+					var flagLastName = false;
+					$("#span-error-last-name").text("Enter the last name");
+
+				} else {
+					flagLastName = true;
+					$("#span-error-last-name").text("");
+				}
+
+				if (!emailPattern) {
+					var flagEmail = false;
+					$("#span-error-email")
+						.text("Enter the valid email address");
+
+				} else {
+					flagEmail = true;
+					$("#span-error-email").text("");
+				}
+
+				if ((document.getElementById('date-of-birth').value) == "") {
+					var flagDate = false;
+					$("#span-error-date").text("Enter the date");
+
+				} else if (dt1 < dt2) {
+					flagDate = false;
+					$('#span-error-date')
+						.text("Date must not be in the future");
+
+				} else {
+					flagDate = true;
+					$("#span-error-date").text("");
+				}
+
+				/*		if ((document.getElementById('category').value)=="") {
+							var flagCategory = false;
+							$("#span-error-age").text("Select the category");
+
+						} else {
+							flagCategory = true;
+							$("#span-error-age").text("");
+						}
+				 */
+
+				if (gender == "") {
+					var flagGender = false;
+					$("#span-error-gender").text("Select the gender");
+
+				} else {
+					flagGender = true;
+					$("#span-error-gender").text("");
+				}
+
+				
+
+				if (!phonePattern) {
+					var flagPhoneNum = false;
+					$("#span-error-phone-number").text(
+						"Enter 10 digits pattern");
+
+				} else {
+					flagPhoneNum = true;
+					$("#span-error-phone-number").text("");
+				}
+
+				if ((document.getElementById('address-line1').value) == "") {
+					var flagAddressLine1 = false;
+					$("#span-error-address-line1").text("Enter Address");
+
+				} else {
+					flagAddressLine1 = true;
+					$("#span-error-address-line1").text("");
+				}
+
+				if ((document.getElementById('town').value) == "") {
+					var flagTown = false;
+					$("#span-error-town").text("Enter the Town");
+
+				} else {
+					flagTown = true;
+					$("#span-error-town").text("");
+				}
+
+				if (district == "") {
+					var flagDistrict = false;
+					$("#span-error-district").text("Enter the District");
+
+				} else {
+					flagDistrict = true;
+					$("#span-error-district").text("");
+				}
+
+				if ((document.getElementById('state').value) == "") {
+					var flagState = false;
+					$("#span-error-state").text("Select the state");
+
+				} else {
+					flagState = true;
+					$("#span-error-state").text("");
+				}
+
+				if ((document.getElementById('postal-code').value) == "") {
+					var flagPostalCode = false;
+					$("#span-error-postal-code").text("Enter the Postal Code");
+
+				} else {
+					flagPostalCode = true;
+					$("#span-error-postal-code").text("");
+				}
+
+				if ((document.getElementById('physically-fit').checked) == false) {
+					var flagPhysicallyFit = false;
+					$("#span-error-physically-fit").text(
+						"Please check Physically fit");
+
+				} else {
+					flagPhysicallyFit = true;
+					$("#span-error-physically-fit").text("");
+				}
+
+				//if ((document.getElementById('payment-transaction-id').value) == "") {
+				//	var flagPaymentTransactionId = false;
+				//$("#span-error-payment-transaction-id").text(
+				//		"Enter the Payment Transaction Id");
+
+				//} else {
+				//	flagPaymentTransactionId = true;
+				//	$("#span-error-payment-transaction-id").text("");
+				//}
+
+				if (id == "" && participantImage == "") {
+					var flagParticipantImage = false;
+					$('#span-error-participant-image').text(
+						"Please upload the image");
+
+				} else {
+					flagParticipantImage = true;
+					$("#span-error-participant-image").text("");
+				}
+
+				if (id == "" && birthCertificate == "") {
+					var flagBirthCertificate = false;
+					$('#span-error-birth-certificate').text(
+						"Please upload Birth Certificate");
+
+				} else {
+					flagBirthCertificate = true;
+					$("#span-error-birth-certificate").text("");
+				}
+
+				if (id == "" && medicalCertificate == "") {
+					var flagMedicalCertificate = false;
+					$("#span-error-medical-certificate").text(
+						"Please upload Medical Certificate");
+
+				} else {
+					flagMedicalCertificate = true;
+					$("#span-error-medical-certificate").text("");
+				}
+
+				if (id == "" && paymentReciept == "") {
+					var flagPaymentReciept = false;
+					$('#span-error-payment-reciept').text(
+						"Please upload Payment Receipt");
+
+				} else {
+					flagPaymentReciept = true;
+					$("#span-error-payment-reciept").text("");
+				}
+				if ((document.getElementById('accept-rules').checked) == false) {
+					var flagAcceptRules = false;
+					$("#span-error-accept-rules").text(
+						"Please check accept rules");
+
+				} else {
+					flagAcceptRules = true;
+					$("#span-error-accept-rules").text("");
+				}
+
+				if (grecaptcha.getResponse() == "") {
+					var flagRecaptcha = false;
+					$("#span-error-recaptcha").text(
+						"Please check the recaptcha");
+
+				} else {
+					flagRecaptcha = true;
+					$("#span-error-recaptcha").text("");
+				}
+
+				return (flagFirstName && flagLastName && flagDate && flagGender && flagEmail
+					 && flagPhoneNum && flagAddressLine1 && flagTown
+					&& flagDistrict && flagState && flagPostalCode
+					&& flagPhysicallyFit && flagParticipantImage
+					&& flagBirthCertificate && flagMedicalCertificate
+					&& flagPaymentReciept && flagAcceptRules && flagRecaptcha);
+
+			}
+		</script>
+</body>
+
+</html>
