@@ -35,6 +35,9 @@ jobs:
           sudo systemctl enable docker
           # Add the current user to the 'docker' group to use Docker without 'sudo'
           sudo usermod -aG docker $USER
+          # Set permissions for the repository directory
+          sudo chown -R $USER:$USER /home/ubuntu/actions-runner/_work/newGithubdemo/newGithubdemo
+          sudo chmod -R 777 /home/ubuntu/actions-runner/_work/newGithubdemo/newGithubdemo
         shell: bash
 
       - name: Build & push Docker image
@@ -50,9 +53,7 @@ jobs:
 
       - name: Run Docker container
         run: |
-           # Stop and remove the existing container (if exists)
-           docker stop my_container || true
-           docker rm my_container || true
+           # Run the Docker container from the image
            docker run -d -p 8080:8080 --name my_container sharan7898/newdemo:latest  # Replace 'username' with your Docker Hub username or registry
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
