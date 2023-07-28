@@ -8,6 +8,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: self-hosted  
+    
+    container:
+      image: docker:latest
+      options: --privileged
 
     steps:
       - name: Checkout code
