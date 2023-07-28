@@ -50,7 +50,9 @@ jobs:
 
       - name: Run Docker container
         run: |
-          # Run the Docker container from the image
-          docker run -d -p 8080:8080 --name my_container sharan7898/newdemo:latest  # Replace 'username' with your Docker Hub username or registry
+           # Stop and remove the existing container (if exists)
+           docker stop my_container || true
+           docker rm my_container || true
+           docker run -d -p 8080:8080 --name my_container sharan7898/newdemo:latest  # Replace 'username' with your Docker Hub username or registry
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
