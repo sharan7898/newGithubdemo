@@ -39,9 +39,9 @@ jobs:
 
       - name: Build & push Docker image
         run: |
-          # Build the Docker image with name 'newDemo'
-          docker build -t newDemo .
-          docker tag newDemo:latest sharan7898/newDemo:latest  # Replace 'username' with your Docker Hub username or registry
+          # Build the Docker image with name 'newdemo'
+          docker build -t newdemo .
+          docker tag newdemo:latest sharan7898/newdemo:latest  # Replace 'username' with your Docker Hub username or registry
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
           docker push sharan7898/newDemo:latest
         env:
@@ -51,6 +51,6 @@ jobs:
       - name: Run Docker container
         run: |
           # Run the Docker container from the image
-          docker run -d -p 8080:8080 --name my_container sharan7898/newDemo:latest  # Replace 'username' with your Docker Hub username or registry
+          docker run -d -p 8080:8080 --name my_container sharan7898/newdemo:latest  # Replace 'username' with your Docker Hub username or registry
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
