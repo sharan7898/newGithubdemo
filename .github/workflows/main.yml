@@ -1,3 +1,5 @@
+name: CI/CD Workflow
+
 on:
   push:
     branches:
@@ -5,9 +7,12 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted  
+    runs-on: self-hosted
 
     steps:
+      - name: Show working directory
+        run: pwd
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -17,38 +22,41 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           architecture: 'x64'
-          
-      - name: Install Maven
-        run: sudo apt update && sudo apt install -y maven    
+
+      - name: Install Docker
+        run: |
+          # Update the package list
+          sudo apt update
+          # Install required dependencies
+          sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+          # Add the Docker repository key
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+          # Add the Docker APT repository
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+          # Update the package list again
+          sudo apt update
+          # Install Docker
+          sudo apt install -y docker-ce docker-ce-cli containerd.io
+          # Start the Docker service
+          sudo systemctl start docker
+          # Enable Docker to start on boot
+          sudo systemctl enable docker
+          # Add the current user to the 'docker' group
+          sudo usermod -aG docker $USER
+        shell: bash
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
-      - name: Install Docker
-        run: |
-          # Install Docker on the self-hosted runner (for Ubuntu)
-          sudo apt update
-          sudo apt install -y docker.io
-          sudo systemctl start docker
-          sudo systemctl enable docker
-          # Add the current user to the 'docker' group to use Docker without 'sudo'
-          sudo usermod -aG docker $USER
-        shell: bash
+      - name: Build Docker image
+        run: docker build -t newdemo .
+        working-directory: your-maven-project-directory  # Adjust to your Maven project directory
 
-      - name: Build & push Docker image
-        run: |
-          # Build the Docker image with name 'newdemo'
-          docker build -t newdemo .
-          docker tag newdemo:latest sharan7898/newdemo:latest  # Replace 'username' with your Docker Hub username or registry
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-          docker push sharan7898/newDemo:latest
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Run Docker container
-        run: |
-          # Run the Docker container from the image
-          docker run -d -p 8080:8080 --name my_container sharan7898/newdemo:latest  # Replace 'username' with your Docker Hub username or registry
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: Push Docker image to Docker Hub
+        run: docker push newdemo
