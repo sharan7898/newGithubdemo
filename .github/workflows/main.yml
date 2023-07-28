@@ -19,6 +19,9 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           architecture: 'x64'
+          
+      - name: Install Maven
+        run: sudo apt update && sudo apt install -y maven    
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
