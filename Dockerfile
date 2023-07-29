@@ -4,7 +4,8 @@ WORKDIR /app
 RUN mvn clean package -DskipTests
 
 FROM openjdk:11-jre-slim
-COPY --from=build /app/target/nysf-kheloindia-youth.jar /app/maven-wrapper.jar
+COPY --from=build /app/.mvn/wrapper/maven-wrapper.jar /app/.mvn/wrapper/maven-wrapper.jar
 WORKDIR /app
 CMD ["java", "-jar", "maven-wrapper.jar"]
+
 
