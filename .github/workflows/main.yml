@@ -57,5 +57,6 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to Docker Hub
-        run: docker tag newdemo:latest sharan7898/newdemo:latest
-             docker push sharan7898/newdemo:latest
+        run: |
+          docker tag newdemo:latest sharan7898/newdemo:latest
+          docker push sharan7898/newdemo:latest
