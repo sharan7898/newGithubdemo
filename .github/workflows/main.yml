@@ -47,7 +47,7 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t newdemo .
-        working-directory: /home/ubuntu/actions-runner/_work/newGithubdemo/newGithubdemo/.mvn/wrapper/maven-wrapper.jar  # Change to your Maven project directory if necessary
+        working-directory: /.mvn/wrapper/maven-wrapper.jar  # Change to your Maven project directory if necessary
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
