@@ -67,9 +67,9 @@ jobs:
         run: |
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ssh.pem
           chmod 600 ssh.pem
-          scp -i ssh.pem ssh.pem ubuntu@16.171.194.255:~/
+          scp -i ssh.pem ssh.pem ubuntu@16.171.200.98:~/
         shell: bash
 
       - name: Deploy Docker Container on EC2 Instance
         run: |
-          ssh -i ssh.pem ubuntu@16.171.194.255 'docker stop my_app || true; docker rm my_app || true; docker pull sharan7898/newdemo:latest; docker run -d -p 8080:8080 --name my_app sharan7898/newdemo:latest:latest'
+          ssh -i ssh.pem ubuntu@16.171.200.98 'docker stop my_app || true; docker rm my_app || true; docker pull sharan7898/newdemo:latest; docker run -d -p 8080:8081 --name my_app sharan7898/newdemo:latest:latest'
