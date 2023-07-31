@@ -5,9 +5,9 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:11-jre-slim
 WORKDIR /app
-COPY --from=build /app/target/nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar newdemo.jar
+COPY ./target/nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar
 
 # Run the application
-CMD ["java", "-jar", "newdemo.jar"]
+CMD ["java", "-jar", "nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar"]
 
 
