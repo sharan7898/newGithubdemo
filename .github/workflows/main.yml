@@ -48,7 +48,7 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Build Docker image
-        run: docker build -t newdemo .
+        run: sudo docker build -t newdemo:latest .
         working-directory: /home/ubuntu/actions-runner/_work/newGithubdemo/newGithubdemo  # Adjust to your Maven project directory
 
       - name: Log in to Docker Hub
