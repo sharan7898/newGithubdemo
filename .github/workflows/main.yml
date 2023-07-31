@@ -61,14 +61,6 @@ jobs:
           docker tag newdemo:latest sharan7898/newdemo:latest
           docker push sharan7898/newdemo:latest
           
-      - name: SSH into AWS EC2 instance and deploy
-        uses: appleboy/ssh-action@v0.1.4
-        with:
-          host: ${{ secrets.EC2_PUBLIC_IP }}
-          username: 'ubuntu'
-          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          script: |
-            docker pull sharan7898/newdemo:latest
-            docker stop my_app || true
-            docker rm my_app || true
-            docker run -d -p 8080:8080 --name my_app sharan7898/newdemo:latest
+      - name: SSH into AWS Instance and Deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ec2-user@YOUR_EC2_PUBLIC_IP 'docker stop my_app || true; docker rm my_app || true; docker pull sharan7898/newdemo:latest; docker run -d -p 8080:8080 --name my_app sharan7898/newdemo:latest'
