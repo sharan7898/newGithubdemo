@@ -59,7 +59,9 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: docker tag newdemo:latest sharan7898/newdemo:latest
-             docker push sharan7898/newdemo:latest
+        
+      - name: Push Docker image to Docker Hub
+        run: docker push sharan7898/newdemo:latest
 
       - name: Copy SSH Key to EC2 Instance
         run: |
