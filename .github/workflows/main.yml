@@ -62,11 +62,11 @@ jobs:
           docker push sharan7898/newdemo:latest
           
       - name: Copy SSH key to EC2 instance
-        run: scp -i /home/runner/work/newGithubdemo/newGithubdemo/ssh_key.pem /home/runner/work/newGithubdemo/newGithubdemo/ssh_key.pem ubuntu@YOUR_EC2_PUBLIC_IP:~/
+        run: scp -i /home/runner/work/newGithubdemo/newGithubdemo/ssh.pem /home/runner/work/newGithubdemo/newGithubdemo/ssh.pem ubuntu@16.171.194.255:~/
 
       - name: Deploy Docker container on EC2 instance
         run: |
-          ssh -i /home/runner/work/newGithubdemo/newGithubdemo/ssh_key.pem ubuntu@YOUR_EC2_PUBLIC_IP '
+          ssh -i /home/runner/work/newGithubdemo/newGithubdemo/ssh_key.pem ubuntu@16.171.194.255 '
             docker stop my_app || true
             docker rm my_app || true
             docker pull sharan7898/newdemo:latest
