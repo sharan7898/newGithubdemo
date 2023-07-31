@@ -1,6 +1,6 @@
 version: '3'
 services:
   my_app:
-    image: ***/newdemo:latest
+    image: sharan7898/newdemo:latest
     ports:
       - "8080:8080"
