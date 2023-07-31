@@ -63,8 +63,8 @@ jobs:
           
       - name: SSH into AWS Instance and Deploy
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ssh_key.pem
-          chmod 400 ssh_key.pem
-          scp -i ssh_key.pem -o StrictHostKeyChecking=no ./docker-compose.yml ec2-user@16.171.194.255:/home/ec2-user/docker-compose.yml
-          ssh -i ssh_key.pem -o StrictHostKeyChecking=no ec2-user@16.171.194.255 'docker-compose -f /home/ec2-user/docker-compose.yml down; docker-compose -f /home/ec2-user/docker-compose.yml pull; docker-compose -f /home/ec2-user/docker-compose.yml up -d'
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ssh.pem
+          chmod 400 ssh.pem
+          scp -i ssh.pem -o StrictHostKeyChecking=no ./docker-compose.yml ubuntu@16.171.194.255:/home/ec2-user/docker-compose.yml
+          ssh -i ssh.pem -o StrictHostKeyChecking=no ubuntu@16.171.194.255 'docker-compose -f /home/ec2-user/docker-compose.yml down; docker-compose -f /home/ec2-user/docker-compose.yml pull; docker-compose -f /home/ec2-user/docker-compose.yml up -d'
         shell: bash
