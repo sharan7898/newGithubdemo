@@ -1,0 +1,6 @@
+version: '3'
+services:
+  my_app:
+    image: ***/newdemo:latest
+    ports:
+      - "8080:8080"
