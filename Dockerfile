@@ -1,11 +1,14 @@
-FROM maven:3.8.4-openjdk-11-slim AS build
-COPY . /app
-WORKDIR /app
-RUN mvn clean package -DskipTests
-
+# Use the official OpenJDK image for the runtime image
 FROM openjdk:11-jre-slim
-COPY --from=build /app/target/nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar /app/nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar
+
+# Set the working directory in the container
 WORKDIR /app
-CMD ["java", "-jar", "nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar.jar"]
+
+# Copy the JAR file from the target directory to the container's working directory
+COPY target/nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar /app/nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar
+
+# Run the application
+CMD ["java", "-jar", "nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar"]
+
 
 
