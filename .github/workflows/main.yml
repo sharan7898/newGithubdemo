@@ -65,7 +65,7 @@ jobs:
         
       - name: Deploy Docker Container on EC2 Instance
         run: |
-          ssh -i /home/ubuntu/ssh.pem ubuntu@16.171.200.98 'docker stop my_app || true; docker rm my_app || true; docker pull sharan7898/newdemo:latest; docker run -d -p 8080:8080 --name my_app sharan7898/newdemo:latest'
+          ssh -i /home/ubuntu/ssh.pem ubuntu@16.171.200.98 'docker stop my_app || true; docker rm my_app || true; docker pull sharan7898/newdemo:latest; docker run -d -p 8080:8081 --name my_app sharan7898/newdemo:latest'
 
       
 
