@@ -61,10 +61,10 @@ jobs:
           docker tag newdemo:latest sharan7898/newdemo:latest
           docker push sharan7898/newdemo:latest
           
-      - name: SSH into AWS Instance and Deploy
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ssh.pem
-          chmod 400 ssh.pem
-          scp -i ssh.pem -o StrictHostKeyChecking=no ./docker-compose.yml ubuntu@16.171.194.255:/home/ec2-user/docker-compose.yml
-          ssh -i ssh.pem -o StrictHostKeyChecking=no ubuntu@16.171.194.255 'docker-compose -f /home/ec2-user/docker-compose.yml down; docker-compose -f /home/ec2-user/docker-compose.yml pull; docker-compose -f /home/ec2-user/docker-compose.yml up -d'
-        shell: bash
+      - name: Copy SSH key to EC2 instance
+        run: scp -i /home/ubuntu/ssh.pem /home/ubuntu/ssh.pem ubuntu@16.171.194.255:~/
+        continue-on-error: true  # Ignore error if the file already exists on the EC2 instance
+
+      - name: Deploy Docker image to EC2 instance
+        run: ssh -i /home/ubuntu/ssh.pem ubuntu@16.171.194.255  'docker stop my_app || true; docker rm my_app || true; docker pull sharan7898/newdemo:latest; docker run -d -p 8080:8080 --name my_app sharan7898/newdemo:latest'
+
