@@ -61,14 +61,14 @@ jobs:
           docker tag newdemo:latest sharan7898/newdemo:latest
           docker push sharan7898/newdemo:latest
           
-      - name: SSH into EC2 instance
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_PUBLIC_IP }}
-          username: ubuntu
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            docker pull sharan7898/newdemo:latest
+      - name: Copy SSH key to EC2 instance
+        run: scp -i /home/runner/work/newGithubdemo/newGithubdemo/ssh_key.pem /home/runner/work/newGithubdemo/newGithubdemo/ssh_key.pem ubuntu@YOUR_EC2_PUBLIC_IP:~/
+
+      - name: Deploy Docker container on EC2 instance
+        run: |
+          ssh -i /home/runner/work/newGithubdemo/newGithubdemo/ssh_key.pem ubuntu@YOUR_EC2_PUBLIC_IP '
             docker stop my_app || true
             docker rm my_app || true
+            docker pull sharan7898/newdemo:latest
             docker run -d -p 8080:8080 --name my_app sharan7898/newdemo:latest
+          '
