@@ -44,8 +44,9 @@ jobs:
           fi
         shell: bash
 
-      #- name: Build with Maven
-      # run: mvn clean package -DskipTests
+      - name: Build with Maven
+        run: mvn package -Dmaven.test.skip=true
+
         
       - name: install with Maven
         run: mvn clean install
