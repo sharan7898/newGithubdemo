@@ -44,11 +44,11 @@ jobs:
           fi
         shell: bash
 
-      - name: Build with Maven
-        run: mvn clean package -DskipTests
+      #- name: Build with Maven
+      # run: mvn clean package -DskipTests
         
       - name: install with Maven
-        run: mvn install
+        run: mvn clean install
    
       - name: Build Docker image
         run: sudo docker build -t newdemo:latest .
