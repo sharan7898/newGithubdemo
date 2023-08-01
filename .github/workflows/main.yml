@@ -1,4 +1,4 @@
-name: CI/CD Workflow
+name: CI/CD Workflow1
 
 on:
   push:
@@ -46,7 +46,10 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
-
+        
+      - name: install with Maven
+        run: mvn install
+   
       - name: Build Docker image
         run: sudo docker build -t newdemo:latest .
         working-directory: /home/ubuntu/actions-runner/_work/newGithubdemo/newGithubdemo  # Adjust to your Maven project directory
