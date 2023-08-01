@@ -8,8 +8,10 @@
 # Stage 2: Create a lightweight image with just the JAR file
 FROM openjdk:11-jre-slim
 WORKDIR /app
+ENV MYSQL_PASSWORD=
+ENV MYSQL_USERNAME=root
 COPY target/nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar 
-CMD ["java", "-jar", "nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-Dspring.datasource.username=${MYSQL_USERNAME} ","spring.datasource.password=${MYSQL_PASSWORD}","-jar", "nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar"]
 
 
 
