@@ -7,8 +7,8 @@ RUN mvn clean package -DskipTests
 # Stage 2: Create a lightweight image with just the JAR file
 FROM openjdk:11-jre-slim
 WORKDIR /app
-COPY --from=builder /app/target/nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar ./nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar
-CMD ["java", "-jar", "nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar"]
+COPY --from=builder /app/target/maven-wrapper.jar ./maven-wrapper.jar
+CMD ["java", "-jar", "maven-wrapper.jar"]
 
 
 
