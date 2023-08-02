@@ -72,17 +72,6 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push sharan7898/newdemo:latest
         
-      - name: Install MySQL on EC2 Instance
-        run: |
-          sudo apt update
-          sudo apt install -y mysql-server
-
-      - name: Start MySQL Service
-        run: sudo service mysql start
-        
       - name: Deploy Docker Container on EC2 Instance
-        run: |
-          ssh -i /home/ubuntu/ssh.pem ubuntu@13.53.206.138 'docker stop my_app || true; docker rm my_app || true; docker pull sharan7898/newdemo:latest; docker run -d -p 8080:8081 --name my_app -e "MYSQL_USERNAME=${MYSQL_USERNAME}" -e "MYSQL_PASSWORD=" sharan7898/newdemo:latest'
-      
-
+        run: docker-compose up
      
