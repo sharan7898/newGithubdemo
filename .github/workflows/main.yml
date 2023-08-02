@@ -41,6 +41,7 @@ jobs:
             sudo systemctl enable docker
             # Add the current user to the 'docker' group
             sudo usermod -aG docker $USER
+            sudo systemctl restart docker
           fi
         shell: bash
 
