@@ -1,6 +1,33 @@
-version: '3'
+version: "3.3"
 services:
-  my_app:
-    image: sharan7898/newdemo:latest
-    ports:
-      - "8080:8080"
+   myapp:
+      image: sharan7898/newdemo:latest
+      restart: always
+      container_name: myapp
+      ports:
+        - "8081:8081"
+      networks:
+        - mynetwork
+      environment:
+        - SPRING_DATASOURCE_USERNAME=root
+        - SPRING_DATASOURCE_PASSWORD=P@ssw0rd123
+        - SPRING_DATASOURCE_URL=jdbc:mysql://mydb:3306/db_nysfkhelo_youth_loc
+        - SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION=true
+      depends_on:
+        - mydb 
+          
+   mydb:
+      image: mysql:8
+      restart: always
+      container_name: mydb
+      networks:
+        - mynetwork
+      environment:
+        - MYSQL_ROOT_PASSWORD=P@ssw0rd123
+        - MYSQL_DATABASE=db_nysfkhelo_youth_loc  
+      ports:
+        - "3307:3306"
+         
+
+networks:
+  mynetwork:
