@@ -8,6 +8,8 @@
 FROM openjdk:11-jre-slim
 WORKDIR /app
 COPY target/nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar
+ENV MYSQL_USERNAME=root
+ENV MYSQL_PASSWORD=root
 CMD ["java", "-jar", "nysf-kheloindia-youth-0.0.1-SNAPSHOT.jar"]
 
 
