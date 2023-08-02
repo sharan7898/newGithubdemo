@@ -1,4 +1,4 @@
-name: CI/CD Workflow
+name: CI/CD Workflow1
 
 on:
   push:
@@ -8,6 +8,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: self-hosted
+    
+    env:
+       MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+
 
     steps:
       - name: Checkout code
@@ -19,14 +23,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
           architecture: 'x64'
-
-      - name: Restore Maven dependencies cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-      
 
       - name: Install Docker
         run: |
@@ -49,35 +45,20 @@ jobs:
             sudo systemctl enable docker
             # Add the current user to the 'docker' group
             sudo usermod -aG docker $USER
+            sudo systemctl restart docker
           fi
         shell: bash
 
-      - name: Install MySQL on EC2 Instance
-        run: |
-          sudo apt update
-          sudo apt install -y mysql-server
-
-      - name: Start MySQL Service
-        run: sudo service mysql start
-
-      - name: Check if Docker network exists
-        run: |
-          if docker network inspect my_network >/dev/null 2>&1; then
-          echo "Docker network 'my_network' already exists. Skipping creation..."
-          exit 0
-          else
-          echo "Creating Docker network 'my_network'..."
-          docker network create my_network
-          fi
-
-
       - name: Build with Maven
-        run: mvn clean install -e
-        working-directory: /home/ubuntu/actions-runner/_work/newGithubdemo/newGithubdemo  # Adjust to your Maven project directory
+        run: mvn package -Dmaven.test.skip=true
 
+        
+      - name: install with Maven
+        run: mvn clean install
+   
       - name: Build Docker image
         run: sudo docker build -t newdemo:latest .
-        working-directory: /home/ubuntu/actions-runner/_work/newGithubdemo/newGithubdemo  # Adjust to your Maven project directory
+        working-directory: /home/ubuntu/actions-runner/_work/newGithubdemo/newGithubdemo # Adjust to your Maven project directory
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
@@ -90,16 +71,18 @@ jobs:
         
       - name: Push Docker image to Docker Hub
         run: docker push sharan7898/newdemo:latest
-
-      - name: Deploy Docker Containers on EC2 Instance
+        
+      - name: Install MySQL on EC2 Instance
         run: |
-          ssh -i /home/ubuntu/ssh.pem ubuntu@13.51.69.160 '
-            docker stop my_mysql || true
-            docker rm my_mysql || true
-            docker pull mysql:latest
-            docker run -d --name my_mysql --network my_network -e "MYSQL_ROOT_PASSWORD=root" -e "MYSQL_DATABASE=db_nysfkhelo_youth_loc" -e "MYSQL_USER=root" -e "MYSQL_PASSWORD=root" mysql:latest
-            docker stop my_app || true
-            docker rm my_app || true
-            docker pull sharan7898/newdemo:latest
-            docker run -d --name my_app --network my_network -p 8080:8081 -e "MYSQL_HOST=my_mysql" -e "MYSQL_PORT=3306" -e "MYSQL_DATABASE=db_nysfkhelo_youth_loc" -e "MYSQL_USER=root" -e "MYSQL_PASSWORD=root" sharan7898/newdemo:latest
-          '
+          sudo apt update
+          sudo apt install -y mysql-server
+
+      - name: Start MySQL Service
+        run: sudo service mysql start
+        
+      - name: Deploy Docker Container on EC2 Instance
+        run: |
+          ssh -i /home/ubuntu/ssh.pem ubuntu@13.53.206.138 'docker stop my_app || true; docker rm my_app || true; docker pull sharan7898/newdemo:latest; docker run -d -p 8080:8081 --name my_app -e "MYSQL_USERNAME=${MYSQL_USERNAME}" -e "MYSQL_PASSWORD=" sharan7898/newdemo:latest'
+      
+
+     
