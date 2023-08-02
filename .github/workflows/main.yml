@@ -72,7 +72,7 @@ jobs:
 
 
       - name: Build with Maven
-        run: mvn package -Dmaven.test.skip=true
+        run: mvn clean install
         working-directory: /home/ubuntu/actions-runner/_work/newGithubdemo/newGithubdemo  # Adjust to your Maven project directory
 
       - name: Build Docker image
