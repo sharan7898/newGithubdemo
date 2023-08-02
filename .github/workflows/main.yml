@@ -20,6 +20,14 @@ jobs:
           distribution: 'adopt'
           architecture: 'x64'
 
+      - name: Restore Maven dependencies cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-    
+
       - name: Install Docker
         run: |
           if ! docker --version; then
@@ -88,7 +96,7 @@ jobs:
 
       - name: Deploy Docker Containers on EC2 Instance
         run: |
-          ssh -i /home/ubuntu/ssh.pem ubuntu@13.49.75.67 '
+          ssh -i /home/ubuntu/ssh.pem ubuntu@13.51.69.160 '
             docker stop my_mysql || true
             docker rm my_mysql || true
             docker pull mysql:latest
