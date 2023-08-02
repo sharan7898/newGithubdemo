@@ -52,9 +52,6 @@ jobs:
       - name: Start MySQL Service
         run: sudo service mysql start
 
-      - name: Secure MySQL Installation
-        run: sudo mysql_secure_installation
-
       - name: Create Docker Network
         run: docker network create my_network
 
