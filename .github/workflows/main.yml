@@ -55,8 +55,16 @@ jobs:
       - name: Start MySQL Service
         run: sudo service mysql start
 
-      - name: Create Docker Network
-        run: docker network create my_network
+      - name: Check if Docker network exists
+        run: |
+          if docker network inspect my_network >/dev/null 2>&1; then
+          echo "Docker network 'my_network' already exists. Skipping creation..."
+          exit 0
+          else
+          echo "Creating Docker network 'my_network'..."
+          docker network create my_network
+          fi
+
 
       - name: Build with Maven
         run: mvn package -Dmaven.test.skip=true
